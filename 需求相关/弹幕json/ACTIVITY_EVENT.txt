@@ -1,0 +1,1 @@
+{"cmd":"ACTIVITY_EVENT","data":{"keyword":"bls_winter_2018","type":"charge","limit":500000,"progress":2300}}

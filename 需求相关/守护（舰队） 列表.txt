@@ -1,0 +1,48 @@
+守护（舰队） 列表
+
+Request URL:https://api.live.bilibili.com/guard/topList?roomid=48499&page=1&ruid=4548018
+Request Method:GET
+Status Code:200 OK
+Remote Address:111.230.84.45:443
+
+Response Headers
+view source
+Access-Control-Allow-Credentials:true
+Access-Control-Allow-Headers:Origin,No-Cache,X-Requested-With,If-Modified-Since,Pragma,Last-Modified,Cache-Control,Expires,Content-Type
+Access-Control-Allow-Methods:GET,POST,OPTIONS
+Access-Control-Allow-Origin:https://live.bilibili.com
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Encoding:gzip
+Content-Type:application/json
+Date:Fri, 20 Jul 2018 16:06:30 GMT
+Expires:Fri, 20 Jul 2018 16:06:29 GMT
+Server:swoole-http-server
+Transfer-Encoding:chunked
+Vary:Accept-Encoding,Origin
+X-Cache:BYPASS from tx-gz3-webcdn-04.hdslb.com
+
+Request Headers
+view source
+Accept:application/json, text/plain, */*
+Accept-Encoding:gzip, deflate, sdch
+Accept-Language:zh-CN,zh;q=0.8
+Cache-Control:no-cache
+Connection:keep-alive
+Cookie:sid=9vwg21cp; fts=1510035592; buvid3=B24F1AF9-583D-44B9-9555-63351DD6E40D26536infoc; pgv_pvi=8766843904; rpdid=olpxxioxsqdosowmksxqw; LIVE_BUVID=389bddb32b4dc3fabb4b95655e8e7375; LIVE_BUVID__ckMd5=19b58dc689d8d222; UM_distinctid=1636dd5f8b940-0878cf0c7b913e-1571466f-100200-1636dd5f8ba59; user_face=https%3A%2F%2Fi2.hdslb.com%2Fbfs%2Fface%2F013fc7e64839ab9002f0641678890957fece11db.jpg; CURRENT_QUALITY=64; finger=91f716ad; DedeUserID=52155851; DedeUserID__ckMd5=d6cf14dfb452c9c5; SESSDATA=8c4a2498%2C1533018906%2C97f8fd32; bili_jct=2e4fc13ed042ebd2c63a78355d93a6f5; LIVE_PLAYER_TYPE=2; BANGUMI_SS_24439_REC=233324; bp_t_offset_52155851=140935091211795778; im_seqno_52155851=291; im_notify_type_52155851=0; im_local_unread_52155851=0; GIFT_BLOCK_COOKIE=GIFT_BLOCK_COOKIE; Hm_lvt_8a6e55dbd2870f0f5bc9194cddf32a02=1531842548,1531887473,1532006659,1532061906; Hm_lpvt_8a6e55dbd2870f0f5bc9194cddf32a02=1532102781; _dfcaptcha=d6cc16fa208e9c55c3f38818376b5471
+DNT:1
+Host:api.live.bilibili.com
+Origin:https://live.bilibili.com
+Pragma:no-cache
+Referer:https://live.bilibili.com/145
+User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0
+
+Query String Parameters
+view source
+view URL encoded
+roomid:48499
+page:1
+ruid:4548018
+
+返回
+{"code":0,"msg":"success","message":"success","data":{"info":{"num":87,"page":9,"now":1},"list":[{"uid":2217104,"ruid":4548018,"rank":1,"username":"LLaw丶","face":"https://i1.hdslb.com/bfs/face/25d6b1f6e9630306f38e1b5f26441ea5026a191d.jpg","is_alive":0,"guard_level":2},{"uid":21324431,"ruid":4548018,"rank":2,"username":"崇光七日","face":"https://i2.hdslb.com/bfs/face/1c433909c2a631f637f1fdbb701d15ce6a81291b.jpg","is_alive":0,"guard_level":3},{"uid":30909300,"ruid":4548018,"rank":3,"username":"今天也爱凉凉","face":"https://i1.hdslb.com/bfs/face/d034f1e9e2ee5636fe04eb823afab51f0bc7b8a8.jpg","is_alive":0,"guard_level":3},{"uid":26946988,"ruid":4548018,"rank":4,"username":"乔沃德达吉霸","face":"https://i2.hdslb.com/bfs/face/2b57004c3ec142551c26944c98ae3685e7c4613e.jpg","is_alive":0,"guard_level":3},{"uid":26084762,"ruid":4548018,"rank":5,"username":"拾捌号团子","face":"https://i1.hdslb.com/bfs/face/268781432dea15663c2ebbc7f5ca4e402e706638.jpg","is_alive":0,"guard_level":3},{"uid":25962345,"ruid":4548018,"rank":6,"username":"为了省钱","face":"https://i2.hdslb.com/bfs/face/ec8d3d0f2e004cc66ebd4f00e9a35abb366bdee1.jpg","is_alive":0,"guard_level":3},{"uid":23727281,"ruid":4548018,"rank":7,"username":"仙女味的知白","face":"https://i2.hdslb.com/bfs/face/0451dfb3bc1bd6b305775d5f09bd512dbc38f9f7.jpg","is_alive":0,"guard_level":3},{"uid":21691304,"ruid":4548018,"rank":8,"username":"糖球箘","face":"https://i1.hdslb.com/bfs/face/044a1ed28e9ee6f928514247dd201804dcdacdd4.jpg","is_alive":0,"guard_level":3},{"uid":21290114,"ruid":4548018,"rank":9,"username":"三千钰","face":"https://i1.hdslb.com/bfs/face/ece1e7829c56a78515cc2ba9ac85948721a7f3e2.jpg","is_alive":0,"guard_level":3},{"uid":21313486,"ruid":4548018,"rank":10,"username":"TOMddx","face":"https://i1.hdslb.com/bfs/face/cb37343f96b5ab8fff1b1ec36646f47b2750743f.jpg","is_alive":0,"guard_level":3}],"top3":[{"uid":21398655,"ruid":4548018,"rank":1,"username":"微小人类","face":"https://i0.hdslb.com/bfs/face/bd05dc5269b7fb1012be4d54d59be95d7e52a36f.jpg","is_alive":1,"guard_level":3},{"uid":20736616,"ruid":4548018,"rank":2,"username":"愛睡覺的熊","face":"https://i0.hdslb.com/bfs/face/8870c758e393d6da796395400fc46737d4cd0c46.jpg","is_alive":1,"guard_level":3},{"uid":8088070,"ruid":4548018,"rank":3,"username":"想昵称真的好麻烦","face":"https://i0.hdslb.com/bfs/face/52427d9110f91a1019be10f36f9eb53e0d6c7785.jpg","is_alive":1,"guard_level":3}]}}

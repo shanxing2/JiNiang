@@ -1,0 +1,54 @@
+直播间 添加屏蔽关键词（未生效，需要应用激活）
+Request URL:https://api.live.bilibili.com/liveact/shield_keyword
+Request Method:POST
+Status Code:200 OK
+Remote Address:106.75.162.231:443
+Referrer Policy:no-referrer-when-downgrade
+
+Response Headers
+view source
+Access-Control-Allow-Credentials:true
+Access-Control-Allow-Headers:Origin,No-Cache,X-Requested-With,If-Modified-Since,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,Access-Control-Allow-Credentials,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Cache-Webcdn
+Access-Control-Allow-Origin:https://live.bilibili.com
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Length:46
+Content-Type:application/json
+Date:Wed, 31 Jul 2019 08:47:43 GMT
+Expires:Wed, 31 Jul 2019 08:47:42 GMT
+Server:swoole-http-server
+Vary:Accept-Encoding,Origin
+X-Cache-Webcdn:BYPASS from u-gz-webcdn-06
+X-TKID:1564562863732905828774
+
+Request Headers
+view source
+Accept:application/json, text/javascript, */*; q=0.01
+Accept-Encoding:gzip, deflate, br
+Accept-Language:zh-CN,zh;q=0.8
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Length:114
+Content-Type:application/x-www-form-urlencoded; charset=UTF-8
+Cookie:sid=i2sgai8q; fts=1537116787; pgv_pvi=4335970304; buvid3=DF25D428-E49D-4981-916A-066099C76F8048107infoc; LIVE_BUVID=63d04f12625e0ba4ad59137967e397e5; LIVE_BUVID__ckMd5=90db8c3e72193724; _qddaz=QD.rdxnks.6mqahz.js1b0m44; UM_distinctid=169960414891-060945bae854df-10724c6f-15f900-1699604148bc6; im_seqno_52155851=468; im_local_unread_52155851=0; rpdid=|(um|u~m)lll0J'ullY|JmRlu; CURRENT_QUALITY=0; im_notify_type_52155851=0; stardustvideo=1; DedeUserID=52155851; DedeUserID__ckMd5=d6cf14dfb452c9c5; SESSDATA=5d947dec%2C1566543957%2C74cdab71; bili_jct=83385010d587b1447e07ce9830dea10f; stardustpgcv=0606; CURRENT_FNVAL=16; bp_t_offset_52155851=281128531764072447; _uuid=ED654227-A43D-481F-70B7-B829DCCFC66859893infoc; _dfcaptcha=0769866031e005cb02178bbded3300a2; Hm_lvt_8a6e55dbd2870f0f5bc9194cddf32a02=1563297153,1563951933,1564316117,1564562003; Hm_lpvt_8a6e55dbd2870f0f5bc9194cddf32a02=1564562003
+DNT:1
+Host:api.live.bilibili.com
+Origin:https://live.bilibili.com
+Pragma:no-cache
+Referer:https://live.bilibili.com/4236342
+User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0
+
+Form Data
+view source
+view URL encoded
+roomid:4236342
+type:1
+keyword:11
+csrf_token:83385010d587b1447e07ce9830dea10f
+csrf:83385010d587b1447e07ce9830dea10f
+
+拼接后
+roomid=4236342&type=1&keyword=11&csrf_token=83385010d587b1447e07ce9830dea10f&csrf=83385010d587b1447e07ce9830dea10f
+
+返回
+{"code":0,"msg":"","message":"","data":["11"]}

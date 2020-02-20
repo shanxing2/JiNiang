@@ -1,0 +1,11 @@
+非全场直播的会有具体时间
+
+
+全局禁言——全员——全场直播
+{"cmd":"ROOM_SILENT_ON","data":{"type":"member","level":1,"second":-1},"roomid":4236342}
+
+全局禁言——全员——30分钟
+{"cmd":"ROOM_SILENT_ON","data":{"type":"member","level":1,"second":1545312689},"roomid":4236342}
+
+全局禁言——用户等级——3分钟
+{"cmd":"ROOM_SILENT_ON","data":{"type":"level","level":1,"second":1545311169},"roomid":4236342}

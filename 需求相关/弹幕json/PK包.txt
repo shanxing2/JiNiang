@@ -1,0 +1,193 @@
+   Time：2018-06-26 00:01:03
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_MIC_END","pk_id":4328,"pk_status":1000,"data":{"type":0}}
+
+   Time：2018-06-26 00:01:32
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_MATCH","pk_status":100,"pk_id":4330,"data":{"init_id":927795,"match_id":401596,"escape_time":5,"is_portrait":true,"uname":"\u53c8\u57fa","face":"http:\/\/i0.hdslb.com\/bfs\/face\/f19e2da4ca4c3218469faf84e5bc7b18eba220d9.jpg","uid":8363122},"roomid":927795}
+
+   Time：2018-06-26 00:01:33
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PRE","pk_id":4330,"pk_status":200,"data":{"init_id":927795,"match_id":401596,"count_down":5,"pk_topic":"\u5531\u9996\u604b\u7231\u66f2","pk_pre_time":1529942493,"pk_start_time":1529942498,"pk_end_time":1529942798,"end_time":1529942918}}
+
+   Time：2018-06-26 00:01:38
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_START","pk_id":4330,"pk_status":300,"data":{"init_id":927795,"match_id":401596,"pk_topic":"\u5531\u9996\u604b\u7231\u66f2"}}
+
+   Time：2018-06-26 00:01:50
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":33293513,"init_votes":1,"match_votes":0,"user_votes":1},"roomid":927795}
+
+   Time：2018-06-26 00:02:15
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":33293513,"init_votes":3,"match_votes":0,"user_votes":3},"roomid":927795}
+
+
+   Time：2018-06-26 00:04:05
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":177836752,"init_votes":23,"match_votes":0,"user_votes":20},"roomid":927795}
+
+   Time：2018-06-26 00:04:05
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":0,"init_votes":23,"match_votes":4,"user_votes":0},"roomid":927795}
+
+   Time：2018-06-26 00:04:08
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":177836752,"init_votes":43,"match_votes":4,"user_votes":40},"roomid":927795}
+
+   Time：2018-06-26 00:04:09
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":177836752,"init_votes":63,"match_votes":4,"user_votes":60},"roomid":927795}
+
+   Time：2018-06-26 00:04:12
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":177836752,"init_votes":83,"match_votes":4,"user_votes":80},"roomid":927795}
+
+   Time：2018-06-26 00:04:12
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":177836752,"init_votes":103,"match_votes":4,"user_votes":100},"roomid":927795}
+
+   Time：2018-06-26 00:05:48
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":0,"init_votes":103,"match_votes":804,"user_votes":0},"roomid":927795}
+
+   Time：2018-06-26 00:05:57
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":177836752,"init_votes":618,"match_votes":804,"user_votes":615},"roomid":927795}
+
+   Time：2018-06-26 00:05:57
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":177836752,"init_votes":1133,"match_votes":804,"user_votes":1130},"roomid":927795}
+
+   Time：2018-06-26 00:06:15
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":177836752,"init_votes":1648,"match_votes":804,"user_votes":1645},"roomid":927795}
+
+   Time：2018-06-26 00:06:24
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":0,"init_votes":1648,"match_votes":1604,"user_votes":0},"roomid":927795}
+
+   Time：2018-06-26 00:06:28
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":177836752,"init_votes":2163,"match_votes":1604,"user_votes":2160},"roomid":927795}
+
+   Time：2018-06-26 00:06:30
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":177836752,"init_votes":2678,"match_votes":1604,"user_votes":2675},"roomid":927795}
+
+   Time：2018-06-26 00:06:32
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":177836752,"init_votes":3193,"match_votes":1604,"user_votes":3190},"roomid":927795}
+
+   Time：2018-06-26 00:06:36
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":0,"init_votes":3193,"match_votes":1654,"user_votes":0},"roomid":927795}
+
+   Time：2018-06-26 00:06:37
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4330,"pk_status":300,"data":{"uid":0,"init_votes":3193,"match_votes":1704,"user_votes":0},"roomid":927795}
+
+   Time：2018-06-26 00:06:38
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_END","pk_id":4330,"pk_status":400,"data":{"init_id":927795,"match_id":401596,"punish_topic":"\u60e9\u7f5a\uff1a\u6a21\u4eff\u9762\u7b4b\u54e5"}}
+
+   Time：2018-06-26 00:06:38
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_SETTLE","pk_id":4330,"pk_status":400,"data":{"pk_id":4330,"init_info":{"uid":13826696,"init_id":927795,"uname":"\u7231\u4f60\u7684\u9f99\u4e09\u5c81ovo","face":"http:\/\/i2.hdslb.com\/bfs\/face\/3b8c6aecfb2b1498af6163adf5c54ba347563fce.jpg","votes":3193,"is_winner":true,"vip_type":0,"exp":{"color":5805790,"user_level":25,"master_level":{"level":27,"color":10512625}},"vip":{"vip":1,"svip":0},"face_frame":"","badge":{"url":"","desc":"","position":0}},"match_info":{"uid":8363122,"match_id":401596,"uname":"\u53c8\u57fa","face":"http:\/\/i0.hdslb.com\/bfs\/face\/f19e2da4ca4c3218469faf84e5bc7b18eba220d9.jpg","votes":1704,"is_winner":false},"best_user":{"uid":177836752,"uname":"\u4e13\u5ba0\u9f99\u5b9d\u7684\u4e3b\u673aovo","face":"http:\/\/i0.hdslb.com\/bfs\/face\/5dac0ddf5873679c2dafa2e7f94983b7870926f8.jpg","vip_type":2,"exp":{"color":16746162,"user_level":42,"master_level":{"level":1,"color":6406234}},"vip":{"vip":1,"svip":1},"privilege_type":1,"face_frame":"http:\/\/i0.hdslb.com\/bfs\/live\/ceb8e7fc5e207b8e6219c9917e3ef1b22f3df61a.png","badge":{"url":"http:\/\/i0.hdslb.com\/bfs\/live\/b5e9ebd5ddb979a482421ca4ea2f8c1cc593370b.png","desc":"","position":3}},"punish_topic":"\u60e9\u7f5a\uff1a\u6a21\u4eff\u9762\u7b4b\u54e5"}}
+
+   Time：2018-06-26 00:08:38
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_MIC_END","pk_id":4330,"pk_status":1000,"data":{"type":0}}
+
+   Time：2018-06-26 00:20:23
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_MATCH","pk_status":100,"pk_id":4332,"data":{"init_id":927795,"match_id":8051325,"escape_time":5,"is_portrait":false,"uname":"\u5c0f\u767d\u662f\u4e2a\u5c0f\u795e\u4ed9","face":"http:\/\/i1.hdslb.com\/bfs\/face\/d9789d2f17d6abe39bf7552ea740b598480e0696.jpg","uid":210370522},"roomid":927795}
+
+   Time：2018-06-26 00:20:25
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PRE","pk_id":4332,"pk_status":200,"data":{"init_id":927795,"match_id":8051325,"count_down":5,"pk_topic":"\u5356\u840c\u6bd4\u8d5b","pk_pre_time":1529943625,"pk_start_time":1529943630,"pk_end_time":1529943930,"end_time":1529944050}}
+
+   Time：2018-06-26 00:20:30
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_START","pk_id":4332,"pk_status":300,"data":{"init_id":927795,"match_id":8051325,"pk_topic":"\u5356\u840c\u6bd4\u8d5b"}}
+
+   Time：2018-06-26 00:21:33
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":33388985,"init_votes":5,"match_votes":0,"user_votes":5},"roomid":927795}
+
+   Time：2018-06-26 00:22:24
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":33388985,"init_votes":10,"match_votes":0,"user_votes":10},"roomid":927795}
+
+   Time：2018-06-26 00:22:24
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":33388985,"init_votes":15,"match_votes":0,"user_votes":15},"roomid":927795}
+
+   Time：2018-06-26 00:22:26
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":33388985,"init_votes":20,"match_votes":0,"user_votes":20},"roomid":927795}
+
+   Time：2018-06-26 00:22:26
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":33388985,"init_votes":25,"match_votes":0,"user_votes":25},"roomid":927795}
+
+   Time：2018-06-26 00:22:27
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":33388985,"init_votes":30,"match_votes":0,"user_votes":30},"roomid":927795}
+
+   Time：2018-06-26 00:22:27
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":33388985,"init_votes":35,"match_votes":0,"user_votes":35},"roomid":927795}
+
+   Time：2018-06-26 00:22:28
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":33388985,"init_votes":40,"match_votes":0,"user_votes":40},"roomid":927795}
+
+   Time：2018-06-26 00:22:28
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":33388985,"init_votes":45,"match_votes":0,"user_votes":45},"roomid":927795}
+
+   Time：2018-06-26 00:22:47
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":0,"init_votes":45,"match_votes":20,"user_votes":0},"roomid":927795}
+
+   Time：2018-06-26 00:22:48
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":0,"init_votes":45,"match_votes":40,"user_votes":0},"roomid":927795}
+
+   Time：2018-06-26 00:22:50
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":0,"init_votes":45,"match_votes":60,"user_votes":0},"roomid":927795}
+
+   Time：2018-06-26 00:23:13
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":177836752,"init_votes":560,"match_votes":60,"user_votes":515},"roomid":927795}
+
+   Time：2018-06-26 00:23:44
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":102605029,"init_votes":561,"match_votes":60,"user_votes":1},"roomid":927795}
+
+   Time：2018-06-26 00:25:30
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":33388985,"init_votes":562,"match_votes":60,"user_votes":46},"roomid":927795}
+
+   Time：2018-06-26 00:25:30
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":33388985,"init_votes":563,"match_votes":60,"user_votes":47},"roomid":927795}
+
+   Time：2018-06-26 00:25:30
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_PROCESS","pk_id":4332,"pk_status":300,"data":{"uid":33388985,"init_votes":564,"match_votes":60,"user_votes":48},"roomid":927795}
+
+   Time：2018-06-26 00:25:30
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_END","pk_id":4332,"pk_status":400,"data":{"init_id":927795,"match_id":8051325,"punish_topic":"\u60e9\u7f5a\uff1a\u8df3\u4e00\u652f\u5e7f\u573a\u821e"}}
+
+   Time：2018-06-26 00:25:30
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_SETTLE","pk_id":4332,"pk_status":400,"data":{"pk_id":4332,"init_info":{"uid":13826696,"init_id":927795,"uname":"\u7231\u4f60\u7684\u9f99\u4e09\u5c81ovo","face":"http:\/\/i2.hdslb.com\/bfs\/face\/3b8c6aecfb2b1498af6163adf5c54ba347563fce.jpg","votes":564,"is_winner":true,"vip_type":0,"exp":{"color":5805790,"user_level":25,"master_level":{"level":27,"color":10512625}},"vip":{"vip":1,"svip":0},"face_frame":"","badge":{"url":"","desc":"","position":0}},"match_info":{"uid":210370522,"match_id":8051325,"uname":"\u5c0f\u767d\u662f\u4e2a\u5c0f\u795e\u4ed9","face":"http:\/\/i1.hdslb.com\/bfs\/face\/d9789d2f17d6abe39bf7552ea740b598480e0696.jpg","votes":60,"is_winner":false},"best_user":{"uid":177836752,"uname":"\u4e13\u5ba0\u9f99\u5b9d\u7684\u4e3b\u673aovo","face":"http:\/\/i0.hdslb.com\/bfs\/face\/5dac0ddf5873679c2dafa2e7f94983b7870926f8.jpg","vip_type":2,"exp":{"color":16746162,"user_level":42,"master_level":{"level":1,"color":6406234}},"vip":{"vip":1,"svip":1},"privilege_type":1,"face_frame":"http:\/\/i0.hdslb.com\/bfs\/live\/ceb8e7fc5e207b8e6219c9917e3ef1b22f3df61a.png","badge":{"url":"http:\/\/i0.hdslb.com\/bfs\/live\/b5e9ebd5ddb979a482421ca4ea2f8c1cc593370b.png","desc":"","position":3}},"punish_topic":"\u60e9\u7f5a\uff1a\u8df3\u4e00\u652f\u5e7f\u573a\u821e"}}
+
+   Time：2018-06-26 00:27:30
+   来源：直播姬小帮帮.DanmuParser 行号：0
+问题描述：{"cmd":"PK_MIC_END","pk_id":4332,"pk_status":1000,"data":{"type":0}}
+

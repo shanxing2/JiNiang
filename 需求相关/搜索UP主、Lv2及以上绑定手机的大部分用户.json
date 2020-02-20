@@ -1,0 +1,1360 @@
+搜索UP主、Lv2及以上绑定手机的大部分用户
+
+https://api.bilibili.com/x/web-interface/search/type?jsonp=jsonp&search_type=bili_user&highlight=1&keyword=胖头鱼&page=1
+
+Referer:https://search.bilibili.com/upuser
+User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0
+
+返回
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "seid": "492701042795771786",
+        "page": 1,
+        "pagesize": 20,
+        "numResults": 85,
+        "numPages": 5,
+        "suggest_keyword": "",
+        "rqt_type": "search",
+        "cost_time": {
+            "params_check": "0.000283",
+            "get upuser live status": "0.003579",
+            "illegal_handler": "0.000094",
+            "as_response_format": "0.008942",
+            "as_request": "0.020443",
+            "save_cache": "0.000716",
+            "deserialize_response": "0.000649",
+            "as_request_format": "0.000242",
+            "total": "0.031647",
+            "main_handler": "0.030470"
+        },
+        "exp_list": {
+            "5508": true
+        },
+        "egg_hit": 0,
+        "result": [
+            {
+                "rank_offset": 1,
+                "usign": "",
+                "videos": 54,
+                "fans": 435622,
+                "is_upuser": 1,
+                "upic": "//i0.hdslb.com/bfs/face/7a1f15e4fc51e16c32752e10e40e7fa3ffa81eb6.jpg",
+                "uname": "优酱胖头鱼",
+                "official_verify": {
+                    "type": 0,
+                    "desc": "bilibili 知名UP主"
+                },
+                "verify_info": "",
+                "rank_score": 100435622,
+                "level": 6,
+                "gender": 1,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 10465808,
+                "is_live": 0,
+                "room_id": 330355,
+                "res": [
+                    {
+                        "play": "33273",
+                        "dm": 164,
+                        "pubdate": 1545290261,
+                        "title": "恩爱情侣试玩分手机器",
+                        "pic": "//i1.hdslb.com/bfs/archive/3b426ecd518dfe6e66273b40a19aa50b8329c51c.jpg",
+                        "fav": 69,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "9:2",
+                        "aid": 38580826,
+                        "coin": 133,
+                        "arcurl": "http://www.bilibili.com/video/av38580826",
+                        "desc": "哈哈哈啊哈哈\n我真坏"
+                    },
+                    {
+                        "play": "11375",
+                        "dm": 34,
+                        "pubdate": 1545015696,
+                        "title": "这个up主到ktv能骚到什么程度？？？",
+                        "pic": "//i1.hdslb.com/bfs/archive/02bdd0214ec7a6c3f6b18e6d12e5be68de60ace5.jpg",
+                        "fav": 20,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "1:10",
+                        "aid": 38355226,
+                        "coin": 66,
+                        "arcurl": "http://www.bilibili.com/video/av38355226",
+                        "desc": "-"
+                    },
+                    {
+                        "play": "8255",
+                        "dm": 33,
+                        "pubdate": 1544963044,
+                        "title": "超简单初学者吉他教学《兔子先生》学会后抱着吉他去哄你的那个她（他）吧",
+                        "pic": "//i0.hdslb.com/bfs/archive/7904af5018357af7e2b839eaad251c4f30736811.jpg",
+                        "fav": 264,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "14:42",
+                        "aid": 38316126,
+                        "coin": 225,
+                        "arcurl": "http://www.bilibili.com/video/av38316126",
+                        "desc": "反复练！"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 2,
+                "usign": "微博@一只胖头鱼o 充电50或投币20即可领取粉丝牌 ",
+                "videos": 17,
+                "fans": 96574,
+                "is_upuser": 1,
+                "upic": "//i0.hdslb.com/bfs/face/2e2f9e35be253b71ec117e03d02dacd8e423e109.jpg",
+                "uname": "一只胖头鱼o",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 96574,
+                "level": 6,
+                "gender": 1,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 97395295,
+                "is_live": 0,
+                "room_id": 3935643,
+                "res": [
+                    {
+                        "play": "200790",
+                        "dm": 702,
+                        "pubdate": 1544882280,
+                        "title": "《天龙八部主播版》第五集旭旭宝宝大司马周淑怡",
+                        "pic": "//i1.hdslb.com/bfs/archive/2ca5380c516e7ddb0264f316dd3095f5772fcfe0.jpg",
+                        "fav": 3678,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "6:14",
+                        "aid": 38241355,
+                        "coin": 9608,
+                        "arcurl": "http://www.bilibili.com/video/av38241355",
+                        "desc": "众主播搞笑演绎经典武侠天龙八部希望大家喜欢(记得收藏关注哦)"
+                    },
+                    {
+                        "play": "115442",
+                        "dm": 342,
+                        "pubdate": 1541312427,
+                        "title": "《天龙八部主播版》第四集旭旭宝宝大战pdd",
+                        "pic": "//i2.hdslb.com/bfs/archive/003a49bada0b0efbe6f85a597f69602adbaa4244.jpg",
+                        "fav": 666,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "6:12",
+                        "aid": 35278032,
+                        "coin": 2390,
+                        "arcurl": "http://www.bilibili.com/video/av35278032",
+                        "desc": "卢本伟pdd旭旭宝宝大司马众主播搞笑演绎经典武侠天龙八部希望大家喜欢"
+                    },
+                    {
+                        "play": "186616",
+                        "dm": 750,
+                        "pubdate": 1538704852,
+                        "title": "《天龙八部主播版》第三集旭旭宝宝初学六脉神剑",
+                        "pic": "//i1.hdslb.com/bfs/archive/1d9e2af14c25b85f844fb7f5594ca11927f9a4b6.jpg",
+                        "fav": 688,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "7:39",
+                        "aid": 33130061,
+                        "coin": 2229,
+                        "arcurl": "http://www.bilibili.com/video/av33130061",
+                        "desc": "卢本伟pdd旭旭宝宝大司马众主播搞笑演绎经典武侠天龙八部 希望大家喜欢"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 3,
+                "usign": "雨还没停 你就撑伞要走",
+                "videos": 8,
+                "fans": 1602,
+                "is_upuser": 1,
+                "upic": "//i2.hdslb.com/bfs/face/7eafaedbe05f3797f60cd9f719b73a09d9f1c53e.jpg",
+                "uname": "芒果味儿的胖头鱼",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 1602,
+                "level": 5,
+                "gender": 3,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 15881459,
+                "is_live": 0,
+                "room_id": 1872220,
+                "res": [
+                    {
+                        "play": "164399",
+                        "dm": 10585,
+                        "pubdate": 1494104069,
+                        "title": "女演员哭戏剪辑 你说谁的演技在线（第三弹）",
+                        "pic": "//i0.hdslb.com/bfs/archive/7ffcb956e21dbc7f4b3832e61c9de19fc18f8881.jpg",
+                        "fav": 3220,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "42:51",
+                        "aid": 10372528,
+                        "coin": 319,
+                        "arcurl": "http://www.bilibili.com/video/av10372528",
+                        "desc": "我才发现水印挡住人名了 你们凑合看吧\n第一弹av7136257 第二弹av7181351\n\n开头是UP小小的私心 哈哈哈哈\n\n演员： 孙俪 蒋欣 陶昕然 杨颖 焦俊艳 迪丽热巴 唐嫣 宋茜 马思纯 古力娜扎 吴倩 关晓彤 张子枫 杨紫 万茜 钱芳"
+                    },
+                    {
+                        "play": "6995",
+                        "dm": 67,
+                        "pubdate": 1493793489,
+                        "title": "【花间提壶方大厨】【高甜向】 与子偕行到永远",
+                        "pic": "//i1.hdslb.com/bfs/archive/e65212d9abd063422b305fd6c2285b760db90603.jpg",
+                        "fav": 184,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "2:50",
+                        "aid": 10280684,
+                        "coin": 70,
+                        "arcurl": "http://www.bilibili.com/video/av10280684",
+                        "desc": "强烈安利这部电视剧  敲好看\n满心欢喜吃狗粮"
+                    },
+                    {
+                        "play": "3674",
+                        "dm": 93,
+                        "pubdate": 1482479390,
+                        "title": "【段奕宏大片拍摄花絮混剪】行走的荷尔蒙",
+                        "pic": "//i0.hdslb.com/bfs/archive/b1547be260e1dec9d420eb9a9dfb7e84d7231ce2.jpg",
+                        "fav": 248,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "2:36",
+                        "aid": 7656321,
+                        "coin": 101,
+                        "arcurl": "http://www.bilibili.com/video/av7656321",
+                        "desc": "第一次剪老段的视频 希望大家喜欢"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 4,
+                "usign": "半全职warframe播主，头大，脑子快\n正是在下!                群号:374506724\n胖头鱼是也!",
+                "videos": 54,
+                "fans": 1185,
+                "is_upuser": 1,
+                "upic": "//i1.hdslb.com/bfs/face/a23b75b5465f6e6a64a417e35fc86c2a6be158fa.jpg",
+                "uname": "闲咸悠悠的胖头鱼sama",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 1185,
+                "level": 5,
+                "gender": 3,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 14642042,
+                "is_live": 0,
+                "room_id": 1278127,
+                "res": [
+                    {
+                        "play": "174",
+                        "dm": 1,
+                        "pubdate": 1543348167,
+                        "title": "一个普通的贫民初中生 如何用杂牌改造自己的房间呢？（咸鱼初中生的房间一览）",
+                        "pic": "//i1.hdslb.com/bfs/archive/7319d14fceed6e0d8248e53463d3df0db8fe77bb.jpg",
+                        "fav": 5,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "2:15",
+                        "aid": 36910342,
+                        "coin": 8,
+                        "arcurl": "http://www.bilibili.com/video/av36910342",
+                        "desc": "emm"
+                    },
+                    {
+                        "play": "70",
+                        "dm": 0,
+                        "pubdate": 1540399723,
+                        "title": "当一个菜狗子WF玩家玩COD15会有多菜？",
+                        "pic": "//i0.hdslb.com/bfs/archive/avsas_i181024ws3gswul0u23okktmxym8vecs_0023.jpg",
+                        "fav": 3,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "4:7",
+                        "aid": 34529312,
+                        "coin": 4,
+                        "arcurl": "http://www.bilibili.com/video/av34529312",
+                        "desc": "E,MM"
+                    },
+                    {
+                        "play": "570",
+                        "dm": 4,
+                        "pubdate": 1539502716,
+                        "title": "【WARFRAME配色欣赏】-BLOOD 绝不拖更！",
+                        "pic": "//i1.hdslb.com/bfs/archive/32d7dde2836f269afc832100a58355e9bcc874fb.jpg",
+                        "fav": 15,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "2:9",
+                        "aid": 33821380,
+                        "coin": 14,
+                        "arcurl": "http://www.bilibili.com/video/av33821380",
+                        "desc": "。。。。。。。。。"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 5,
+                "usign": "我是捕鲨网里的胖头鱼，只能一起游啊游啊游，不能当成生鱼片吃了嗷~",
+                "videos": 115,
+                "fans": 708,
+                "is_upuser": 1,
+                "upic": "//i2.hdslb.com/bfs/face/de858241b9958af42d06f740b8455c850b855438.jpg",
+                "uname": "捕鲨网里的胖头鱼",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 708,
+                "level": 3,
+                "gender": 2,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 383789442,
+                "is_live": 0,
+                "room_id": 0,
+                "res": [
+                    {
+                        "play": "29",
+                        "dm": 0,
+                        "pubdate": 1545984106,
+                        "title": "<武林外传>展红绫：你觉得我能行吗？   老白：一定行。只要你肯努力，肯动脑子，没有什么事，解决不了的。",
+                        "pic": "//i2.hdslb.com/bfs/archive/135b5c0dfe9cb7095884d53c33328fdd4c8fb172.jpg",
+                        "fav": 0,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "2:35",
+                        "aid": 38661393,
+                        "coin": 0,
+                        "arcurl": "http://www.bilibili.com/video/av38661393",
+                        "desc": "av38521596<武林外传>燕小六：第一是她第二才是我师父 莫小贝：你说这话\nav38448612<武林外传>小郭：你不是嫌我嘴大吗？秀才：哈哈哈\nav38448774<武林外传>燕小六：（慌了，忙起身）我嗑我嗑\nav38447668<武林外传>小贝：拿去吧，轻点儿砍啊，砍坏了你赔。掌柜的：真是把宝刀啊，莫掌门\nav38282196<武林外传>那万一要青楼也查不着呢？刑捕头：亲娘咧，说不定影响仕途啊\nav38447483<武林外传>老白：（对掌柜的）你摊上这哥真够受罪的。   小贝：那是我哥"
+                    },
+                    {
+                        "play": "30",
+                        "dm": 0,
+                        "pubdate": 1545957117,
+                        "title": "<武林外传>邢：这都什么时候了，你穿着夜行衣，想到哪里去啊   郭：茅房   邢：茅房？哦，穿着夜行衣蒙着面上茅房？",
+                        "pic": "//i0.hdslb.com/bfs/archive/a668ca3cf78762357d43c54c30f80cd860e93ecd.jpg",
+                        "fav": 0,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "4:6",
+                        "aid": 39190406,
+                        "coin": 0,
+                        "arcurl": "http://www.bilibili.com/video/av39190406",
+                        "desc": "av38565257<武林外传>湘玉：没有我的允许哪儿都不许去否则我咬死你啊\nav38658273<武林外传>不知道有多少人喜欢无双，又温柔，又善良，真是幸福死了\nav38521959<武林外传>小郭病好了以后能走路了，还能大跳，对，大跳\nav38656547<武林外传>佟掌柜：下一个节目，旋风菜刀，表演者李大嘴，热烈鼓掌\nav38564902<武林外传>老白：一男一女两个二傻子呗两个小毛贼，想当年我闯荡江湖那会儿……\nav38041497<武林外传>大嘴：带我妈去趟兵部不然你们等着吃宫爆铁丁吧"
+                    },
+                    {
+                        "play": "43",
+                        "dm": 0,
+                        "pubdate": 1545866336,
+                        "title": "<武林外传>不知道有多少人喜欢无双，又温柔，又善良，真是幸福死了",
+                        "pic": "//i0.hdslb.com/bfs/archive/8f4093a922d27af50c16bdb36275d982f2f71c10.jpg",
+                        "fav": 0,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "4:57",
+                        "aid": 38658273,
+                        "coin": 0,
+                        "arcurl": "http://www.bilibili.com/video/av38658273",
+                        "desc": "av38447668<武林外传>小贝：拿去吧，轻点儿砍啊，砍坏了你赔。掌柜的：真是把宝刀啊，莫掌门\nav38447909<武林外传>老白：我这人专爱给人起外号。 老白：（分别指掌柜的，小郭\nav38447483<武林外传>老白：（对掌柜的）你摊上这哥真够受罪的。   小贝：那是我哥\nav38448774<武林外传>燕小六：（慌了，忙起身）我嗑我嗑\nav38042124<武林外传>妈呀，干啥玩意儿呀，你们俩。这大白天，（看看天空）不是，大晚上的\nav38283692<武林外传>老白：这傻孩子。"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 6,
+                "usign": "这个人很懒，ta想留下点什么~",
+                "videos": 4,
+                "fans": 411,
+                "is_upuser": 1,
+                "upic": "//i1.hdslb.com/bfs/face/074fe049c7d4bc47e3a6ae89906af5d0246a5ea1.jpg",
+                "uname": "小母猪和她胖头鱼哥哥",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 411,
+                "level": 4,
+                "gender": 3,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 52155851,
+                "is_live": 1,
+                "room_id": 4236342,
+                "res": [
+                    {
+                        "play": "313",
+                        "dm": 0,
+                        "pubdate": 1532441863,
+                        "title": "Visual Studio安装教程之——千问千答系列",
+                        "pic": "//i1.hdslb.com/bfs/archive/b2c84cb9a67b502da7c9bc02ab8be3a0fcd23c38.png",
+                        "fav": 4,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "7:16",
+                        "aid": 27639068,
+                        "coin": 7,
+                        "arcurl": "http://www.bilibili.com/video/av27639068",
+                        "desc": "Visual Studio安装教程之——千问千答系列\r\n正常安装步骤视频录制环境准备中，其他问题解决视频随缘中（有些问题还原不了，所以只能是遇到了再录制素材）"
+                    },
+                    {
+                        "play": "393",
+                        "dm": 1,
+                        "pubdate": 1531837576,
+                        "title": "vb6.0安装教程之——千问千答系列",
+                        "pic": "//i1.hdslb.com/bfs/archive/37986822fb4a4ddb5081742b047a6ae855ea5421.png",
+                        "fav": 11,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "21:55",
+                        "aid": 27090963,
+                        "coin": 6,
+                        "arcurl": "http://www.bilibili.com/video/av27090963",
+                        "desc": "vb6.0安装教程之——千问千答系列，处女作，前几天才学的视频剪辑，欢迎提意见，谁看了不提意见我就一拳打爆ta的头。\r\n正常安装步骤视频录制环境准备中，其他问题解决视频随缘中（有些问题还原不了，所以只能是遇到了再录制素材）"
+                    },
+                    {
+                        "play": "380",
+                        "dm": 0,
+                        "pubdate": 1512675983,
+                        "title": "vb.net visual basic 2015教程 来自Developer Universityhttp://DevU.com英文字幕",
+                        "pic": "//i2.hdslb.com/bfs/archive/a938bc01204decf47172d5026ca53d77f949c0e8.jpg",
+                        "fav": 11,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "225:13",
+                        "aid": 17043104,
+                        "coin": 4,
+                        "arcurl": "http://www.bilibili.com/video/av17043104",
+                        "desc": "VB.NET 2015 教程，跟av10212025那个教程一样，同一个讲师，萌萌哒大叔@bobtabor，全程英语讲课，开发环境（visual studio 2015）也是用的英文版，共26集。项目类型用的是控制台，主要介绍语法。\r\n有能力翻译的小伙伴，可以帮忙翻译翻译嘛(゜-゜)つロ"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 7,
+                "usign": "剪辑废材，微博:V一一1一U",
+                "videos": 7,
+                "fans": 320,
+                "is_upuser": 1,
+                "upic": "//i1.hdslb.com/bfs/face/5c50dfa40e8f0acdc95a96e49056ad79d92ba2f6.jpg",
+                "uname": "刺客大师胖头鱼",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 320,
+                "level": 4,
+                "gender": 1,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 32443993,
+                "is_live": 0,
+                "room_id": 2853775,
+                "res": [
+                    {
+                        "play": "7102",
+                        "dm": 43,
+                        "pubdate": 1535620119,
+                        "title": "【兽医王刚/双语字幕】兽医王刚用俄语叫你救活一条鲤鱼【倒放】",
+                        "pic": "//i1.hdslb.com/bfs/archive/58738375ecdcda6cb2e90c775c61c89dd2876b75.jpg",
+                        "fav": 52,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "4:14",
+                        "aid": 30707342,
+                        "coin": 55,
+                        "arcurl": "http://www.bilibili.com/video/av30707342",
+                        "desc": "俄语字幕来源 百度翻译"
+                    },
+                    {
+                        "play": "250",
+                        "dm": 21,
+                        "pubdate": 1524591451,
+                        "title": "【混剪/极致画质】这里有你认识的小姐姐吗？",
+                        "pic": "//i1.hdslb.com/bfs/archive/685ca5abaeabcd7644f6723fcb127f653c4f0c62.jpg",
+                        "fav": 12,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "2:18",
+                        "aid": 22535607,
+                        "coin": 13,
+                        "arcurl": "http://www.bilibili.com/video/av22535607",
+                        "desc": "简介补充: BGM： New World—VaVa/Krewella\n\n画面来源：最终幻想；英雄联盟；EVE；龙背上的骑兵；魔兽世界；天谕\n\n最后再次感谢大家的投币、推荐、收藏。\n\nrua~"
+                    },
+                    {
+                        "play": "14509",
+                        "dm": 118,
+                        "pubdate": 1519927927,
+                        "title": "【极限画质/节奏/拆迁6】这大概就是男人的浪漫~ 结尾高燃",
+                        "pic": "//i2.hdslb.com/bfs/archive/b629341503729f421f8403a3859ae309ed8f45f5.jpg",
+                        "fav": 853,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "3:39",
+                        "aid": 20245047,
+                        "coin": 403,
+                        "arcurl": "http://www.bilibili.com/video/av20245047",
+                        "desc": "相关游戏: 彩虹六号：围攻\n简介补充: 如果不能谈判 就采取行动，干掉______\n\n这游戏第一个版本打折才20多，还不赶紧买？\n\n多谢各位大佬的投币，收藏，点赞啦~~~\n\nrua~~"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 8,
+                "usign": "",
+                "videos": 6,
+                "fans": 162,
+                "is_upuser": 1,
+                "upic": "//i2.hdslb.com/bfs/face/506401ba3cc12cc8a1a3e5f4b4298924704c33b5.jpg",
+                "uname": "胖头鱼爱吃卤蛋",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 162,
+                "level": 3,
+                "gender": 3,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 238600096,
+                "is_live": 0,
+                "room_id": 14658323,
+                "res": [
+                    {
+                        "play": "90",
+                        "dm": 0,
+                        "pubdate": 1541264718,
+                        "title": "LPL冠军混剪",
+                        "pic": "//i2.hdslb.com/bfs/archive/avsas_i181103ws1vddfq6mcm6c29o1qumocad_0018.jpg",
+                        "fav": 0,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "2:47",
+                        "aid": 35217225,
+                        "coin": 4,
+                        "arcurl": "http://www.bilibili.com/video/av35217225",
+                        "desc": "恭喜IG 恭喜LPL 也恭喜一直不放弃的召唤师们"
+                    },
+                    {
+                        "play": "55",
+                        "dm": 0,
+                        "pubdate": 1540643915,
+                        "title": "当元首听见RNG输给G2以后",
+                        "pic": "//i1.hdslb.com/bfs/archive/avsas_i181027ws38ynbebboyucc7u65hwvxuz_0021.jpg",
+                        "fav": 0,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "4:22",
+                        "aid": 34716100,
+                        "coin": 2,
+                        "arcurl": "http://www.bilibili.com/video/av34716100",
+                        "desc": "个人向 不喜勿喷"
+                    },
+                    {
+                        "play": "50971",
+                        "dm": 104,
+                        "pubdate": 1532126718,
+                        "title": "CF王者占星BUG 无限抽奖实况",
+                        "pic": "//i0.hdslb.com/bfs/archive/7242ffc7d79a757dfb44767d97bac9b6518356fe.jpg",
+                        "fav": 36,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "1:54",
+                        "aid": 27349523,
+                        "coin": 15,
+                        "arcurl": "http://www.bilibili.com/video/av27349523",
+                        "desc": "20号晚上11点左右 CF推出了一个圈钱活动 但是该活动出现一个bug 分解武器的同时可以获得大量的钥匙 导致基本上只要充10块就可以无限抽下去 UP抽的正爽 腾讯就紧急关闭了该活动 现在已就修改了 分解武器不在获得钥匙 有玩家通过BUG血赚一笔 10块钱就抽了35页 好后悔 没有早点发现 唉"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 9,
+                "usign": "萌新，萌新，萌新求放过",
+                "videos": 15,
+                "fans": 126,
+                "is_upuser": 1,
+                "upic": "//i0.hdslb.com/bfs/face/86eab50a51916e73d11e043537e9a9dd7588e699.jpg",
+                "uname": "胖头鱼老罗",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 126,
+                "level": 2,
+                "gender": 1,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 305840166,
+                "is_live": 0,
+                "room_id": 0,
+                "res": [
+                    {
+                        "play": "273",
+                        "dm": 0,
+                        "pubdate": 1541924792,
+                        "title": "pokemmo捞罗万圣总结以及圣诞猜想",
+                        "pic": "//i0.hdslb.com/bfs/archive/b7e97b01829492ab6294a1de02084adf0d88aa65.jpg",
+                        "fav": 2,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "13:27",
+                        "aid": 35755902,
+                        "coin": 0,
+                        "arcurl": "http://www.bilibili.com/video/av35755902",
+                        "desc": "火，电，格斗，钢\n现在准备必以后准备更舒服一点\n如果到时候有更好的阵容打法我会更新给大家\n大佬勿喷，小萌新心脏不好"
+                    },
+                    {
+                        "play": "413",
+                        "dm": 1,
+                        "pubdate": 1540021148,
+                        "title": "[pokemmo]你愿意浪费12分钟来看老罗的水视频吗？",
+                        "pic": "//i1.hdslb.com/bfs/archive/19ebaffdfde261328f845e471cff30721ca22c2e.jpg",
+                        "fav": 3,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "11:43",
+                        "aid": 34225133,
+                        "coin": 3,
+                        "arcurl": "http://www.bilibili.com/video/av34225133",
+                        "desc": "QQ:2353321891\n如果有会种果子，讲法通俗的\n请务必教我\n果农赛高\n我要给果农生鹅子"
+                    },
+                    {
+                        "play": "108",
+                        "dm": 0,
+                        "pubdate": 1539525686,
+                        "title": "解压休闲肥宅快乐游戏",
+                        "pic": "//i2.hdslb.com/bfs/archive/3a4f7d69272a1be84b390f52d3937952cd0a3ade.jpg",
+                        "fav": 0,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "8:48",
+                        "aid": 33858135,
+                        "coin": 2,
+                        "arcurl": "http://www.bilibili.com/video/av33858135",
+                        "desc": "自带的录制，不是卡，下次录制不会用这个了，游戏名字[奇葩战斗家]，TapTap上面搜索下载"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 10,
+                "usign": "欢迎来我们的伐木累  qq裙924750686",
+                "videos": 7,
+                "fans": 100,
+                "is_upuser": 1,
+                "upic": "//i2.hdslb.com/bfs/face/2f5999df852b403d833f4756c745bc30485dedb7.jpg",
+                "uname": "一只胖头鱼K",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 100,
+                "level": 2,
+                "gender": 2,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 385822992,
+                "is_live": 0,
+                "room_id": 15013698,
+                "res": [
+                    {
+                        "play": "12",
+                        "dm": 0,
+                        "pubdate": 1545981635,
+                        "title": "最近考试考疯了",
+                        "pic": "//i1.hdslb.com/bfs/archive/21cab7f92e2b48f976b8cab0c67202c27326b97f.jpg",
+                        "fav": 0,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "0:28",
+                        "aid": 39213265,
+                        "coin": 0,
+                        "arcurl": "http://www.bilibili.com/video/av39213265",
+                        "desc": "-"
+                    },
+                    {
+                        "play": "28",
+                        "dm": 0,
+                        "pubdate": 1545563018,
+                        "title": "哈哈哈",
+                        "pic": "//i1.hdslb.com/bfs/archive/40ff5cfc8ce70ebc5d346676171d124bfb971273.jpg",
+                        "fav": 0,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "0:11",
+                        "aid": 38850664,
+                        "coin": 0,
+                        "arcurl": "http://www.bilibili.com/video/av38850664",
+                        "desc": "-"
+                    },
+                    {
+                        "play": "21",
+                        "dm": 0,
+                        "pubdate": 1545394339,
+                        "title": "哼",
+                        "pic": "//i0.hdslb.com/bfs/archive/04351d348c5f9b192d12d2cace5b21bd9137330e.jpg",
+                        "fav": 0,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "0:15",
+                        "aid": 38677484,
+                        "coin": 0,
+                        "arcurl": "http://www.bilibili.com/video/av38677484",
+                        "desc": "-"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 11,
+                "usign": "",
+                "videos": 5,
+                "fans": 59,
+                "is_upuser": 1,
+                "upic": "//i0.hdslb.com/bfs/face/a8d0ef38881b158016095e9c15880a06ce783a3e.jpg",
+                "uname": "胖头鱼回来了",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 59,
+                "level": 2,
+                "gender": 3,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 296832633,
+                "is_live": 0,
+                "room_id": 12909945,
+                "res": [
+                    {
+                        "play": "624",
+                        "dm": 0,
+                        "pubdate": 1523706641,
+                        "title": "TED ED 拜占庭帝国史 The rise and fall of the Byzantine Empire",
+                        "pic": "//i1.hdslb.com/bfs/archive/1479ef405ead5ebdffbea273ea6a14d97ef74218.jpg",
+                        "fav": 23,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "5:21",
+                        "aid": 22076668,
+                        "coin": 2,
+                        "arcurl": "http://www.bilibili.com/video/av22076668",
+                        "desc": "ted ed\n联系wechat威芯13871070386低价获得长期更新的最新考研英语课。免费 获得2017年全套wd,xdf英语考研资料，联系wechat威芯13871070386获得长期更新的各大机构考研英语与政治课程，价格实惠，便利广大考生，长期更新，欢迎联系。"
+                    },
+                    {
+                        "play": "131",
+                        "dm": 0,
+                        "pubdate": 1523703325,
+                        "title": "Crash Course Media Literacy 传播学生肉 联系微芯13871070386",
+                        "pic": "//i2.hdslb.com/bfs/archive/e157bfbe9022ea4f2aa63ba4d6a94ea23bca6e3a.jpg",
+                        "fav": 16,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "72:51",
+                        "aid": 22075650,
+                        "coin": 1,
+                        "arcurl": "http://www.bilibili.com/video/av22075650",
+                        "desc": "youtube\n联系wechat威芯13871070386低价获得长期更新的最新考研英语课。免费 获得2017年全套wd,xdf英语考研资料，联系wechat威芯13871070386获得长期更新的各大机构考研英语与政治课程，价格实惠，便利广大考生，长期更新，欢迎联系。"
+                    },
+                    {
+                        "play": "116",
+                        "dm": 0,
+                        "pubdate": 1523697041,
+                        "title": "The Silk Road and Ancient Trade Crash Course丝绸之路wechat 13871070386",
+                        "pic": "//i1.hdslb.com/bfs/archive/7a5df498511c88b923119d69b44443f6012c1a90.jpg",
+                        "fav": 3,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "10:30",
+                        "aid": 22077151,
+                        "coin": 0,
+                        "arcurl": "http://www.bilibili.com/video/av22077151",
+                        "desc": "youtube\n联系wechat威芯13871070386低价获得长期更新的最新考研英语课。免费 获得2017年全套wd,xdf英语考研资料，联系wechat威芯13871070386获得长期更新的各大机构考研英语与政治课程，价格实惠，便利广大考生，长期更新，欢迎联系。"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 12,
+                "usign": "",
+                "videos": 9,
+                "fans": 56,
+                "is_upuser": 1,
+                "upic": "//i2.hdslb.com/bfs/face/f01ac424206e41b280250a156cd03aacbd31584a.jpg",
+                "uname": "李子璇爱的胖头鱼",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 56,
+                "level": 3,
+                "gender": 3,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 167262866,
+                "is_live": 0,
+                "room_id": 0,
+                "res": [
+                    {
+                        "play": "868",
+                        "dm": 5,
+                        "pubdate": 1541476002,
+                        "title": "【李子璇】照顾小食客的特殊小妙招 霸王龙来了？！",
+                        "pic": "//i2.hdslb.com/bfs/archive/5f57858d0b53f21da0d3b83c0d3075c50d57a91b.jpg",
+                        "fav": 5,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "0:48",
+                        "aid": 35406544,
+                        "coin": 0,
+                        "arcurl": "http://www.bilibili.com/video/av35406544",
+                        "desc": "http://v.youku.com/v_show/id_XMzkwNTgxOTcwMA==.html?sharekey=0a59a0f8369c97a756e5cb6794b953385"
+                    },
+                    {
+                        "play": "2981",
+                        "dm": 26,
+                        "pubdate": 1541140490,
+                        "title": "【完美的餐厅】倒计时2天 11.02女生组花絮更新",
+                        "pic": "//i2.hdslb.com/bfs/archive/e68a0a27fe2fe6d9744f118e78f2cc1e9ecc1fae.jpg",
+                        "fav": 13,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "10:18",
+                        "aid": 35113053,
+                        "coin": 2,
+                        "arcurl": "http://www.bilibili.com/video/av35113053",
+                        "desc": "http://v.youku.com/v_show/id_XMzg5OTExNzIwMA==.html?sharekey=1c6fe3bb52c550309a60dc52c2ff3f647\n李子璇在跳舞！"
+                    },
+                    {
+                        "play": "12491",
+                        "dm": 21,
+                        "pubdate": 1540877000,
+                        "title": "【李子璇】李子璇花式招待客人 你可真skr小机灵鬼",
+                        "pic": "//i0.hdslb.com/bfs/archive/2e0275263ea6b1aba7b2dc4ade9ffc5c0492a96e.jpg",
+                        "fav": 52,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "1:14",
+                        "aid": 34923732,
+                        "coin": 14,
+                        "arcurl": "http://www.bilibili.com/video/av34923732",
+                        "desc": "http://v.youku.com/v_show/id_XMzg5Mzg1NzA3Ng==.html"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 13,
+                "usign": "180 82 佛系powerbuilding",
+                "videos": 13,
+                "fans": 42,
+                "is_upuser": 1,
+                "upic": "//i1.hdslb.com/bfs/face/b7dcc64fb97fa4ed7d08b2ef44439c664329f375.jpg",
+                "uname": "莲蓉包的胖头鱼",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 42,
+                "level": 4,
+                "gender": 1,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 81546984,
+                "is_live": 0,
+                "room_id": 10267546,
+                "res": [
+                    {
+                        "play": "131",
+                        "dm": 0,
+                        "pubdate": 1544647243,
+                        "title": "近期的佛系训练 vol.3",
+                        "pic": "//i0.hdslb.com/bfs/archive/dcde04aa1d6a22128a798367c90b1f431860d10e.jpg",
+                        "fav": 0,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "1:49",
+                        "aid": 38034795,
+                        "coin": 0,
+                        "arcurl": "http://www.bilibili.com/video/av38034795",
+                        "desc": "深蹲155*5（最后一下没到幅度）\n相扑177*4（第二下砸脚后面动作变形）\n卧推PR130（右肩峰撞击＋竖脊抽筋）\n南京这天气，健身房不开空调十分难受"
+                    },
+                    {
+                        "play": "214",
+                        "dm": 0,
+                        "pubdate": 1542028395,
+                        "title": "深蹲新PR 180终于拿下",
+                        "pic": "//i1.hdslb.com/bfs/archive/f775c71693dbfca16ed0f9dd436def43381723d4.jpg",
+                        "fav": 2,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "0:35",
+                        "aid": 35842553,
+                        "coin": 4,
+                        "arcurl": "http://www.bilibili.com/video/av35842553",
+                        "desc": "等这一天真的等了好久好久\n感谢学弟的梵天和保护\n腿部力量相对薄弱只能牵张＋髋驱动\n健力路漫漫，这仅仅是个开始"
+                    },
+                    {
+                        "play": "69",
+                        "dm": 0,
+                        "pubdate": 1540773528,
+                        "title": "钩子ROMALEOS 3 测试",
+                        "pic": "//i1.hdslb.com/bfs/archive/4f21646f86028ad6533caeab40097cc17871393e.jpg",
+                        "fav": 0,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "2:46",
+                        "aid": 34839254,
+                        "coin": 0,
+                        "arcurl": "http://www.bilibili.com/video/av34839254",
+                        "desc": "测测新鞋子，发现自己站距窄加上R3鞋跟高加上高杆牵张利用的更好也许可以转高杆试试......"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 14,
+                "usign": "",
+                "videos": 4,
+                "fans": 39,
+                "is_upuser": 1,
+                "upic": "//i1.hdslb.com/bfs/face/08387618264a36b69ce60935bf6566ab00b796dd.jpg",
+                "uname": "胖头鱼YYF",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 39,
+                "level": 4,
+                "gender": 1,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 6084414,
+                "is_live": 0,
+                "room_id": 7101174,
+                "res": [
+                    {
+                        "play": "1453",
+                        "dm": 0,
+                        "pubdate": 1512662721,
+                        "title": "[YOUTUBE热门] - 泰国蒙面歌王 听哭了~",
+                        "pic": "//i1.hdslb.com/bfs/archive/bc9d173784bc7324ecf33be18a5020b4a96b4294.jpg",
+                        "fav": 19,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "4:29",
+                        "aid": 17038264,
+                        "coin": 3,
+                        "arcurl": "http://www.bilibili.com/video/av17038264",
+                        "desc": "转自 youtube"
+                    },
+                    {
+                        "play": "6861",
+                        "dm": 10,
+                        "pubdate": 1512390295,
+                        "title": "老外观看《忍者蝙蝠侠》预告片时的反应",
+                        "pic": "//i0.hdslb.com/bfs/archive/1837486d242a903a776445d6f836bd798bfe8a58.jpg",
+                        "fav": 34,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "1:40",
+                        "aid": 16945519,
+                        "coin": 5,
+                        "arcurl": "http://www.bilibili.com/video/av16945519",
+                        "desc": "https://www.youtube.com/watch?v=wZvc7HrXrEM\n转自youtube"
+                    },
+                    {
+                        "play": "71540",
+                        "dm": 191,
+                        "pubdate": 1512017184,
+                        "title": "老外看复仇者联盟3预告时的反应",
+                        "pic": "//i1.hdslb.com/bfs/archive/89acca0fc4bab687cda528f25c8de5675bc68e91.jpg",
+                        "fav": 586,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "3:8",
+                        "aid": 16797375,
+                        "coin": 56,
+                        "arcurl": "http://www.bilibili.com/video/av16797375",
+                        "desc": "https://www.youtube.com/watch?v=zIoDX46dHsE\n转自youtube"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 15,
+                "usign": "吃和快乐，碳水狂魔",
+                "videos": 13,
+                "fans": 38,
+                "is_upuser": 1,
+                "upic": "//i0.hdslb.com/bfs/face/67459c79a378ff4a0a59bf056ac9c472602613ee.jpg",
+                "uname": "一只胖头鱼er",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 38,
+                "level": 4,
+                "gender": 2,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 22571481,
+                "is_live": 0,
+                "room_id": 10503327,
+                "res": [
+                    {
+                        "play": "103",
+                        "dm": 0,
+                        "pubdate": 1545482546,
+                        "title": "抹茶蛋糕盒子，芋泥豆乳盒子（小笑烘焙）13 华科吃播 武汉 真的好吃！",
+                        "pic": "//i2.hdslb.com/bfs/archive/a678d26f127eca89eceba5fc3bdb5c79f8a21a59.jpg",
+                        "fav": 2,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "7:54",
+                        "aid": 38767374,
+                        "coin": 4,
+                        "arcurl": "http://www.bilibili.com/video/av38767374",
+                        "desc": "这期是让我感动到流泪的一期\r\n真的太好吃了 \r\n好吃哭了一点不夸张\r\n简直改变了我买抹茶一直踩雷的魔咒！"
+                    },
+                    {
+                        "play": "333",
+                        "dm": 0,
+                        "pubdate": 1545253382,
+                        "title": "抹茶奶酥＋咸蛋黄乳酪肉松小贝，桂花芋泥豆乳卷（阿鲸家）12 武汉 吃播",
+                        "pic": "//i0.hdslb.com/bfs/archive/17b38e23eb571b82b17782bca5ce5b4d5de6e64f.jpg",
+                        "fav": 3,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "24:21",
+                        "aid": 38557702,
+                        "coin": 8,
+                        "arcurl": "http://www.bilibili.com/video/av38557702",
+                        "desc": "哈哈哈我来啦\r\n最近都没说话，室友还睡觉呢\r\n加了背景音乐希望不那么单调\r\n最近挺忙滴  我会加油更新的哈哈哈\r\n希望考试的大兄弟小姐妹都加油呀哈哈哈"
+                    },
+                    {
+                        "play": "160",
+                        "dm": 2,
+                        "pubdate": 1545075247,
+                        "title": "虎皮卷，肉松小贝（广八路宫廷糕点） 鲍师傅 11 武汉吃播",
+                        "pic": "//i1.hdslb.com/bfs/archive/917aab94fdc1d68cf38bc1ff027412f03c9f5927.jpg",
+                        "fav": 2,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "10:28",
+                        "aid": 38412297,
+                        "coin": 5,
+                        "arcurl": "http://www.bilibili.com/video/av38412297",
+                        "desc": "每次起得早就会面色灰暗，蓬头垢面，希望你们不要嫌我丑\r\n就算嫌我丑我也不会care的哈哈哈哈哈\r\n这家店的虎皮卷真滴还不错，推荐给你们。肉松小贝一般般叭~还行\r\n鲍师傅吃多着实有点腻\r\n本来想加bgm的，忘记了，下次再试试叭哈哈哈哈"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 16,
+                "usign": "KinKi Kids丨沉迷学习中丨",
+                "videos": 1,
+                "fans": 28,
+                "is_upuser": 1,
+                "upic": "//i0.hdslb.com/bfs/face/8bc4b01833a6d7175282fae473ff675c4b7ed4cf.jpg",
+                "uname": "胖头鱼真好次",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 28,
+                "level": 4,
+                "gender": 2,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 5683918,
+                "is_live": 0,
+                "room_id": 6218854,
+                "res": [],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 17,
+                "usign": "",
+                "videos": 1,
+                "fans": 25,
+                "is_upuser": 1,
+                "upic": "//i0.hdslb.com/bfs/face/54e7bfff5ea74b1b8eab8912a39e791ac9c0d622.jpg",
+                "uname": "俺是胖头鱼",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 25,
+                "level": 3,
+                "gender": 3,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 171208468,
+                "is_live": 0,
+                "room_id": 7770916,
+                "res": [
+                    {
+                        "play": "177",
+                        "dm": 2,
+                        "pubdate": 1514343625,
+                        "title": "【ukulele教学】PianoForte 2010 伴奏+主奏 肥貓尤克里里 教学 Jake Shimabukuro (Tutorial)",
+                        "pic": "//i2.hdslb.com/bfs/archive/2d08677c2a1e0cfe6172650837d30423f2cb0c45.jpg",
+                        "fav": 8,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "24:20",
+                        "aid": 17665286,
+                        "coin": 0,
+                        "arcurl": "http://www.bilibili.com/video/av17665286",
+                        "desc": "转自肥猫：\n此影片為這首曲子的主奏部份,原版是兩個人一起彈,我把伴奏部份跟SOLO部份分開錄製,後續也會分開教學,教學影片編號為#XXX-X-X 方式編號~分段教學~\n\n這首歌已有譜( https://pan.baidu.com/s/1qYn440W )撰寫者為Annier,版權為作者所...^^,不過我是直接聽曲子抓的,所以可能彈的跟譜不一樣~ （ps：另一版本谱子是吉他社的 https://pan.baidu.com/s/1nvFuVbF）\n有需要練習Solo的人可以用#032-1這個伴奏練習~\n\n转"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 18,
+                "usign": "帅气的软妹！！（锦鲤的静哥）微博@渺小普通的锦鲤，个人QQ:284518187",
+                "videos": 26,
+                "fans": 20,
+                "is_upuser": 1,
+                "upic": "//i0.hdslb.com/bfs/face/3096d170ac756237e674846a36a801e77f980efb.jpg",
+                "uname": "胖头鱼的李大壮",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 20,
+                "level": 3,
+                "gender": 3,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 27616492,
+                "is_live": 0,
+                "room_id": 8143709,
+                "res": [
+                    {
+                        "play": "23",
+                        "dm": 1,
+                        "pubdate": 1545354779,
+                        "title": "【刺激战场】【绝地求生】我辣鸡游戏博主！！！莫名其妙吃鸡！【vlog】",
+                        "pic": "//i0.hdslb.com/bfs/archive/0a524fc07580b54e4550dba8f7dbd34eae32c09e.jpg",
+                        "fav": 0,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "4:48",
+                        "aid": 38634434,
+                        "coin": 2,
+                        "arcurl": "http://www.bilibili.com/video/av38634434",
+                        "desc": "各位！！！！我玩游戏竟然吃鸡了，低调低调！！！请看我的神操作吧！录音设备不太好，请见谅！！！！以后改进。大家多多鼓励我，请给我一条龙服务！！！"
+                    },
+                    {
+                        "play": "42",
+                        "dm": 0,
+                        "pubdate": 1544244540,
+                        "title": "【vlog】【好好活下去】【中度忧郁症】确诊一年，悲伤的乐观派。活下去的理由。",
+                        "pic": "//i0.hdslb.com/bfs/archive/50e6998326556899297ccf3f889aeb59aee4a39e.jpg",
+                        "fav": 0,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "0:58",
+                        "aid": 37676591,
+                        "coin": 6,
+                        "arcurl": "http://www.bilibili.com/video/av37676591",
+                        "desc": "很艰难的决定把这件事情拿到明面上来，我一直都是拒绝把自己的负能量传给任何人的。但是经历就昨晚的自我折磨后，我觉得我应该好好活下去。我只是记录一下自己的生活，希望在这世界上留下点什么，不喜请点退出，谢谢。"
+                    },
+                    {
+                        "play": "14",
+                        "dm": 2,
+                        "pubdate": 1543401971,
+                        "title": "【vlog】【催眠声】叮叻咣啷的茶杯声，一起暴躁喝茶吧！土味喝茶视频！",
+                        "pic": "//i1.hdslb.com/bfs/archive/5d3ccafff0bc166b44741fc4ad666d9940f8465e.jpg",
+                        "fav": 0,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "4:46",
+                        "aid": 36951924,
+                        "coin": 2,
+                        "arcurl": "http://www.bilibili.com/video/av36951924",
+                        "desc": "快来看我土味喝茶视频，走进我的生活微博@渺小普通的锦鲤。\n关注＋弹幕＋一条龙！我们一起做朋友"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 19,
+                "usign": "Valar Morghulis",
+                "videos": 1,
+                "fans": 20,
+                "is_upuser": 1,
+                "upic": "//i0.hdslb.com/bfs/face/972189f4584f9c75aa727421eec080ad8c03cce0.jpg",
+                "uname": "海滨胖头鱼",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 20,
+                "level": 5,
+                "gender": 2,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 18619764,
+                "is_live": 0,
+                "room_id": 6347479,
+                "res": [
+                    {
+                        "play": "1806",
+                        "dm": 9,
+                        "pubdate": 1509526271,
+                        "title": "【资讯】有生之年系列——《木槿花西月锦绣》要开拍啦！~",
+                        "pic": "//i0.hdslb.com/bfs/archive/3dcfa22e0afd7516530ea085342c48b4f7c9bd90.jpg",
+                        "fav": 5,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "9:50",
+                        "aid": 15922743,
+                        "coin": 2,
+                        "arcurl": "http://www.bilibili.com/video/av15922743",
+                        "desc": "http://v.youku.com/v_show/id_XMzEwOTg3MzkzNg==.html?spm=a2h1n.8261147.reload_52.1~3!10~DL~DT~A\n嘛~作为很多年前把up看哭的小说，几乎不追剧的up一直关注着《花西》影视化的动态！~看到海包子微博发的这个视频超激动啊~\n感觉阵容蛮强大的~\n开心^_^"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            },
+            {
+                "rank_offset": 20,
+                "usign": "玩娃从娃娃抓起",
+                "videos": 2,
+                "fans": 17,
+                "is_upuser": 1,
+                "upic": "//i1.hdslb.com/bfs/face/45b9b71bc122b089a914ab27fe49f8b8e4d6485b.jpg",
+                "uname": "一只胖头鱼w",
+                "official_verify": {
+                    "type": 127,
+                    "desc": ""
+                },
+                "verify_info": "",
+                "rank_score": 17,
+                "level": 4,
+                "gender": 2,
+                "hit_columns": [
+                    "uname"
+                ],
+                "mid": 4513549,
+                "is_live": 0,
+                "room_id": 738562,
+                "res": [
+                    {
+                        "play": "8622",
+                        "dm": 42,
+                        "pubdate": 1484412442,
+                        "title": "【权志龙GD】【SBS 人气歌谣】【 WHO YOU】",
+                        "pic": "//i2.hdslb.com/bfs/archive/5051a2b787e094b0bd07dbe3f45affc8868b7b79.jpg",
+                        "fav": 302,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "4:42",
+                        "aid": 8014459,
+                        "coin": 11,
+                        "arcurl": "http://www.bilibili.com/video/av8014459",
+                        "desc": "微博 来啊截图啊！！！！！！！！"
+                    },
+                    {
+                        "play": "896",
+                        "dm": 14,
+                        "pubdate": 1435751168,
+                        "title": "合肥八中高三12班的故事",
+                        "pic": "//i2.hdslb.com/bfs/archive/240c5ea46eea2dc430b2df8608877ef2ab053dc8.jpg",
+                        "fav": 5,
+                        "is_union_video": 0,
+                        "is_pay": 0,
+                        "duration": "4:0",
+                        "aid": 2512034,
+                        "coin": 0,
+                        "arcurl": "http://www.bilibili.com/video/av2512034",
+                        "desc": "自制 想做这个很久了，今天终于搞定，也算是留个念想吧，多少年以后希望我们还记得彼此，勿相忘"
+                    }
+                ],
+                "rank_index": 0,
+                "type": "bili_user"
+            }
+        ],
+        "show_column": 1
+    }
+}

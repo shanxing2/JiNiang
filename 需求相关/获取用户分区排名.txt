@@ -1,0 +1,53 @@
+获取用户分区排名
+
+Request URL:https://api.live.bilibili.com/rankdb/v1/Common/masterInfo?ruid=52155851&rank_name=master_realtime_hour&type=areaid_realtime_hour&best_assist_name=best_assist&type_assist=hour_best_assist&area_id=0
+Request Method:GET
+Status Code:200 OK
+Remote Address:106.75.164.19:443
+Referrer Policy:no-referrer-when-downgrade
+
+Response Headers
+view source
+Access-Control-Allow-Credentials:true
+Access-Control-Allow-Headers:Origin,No-Cache,X-Requested-With,If-Modified-Since,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,Access-Control-Allow-Credentials
+Access-Control-Allow-Origin:https://live.bilibili.com
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Length:347
+Content-Type:application/json
+Date:Sat, 01 Dec 2018 20:25:29 GMT
+Expires:Sat, 01 Dec 2018 20:25:28 GMT
+Server:swoole-http-server
+Vary:Accept-Encoding,Origin
+X-Cache:BYPASS from u-gz-webcdn-08.hdslb.com
+
+Request Headers
+view source
+Accept:application/json, text/plain, */*
+Accept-Encoding:gzip, deflate, sdch, br
+Accept-Language:zh-CN,zh;q=0.8
+Cache-Control:no-cache
+Connection:keep-alive
+Cookie:LIVE_BUVID=AUTO4715371166479454; sid=i2sgai8q; fts=1537116787; rpdid=olpxxioxxsdoskmooxlww; pgv_pvi=4335970304; UM_distinctid=165e4407ca12c0-026f62dacbfd27-10724c6f-15f900-165e4407ca22cb; im_local_unread_52155851=0; im_seqno_52155851=328; buvid3=DF25D428-E49D-4981-916A-066099C76F8048107infoc; im_notify_type_52155851=0; CURRENT_QUALITY=32; finger=7360d3c2; DedeUserID=52155851; DedeUserID__ckMd5=d6cf14dfb452c9c5; SESSDATA=1252f6ff%2C1545679384%2C416b8bb1; bili_jct=913bf6407d2081e6138bac1b6253dbd2; CURRENT_FNVAL=16; stardustvideo=1; Hm_lvt_8a6e55dbd2870f0f5bc9194cddf32a02=1543087347,1543392743,1543499233,1543679561; Hm_lpvt_8a6e55dbd2870f0f5bc9194cddf32a02=1543695914
+DNT:1
+Host:api.live.bilibili.com
+Origin:https://live.bilibili.com
+Pragma:no-cache
+Referer:https://live.bilibili.com/blackboard/room-current-rank.html?anchor_uid=52155851
+User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0
+
+Query String Parameters
+view source
+view URL encoded
+ruid:52155851
+rank_name:master_realtime_hour
+type:areaid_realtime_hour
+best_assist_name:best_assist
+type_assist:hour_best_assist
+area_id:0
+
+拼接后
+ruid=52155851&rank_name=master_realtime_hour&type=areaid_realtime_hour&best_assist_name=best_assist&type_assist=hour_best_assist&area_id=0
+
+返回
+{"code":0,"msg":"success","message":"success","data":{"score":0,"rank":0,"uid":52155851,"uname":"小母猪和她胖头鱼哥哥","face":"https://i2.hdslb.com/bfs/face/074fe049c7d4bc47e3a6ae89906af5d0246a5ea1.jpg","personal_verify":-1,"best_assist":[],"unit":"金瓜子","distance_text":"距上榜还差","prescore":1,"last_hour_desc":"","self":0}}

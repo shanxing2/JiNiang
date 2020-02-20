@@ -1,0 +1,68 @@
+直播间 禁言或者解除禁言
+Request URL:https://api.live.bilibili.com/liveact/room_silent
+Request Method:POST
+Status Code:200 OK
+Remote Address:106.75.164.19:443
+Referrer Policy:no-referrer-when-downgrade
+
+Response Headers
+view source
+Access-Control-Allow-Credentials:true
+Access-Control-Allow-Headers:Origin,No-Cache,X-Requested-With,If-Modified-Since,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,Access-Control-Allow-Credentials,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Cache-Webcdn
+Access-Control-Allow-Origin:https://live.bilibili.com
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Length:29
+Content-Type:application/json; charset=utf-8
+Date:Wed, 31 Jul 2019 11:30:42 GMT
+Expires:Wed, 31 Jul 2019 11:30:41 GMT
+Server:nginx
+Vary:Accept-Encoding,Origin
+X-Cache-Webcdn:BYPASS from u-gz-webcdn-09
+X-Tkid:1564572642190509580812
+X-Tkid:23e5f5c961f0a610:23e5f5c961f0a610:0:0:1
+
+Request Headers
+view source
+Accept:application/json, text/javascript, */*; q=0.01
+Accept-Encoding:gzip, deflate, br
+Accept-Language:zh-CN,zh;q=0.8
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Length:126
+Content-Type:application/x-www-form-urlencoded; charset=UTF-8
+Cookie:sid=i2sgai8q; fts=1537116787; pgv_pvi=4335970304; buvid3=DF25D428-E49D-4981-916A-066099C76F8048107infoc; LIVE_BUVID=63d04f12625e0ba4ad59137967e397e5; LIVE_BUVID__ckMd5=90db8c3e72193724; _qddaz=QD.rdxnks.6mqahz.js1b0m44; UM_distinctid=169960414891-060945bae854df-10724c6f-15f900-1699604148bc6; im_seqno_52155851=468; im_local_unread_52155851=0; rpdid=|(um|u~m)lll0J'ullY|JmRlu; CURRENT_QUALITY=0; im_notify_type_52155851=0; stardustvideo=1; DedeUserID=52155851; DedeUserID__ckMd5=d6cf14dfb452c9c5; SESSDATA=5d947dec%2C1566543957%2C74cdab71; bili_jct=83385010d587b1447e07ce9830dea10f; stardustpgcv=0606; CURRENT_FNVAL=16; bp_t_offset_52155851=281128531764072447; _uuid=ED654227-A43D-481F-70B7-B829DCCFC66859893infoc; _dfcaptcha=57a7c791f4594dcffd99da1e7d888a56; Hm_lvt_8a6e55dbd2870f0f5bc9194cddf32a02=1563297153,1563951933,1564316117,1564562003; Hm_lpvt_8a6e55dbd2870f0f5bc9194cddf32a02=1564570478
+DNT:1
+Host:api.live.bilibili.com
+Origin:https://live.bilibili.com
+Pragma:no-cache
+Referer:https://live.bilibili.com/4236342
+User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0
+
+Form Data
+view source
+view decoded
+minute:10
+room_id:4236342
+type:level
+level:1
+csrf_token:83385010d587b1447e07ce9830dea10f
+csrf:83385010d587b1447e07ce9830dea10f
+拼接后
+minute=10&room_id=4236342&type=level&level=1&csrf_token=83385010d587b1447e07ce9830dea10f&csrf=83385010d587b1447e07ce9830dea10f
+
+注：
+minute 只能为 0（全场直播）、3、10、30
+level 可以为1-60
+type 可以为 off（解除禁言）、level(等级)、medal(粉丝勋章)、 member(全员)	
+type的值必须为小写形式
+
+正确返回
+{"code":0,"msg":"","data":[]}
+
+错误返回
+{
+    "code": -1,
+    "msg": "出错了，再试试吧",
+    "data": []
+}

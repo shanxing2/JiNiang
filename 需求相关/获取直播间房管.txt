@@ -1,0 +1,44 @@
+获取直播间房管
+
+Request URL:https://api.live.bilibili.com/xlive/app-ucenter/v1/roomAdmin/get_by_anchor?page=1
+Request Method:GET
+Status Code:200 OK
+Remote Address:106.75.164.19:443
+Referrer Policy:no-referrer-when-downgrade
+Response Headers
+view source
+Access-Control-Allow-Credentials:true
+Access-Control-Allow-Headers:Origin,No-Cache,X-Requested-With,If-Modified-Since,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,Access-Control-Allow-Credentials
+Access-Control-Allow-Origin:https://live.bilibili.com
+Bili-Status-Code:0
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Encoding:gzip
+Content-Type:application/json; charset=utf-8
+Date:Fri, 21 Dec 2018 13:27:23 GMT
+Expires:Fri, 21 Dec 2018 13:27:22 GMT
+Transfer-Encoding:chunked
+Vary:Accept-Encoding,Origin
+X-Cache:BYPASS from u-gz-webcdn-09.hdslb.com
+Request Headers
+view source
+Accept:application/json, text/plain, */*
+Accept-Encoding:gzip, deflate, sdch, br
+Accept-Language:zh-CN,zh;q=0.8
+Cache-Control:no-cache
+Connection:keep-alive
+Cookie:LIVE_BUVID=AUTO4715371166479454; sid=i2sgai8q; fts=1537116787; rpdid=olpxxioxxsdoskmooxlww; pgv_pvi=4335970304; UM_distinctid=165e4407ca12c0-026f62dacbfd27-10724c6f-15f900-165e4407ca22cb; buvid3=DF25D428-E49D-4981-916A-066099C76F8048107infoc; finger=7360d3c2; DedeUserID=52155851; DedeUserID__ckMd5=d6cf14dfb452c9c5; SESSDATA=1252f6ff%2C1545679384%2C416b8bb1; bili_jct=913bf6407d2081e6138bac1b6253dbd2; CURRENT_QUALITY=0; im_seqno_52155851=342; im_local_unread_52155851=0; bp_t_offset_52155851=199525549004262138; im_notify_type_52155851=0; CURRENT_FNVAL=16; stardustvideo=1; Hm_lvt_8a6e55dbd2870f0f5bc9194cddf32a02=1545246631,1545284234,1545367528,1545388180; Hm_lpvt_8a6e55dbd2870f0f5bc9194cddf32a02=1545389817
+DNT:1
+Host:api.live.bilibili.com
+Origin:https://live.bilibili.com
+Pragma:no-cache
+Referer:https://live.bilibili.com/4236342
+User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0
+Query String Parameters
+view source
+view URL encoded
+page:1
+
+返回
+{"code":0,"message":"0","ttl":1,"data":{"page":{"page":1,"page_size":20,"total_page":1,"total_count":8},"data":[{"uid":5586223,"uname":"DinMaster","face":"http://i0.hdslb.com/bfs/face/ced351ba9c154c2168cb988037a5e704957599bc.jpg","ctime":"2018-10-27 01:02:52","medal_name":"","level":0},{"uid":184464621,"uname":"Myakun","face":"http://i1.hdslb.com/bfs/face/60ba3c694f2696c16239738e0d9e20bc3f81ead3.jpg","ctime":"2018-09-25 09:58:52","medal_name":"小兔团","level":9},{"uid":19941955,"uname":"南墙已碎","face":"http://i0.hdslb.com/bfs/face/521c25eb6b608f4fcb446af34830d4ba15431c1d.jpg","ctime":"2018-08-21 02:10:04","medal_name":"花菇凉","level":3},{"uid":260138978,"uname":"猪八革","face":"http://i0.hdslb.com/bfs/face/9b57d4f251e6174cd5967c9cf8da76a4fb06b988.jpg","ctime":"2018-08-09 19:40:35","medal_name":"","level":0},{"uid":27097465,"uname":"粑粑蜀黍","face":"http://i2.hdslb.com/bfs/face/bebdc8baeb247f92bb5de2bdd84f16eac2a5a981.jpg","ctime":"2018-08-06 18:51:04","medal_name":"毒奶粉","level":3},{"uid":174874871,"uname":"黑白怂猫","face":"http://i1.hdslb.com/bfs/face/8f017783fc8e9299bff7cd5603421c90b28596e1.jpg","ctime":"2018-08-06 18:50:59","medal_name":"","level":0},{"uid":29321992,"uname":"风听水绕处","face":"http://i0.hdslb.com/bfs/face/51ca7634a72edbb39353e5af1c418c8cf2e25f30.jpg","ctime":"2018-07-16 21:29:57","medal_name":"明白人","level":3},{"uid":18169995,"uname":"mxnter","face":"http://i1.hdslb.com/bfs/face/01cba70dcc856685dac3297e2ccd86d7487aca8c.jpg","ctime":"2018-07-14 21:49:54","medal_name":"小兔团","level":10}]}}
+

@@ -1,0 +1,1 @@
+{"cmd":"room_admin_entrance","msg":"系统提示：你已被主播设为房管","uid":37252280}

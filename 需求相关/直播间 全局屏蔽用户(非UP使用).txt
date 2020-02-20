@@ -1,0 +1,60 @@
+直播间 全局屏蔽用户(非UP使用)
+
+Request URL:https://api.live.bilibili.com/liveact/user_silent
+Request Method:POST
+Status Code:200 OK
+Remote Address:139.159.252.156:443
+Referrer Policy:no-referrer-when-downgrade
+
+Response Headers
+view source
+Access-Control-Allow-Credentials:true
+Access-Control-Allow-Headers:Origin,No-Cache,X-Requested-With,If-Modified-Since,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,Access-Control-Allow-Credentials,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Cache-Webcdn,x-bilibili-key-real-ip
+Access-Control-Allow-Origin:https://live.bilibili.com
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Length:42
+Content-Type:application/json
+Date:Sat, 10 Aug 2019 07:17:28 GMT
+Expires:Sat, 10 Aug 2019 07:17:27 GMT
+Server:swoole-http-server
+Vary:Accept-Encoding,Origin
+X-Cache-Webcdn:BYPASS from hw-gz3-webcdn-06
+X-TKID:1565421448387572872782
+
+Request Headers
+view source
+Accept:application/json, text/javascript, */*; q=0.01
+Accept-Encoding:gzip, deflate, br
+Accept-Language:zh-CN,zh;q=0.8
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Length:100
+Content-Type:application/x-www-form-urlencoded; charset=UTF-8
+Cookie:sid=i2sgai8q; fts=1537116787; pgv_pvi=4335970304; buvid3=DF25D428-E49D-4981-916A-066099C76F8048107infoc; LIVE_BUVID=63d04f12625e0ba4ad59137967e397e5; LIVE_BUVID__ckMd5=90db8c3e72193724; _qddaz=QD.rdxnks.6mqahz.js1b0m44; UM_distinctid=169960414891-060945bae854df-10724c6f-15f900-1699604148bc6; rpdid=|(um|u~m)lll0J'ullY|JmRlu; CURRENT_QUALITY=0; stardustvideo=1; stardustpgcv=0606; CURRENT_FNVAL=16; _uuid=ED654227-A43D-481F-70B7-B829DCCFC66859893infoc; finger=7360d3c2; DedeUserID=52155851; DedeUserID__ckMd5=d6cf14dfb452c9c5; SESSDATA=742f985a%2C1568011561%2Cbb866181; bili_jct=f4a28eef935689c30f1e669917d97855; _dfcaptcha=04a15668105f7986375f98e56a98d69c; Hm_lvt_8a6e55dbd2870f0f5bc9194cddf32a02=1565256662,1565416176,1565419097,1565421185; Hm_lpvt_8a6e55dbd2870f0f5bc9194cddf32a02=1565421185; bp_t_offset_52155851=285914229142755206; im_notify_type_52155851=0; im_seqno_52155851=608; im_local_unread_52155851=0
+DNT:1
+Host:api.live.bilibili.com
+Origin:https://live.bilibili.com
+Pragma:no-cache
+Referer:https://live.bilibili.com/705952
+User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0
+
+Form Data
+view source
+view URL encoded
+type:level
+level:1
+csrf_token:f4a28eef935689c30f1e669917d97855
+csrf:f4a28eef935689c30f1e669917d97855
+
+拼接后
+type=level&level=0&csrf_token=f4a28eef935689c30f1e669917d97855&csrf=f4a28eef935689c30f1e669917d97855
+注：type=level表示按等级屏蔽，type=rank表示按照非正式会员屏蔽，type=verify表示按未绑定手机用户屏蔽
+level=1表示开启屏蔽，level=0表示关闭屏蔽
+需要取消每个类型的屏蔽必须每个类型都要POST一次
+
+
+返回
+{"code":0,"msg":"","message":"","data":[]}
+
+

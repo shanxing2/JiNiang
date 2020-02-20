@@ -1,0 +1,48 @@
+获取直播间积分信息
+
+Request URL:https://api.live.bilibili.com/live_user/v1/UserInfo/get_anchor_in_room?roomid=4236342
+Request Method:GET
+Status Code:200 OK
+Remote Address:111.230.85.89:443
+
+Response Headers
+view source
+Access-Control-Allow-Credentials:true
+Access-Control-Allow-Headers:Origin,No-Cache,X-Requested-With,If-Modified-Since,Pragma,Last-Modified,Cache-Control,Expires,Content-Type
+Access-Control-Allow-Methods:GET,POST,OPTIONS
+Access-Control-Allow-Origin:https://live.bilibili.com
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Length:782
+Content-Type:application/json
+Date:Fri, 20 Jul 2018 18:55:06 GMT
+Expires:Fri, 20 Jul 2018 18:55:05 GMT
+Server:swoole-http-server
+Vary:Accept-Encoding,Origin
+X-Cache:BYPASS from tx-gz3-webcdn-09.hdslb.com
+
+Request Headers
+view source
+Accept:application/json, text/plain, */*
+Accept-Encoding:gzip, deflate, sdch
+Accept-Language:zh-CN,zh;q=0.8
+Cache-Control:no-cache
+Connection:keep-alive
+Cookie:sid=9vwg21cp; fts=1510035592; buvid3=B24F1AF9-583D-44B9-9555-63351DD6E40D26536infoc; pgv_pvi=8766843904; rpdid=olpxxioxsqdosowmksxqw; LIVE_BUVID=389bddb32b4dc3fabb4b95655e8e7375; LIVE_BUVID__ckMd5=19b58dc689d8d222; UM_distinctid=1636dd5f8b940-0878cf0c7b913e-1571466f-100200-1636dd5f8ba59; user_face=https%3A%2F%2Fi2.hdslb.com%2Fbfs%2Fface%2F013fc7e64839ab9002f0641678890957fece11db.jpg; CURRENT_QUALITY=64; finger=91f716ad; DedeUserID=52155851; DedeUserID__ckMd5=d6cf14dfb452c9c5; SESSDATA=8c4a2498%2C1533018906%2C97f8fd32; bili_jct=2e4fc13ed042ebd2c63a78355d93a6f5; LIVE_PLAYER_TYPE=2; BANGUMI_SS_24439_REC=233324; bp_t_offset_52155851=140935091211795778; im_seqno_52155851=291; im_notify_type_52155851=0; im_local_unread_52155851=0; GIFT_BLOCK_COOKIE=GIFT_BLOCK_COOKIE; _dfcaptcha=c87662a3c8583fa60091b7356bc6839d; Hm_lvt_8a6e55dbd2870f0f5bc9194cddf32a02=1531842548,1531887473,1532006659,1532061906; Hm_lpvt_8a6e55dbd2870f0f5bc9194cddf32a02=1532112900
+DNT:1
+Host:api.live.bilibili.com
+Origin:https://live.bilibili.com
+Pragma:no-cache
+Referer:https://live.bilibili.com/4236342
+User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0
+
+Query String Parameters
+view source
+view URL encoded
+roomid:4236342
+
+返回
+{"code":0,"msg":"success","message":"success","data":{"info":{"uid":52155851,"uname":"小母猪和她胖头鱼蜀黍","face":"https://i2.hdslb.com/bfs/face/074fe049c7d4bc47e3a6ae89906af5d0246a5ea1.jpg","rank":"10000","identification":1,"mobile_verify":1,"platform_user_level":3,"vip_type":0,"official_verify":{"type":-1,"desc":"","role":0}},"level":{"uid":"52155851","cost":"593600","rcost":"1851795","user_score":"1385000","vip":0,"vip_time":"2018-07-16 03:11:05","svip":0,"svip_time":"0000-00-00 00:00:00","update_time":"2018-07-21 01:09:25","master_level":{"level":10,"current":[6300,18060],"next":[9100,27160],"color":6406234,"anchor_score":18517,"upgrade_score":8643,"master_level_color":6406234,"sort":">10000"},"user_level":11,"color":6406234,"anchor_score":18517},"san":12}}
+
+返回2
+{"code":0,"msg":"success","message":"success","data":{"info":{"uid":4548018,"uname":"扎双马尾的丧尸","face":"https://i1.hdslb.com/bfs/face/5be61949369dd844cc459eab808da151d8c363d2.gif","rank":"10000","platform_user_level":6,"mobile_verify":0,"official_verify":{"type":0,"desc":"bilibili 直播签约主播","role":2},"vip_type":2},"level":{"uid":"4548018","cost":"65701129","rcost":"11462224649","user_score":"601073000","vip":"1","vip_time":"2019-05-03 04:27:18","svip":"1","svip_time":"2019-03-22 04:27:18","update_time":"2018-07-21 03:23:17","master_level":{"level":38,"current":[20000000,99513810],"next":[22500000,122013810],"color":16746162,"anchor_score":114622246,"upgrade_score":7391564,"master_level_color":16746162,"sort":17},"user_level":47,"color":16746162,"anchor_score":114622246},"san":12}}

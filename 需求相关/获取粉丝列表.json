@@ -1,0 +1,498 @@
+获取粉丝列表
+
+Request URL:https://api.bilibili.com/x/relation/followers?vmid=52155851&pn=2&ps=20&order=desc
+Request Method:GET
+Status Code:200 OK
+Remote Address:119.29.47.156:443
+
+Response Headers
+view source
+Connection:keep-alive
+Content-Encoding:gzip
+Content-Type:application/json; charset=utf-8
+Date:Wed, 27 Jun 2018 04:06:34 GMT
+Transfer-Encoding:chunked
+X-Cache:BYPASS from tx-gz3-webcdn-15.hdslb.com
+
+Request Headers (经测试，可以不带任何请求头，连cookie都不需要)
+view source
+Accept:*/*
+Accept-Encoding:gzip, deflate, sdch
+Accept-Language:zh-CN,zh;q=0.8
+Cache-Control:no-cache
+Connection:keep-alive
+Cookie:sid=9vwg21cp; fts=1510035592; buvid3=B24F1AF9-583D-44B9-9555-63351DD6E40D26536infoc; pgv_pvi=8766843904; rpdid=olpxxioxsqdosowmksxqw; LIVE_BUVID=389bddb32b4dc3fabb4b95655e8e7375; LIVE_BUVID__ckMd5=19b58dc689d8d222; LIVE_PLAYER_TYPE=2; UM_distinctid=1636dd5f8b940-0878cf0c7b913e-1571466f-100200-1636dd5f8ba59; user_face=https%3A%2F%2Fi2.hdslb.com%2Fbfs%2Fface%2F013fc7e64839ab9002f0641678890957fece11db.jpg; finger=91f716ad; DedeUserID=52155851; DedeUserID__ckMd5=d6cf14dfb452c9c5; SESSDATA=8c4a2498%2C1530346748%2C68f8acbf; bili_jct=5211bc5dcd90e98a42c0bd35035f2673; CURRENT_QUALITY=64; im_notify_type_52155851=0; _dfcaptcha=9059fa28ae8759dc78d72095b2a5e777
+DNT:1
+Host:api.bilibili.com
+Pragma:no-cache
+Referer:https://space.bilibili.com/52155851/
+User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0
+
+Query String Parameters
+view source
+view URL encoded
+vmid:52155851
+pn:2
+ps:20
+order:desc
+
+拼接后
+vmid=52155851&pn=2&ps=20&order=desc
+vmid=52155851 表示用户Id 
+pn=1 表示页数 
+ps=20表示显示个数
+
+返回
+
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "list": [
+            {
+                "mid": 6626835,
+                "attribute": 0,
+                "mtime": 1530034012,
+                "tag": null,
+                "special": 0,
+                "uname": "擒粪的蜣螂002",
+                "face": "http://static.hdslb.com/images/member/noface.gif",
+                "sign": "",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 20475504,
+                "attribute": 0,
+                "mtime": 1530017573,
+                "tag": null,
+                "special": 0,
+                "uname": "ALEXLEOHY",
+                "face": "http://i2.hdslb.com/bfs/face/fef262e24e80b06f175f074675ee6c841a1b5ad8.jpg",
+                "sign": "",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 345683909,
+                "attribute": 0,
+                "mtime": 1530010418,
+                "tag": null,
+                "special": 0,
+                "uname": "93160439281_bili",
+                "face": "http://static.hdslb.com/images/member/noface.gif",
+                "sign": "",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 345609573,
+                "attribute": 0,
+                "mtime": 1529992918,
+                "tag": null,
+                "special": 0,
+                "uname": "bgfriends",
+                "face": "http://static.hdslb.com/images/member/noface.gif",
+                "sign": "",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 200672393,
+                "attribute": 0,
+                "mtime": 1529920766,
+                "tag": null,
+                "special": 0,
+                "uname": "虫鸣则",
+                "face": "http://static.hdslb.com/images/member/noface.gif",
+                "sign": "",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 255915756,
+                "attribute": 0,
+                "mtime": 1529918912,
+                "tag": null,
+                "special": 0,
+                "uname": "CaoMaster",
+                "face": "http://i2.hdslb.com/bfs/face/96a1f913eb29ac00d5a14ca264821ff3e73e6e0a.jpg",
+                "sign": "奇特的人\n",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 10545753,
+                "attribute": 0,
+                "mtime": 1529857591,
+                "tag": null,
+                "special": 0,
+                "uname": "lt星空",
+                "face": "http://i0.hdslb.com/bfs/face/fff2f0b03fdfa75779c4fab28f3f10d263be4754.jpg",
+                "sign": "A smile is the most inviting of all gestures.",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 33159033,
+                "attribute": 0,
+                "mtime": 1529826491,
+                "tag": null,
+                "special": 0,
+                "uname": "霍格沃兹唯",
+                "face": "http://i1.hdslb.com/bfs/face/c0680212329ad447284bcad1dece1521b2a1a254.jpg",
+                "sign": "I wanna run away  with  you (ﾐචᆽචﾐ)",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 27192133,
+                "attribute": 0,
+                "mtime": 1529822628,
+                "tag": null,
+                "special": 0,
+                "uname": "blackpussy",
+                "face": "http://i2.hdslb.com/bfs/face/73750474ac90eff2b995421b890d8af6d79c0abe.jpg",
+                "sign": "",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 29321992,
+                "attribute": 0,
+                "mtime": 1529730958,
+                "tag": null,
+                "special": 0,
+                "uname": "风听水绕处",
+                "face": "http://i0.hdslb.com/bfs/face/51ca7634a72edbb39353e5af1c418c8cf2e25f30.jpg",
+                "sign": "心之所想向，便是晴天",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 128756040,
+                "attribute": 0,
+                "mtime": 1529682794,
+                "tag": null,
+                "special": 0,
+                "uname": "qingandwen",
+                "face": "http://static.hdslb.com/images/member/noface.gif",
+                "sign": "",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 112317575,
+                "attribute": 0,
+                "mtime": 1529574381,
+                "tag": null,
+                "special": 0,
+                "uname": "脸到用时方恨_丑",
+                "face": "http://i0.hdslb.com/bfs/face/009837c1e5688a94598895a470d393609937d802.jpg",
+                "sign": "未经审视的生活不值得过",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 15428853,
+                "attribute": 0,
+                "mtime": 1529566801,
+                "tag": null,
+                "special": 0,
+                "uname": "芊夢丶",
+                "face": "http://i2.hdslb.com/bfs/face/887698f237d585dd96abf82aa2a7226707afaae3.jpg",
+                "sign": "芊夢 退站不退号，看动漫继续。当我某天回来的时候，可能就是另一波风浪的开端",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 1,
+                    "vipDueDate": 1531756800000,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 1,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 108104313,
+                "attribute": 0,
+                "mtime": 1529561928,
+                "tag": null,
+                "special": 0,
+                "uname": "曌小赵H",
+                "face": "http://i1.hdslb.com/bfs/face/f9a240dcc6d0b989f02f82500edd3504a030e115.jpg",
+                "sign": "",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 218928834,
+                "attribute": 0,
+                "mtime": 1529332739,
+                "tag": null,
+                "special": 0,
+                "uname": "珊瑚shanhuh",
+                "face": "http://i2.hdslb.com/bfs/face/03cd67495b01e2d0e575836c5578d7306bd0a552.jpg",
+                "sign": "",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 333122082,
+                "attribute": 0,
+                "mtime": 1529231627,
+                "tag": null,
+                "special": 0,
+                "uname": "月夜风骚",
+                "face": "http://i1.hdslb.com/bfs/face/c7e6a26ffc7f25a316c462b9cb176b4c433edb24.jpg",
+                "sign": "",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 178998703,
+                "attribute": 0,
+                "mtime": 1529163299,
+                "tag": null,
+                "special": 0,
+                "uname": "倦梦无还",
+                "face": "http://static.hdslb.com/images/member/noface.gif",
+                "sign": "",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 217949594,
+                "attribute": 0,
+                "mtime": 1529145330,
+                "tag": null,
+                "special": 0,
+                "uname": "暖色的花语",
+                "face": "http://static.hdslb.com/images/member/noface.gif",
+                "sign": "",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 159096791,
+                "attribute": 0,
+                "mtime": 1529140063,
+                "tag": null,
+                "special": 0,
+                "uname": "撩污萌野浪i",
+                "face": "http://static.hdslb.com/images/member/noface.gif",
+                "sign": "",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            },
+            {
+                "mid": 244367424,
+                "attribute": 0,
+                "mtime": 1529139611,
+                "tag": null,
+                "special": 0,
+                "uname": "spurt寒溪",
+                "face": "http://i2.hdslb.com/bfs/face/d2934395e92791e6edde1fd75a413284c61587dd.jpg",
+                "sign": "微博：sp寒溪 MV制作人，鬼畜导演，unity新手",
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": ""
+                }
+            }
+        ],
+        "re_version": 1108393942,
+        "total": 55
+    }
+}
+

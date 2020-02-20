@@ -1,0 +1,147 @@
+﻿ <!-- /* 使 position:fixed; 兼容ie11以下浏览器 */-->
+ <!DOCTYPE HTML> 
+
+ <!-- /* 可以自定义，然后替换这个文件，以达到自己想要的展示效果
+ 注意： 不能更改以下带有Id的元素的Id值，软件内部根据Id值定位
+ 
+ 		<div class="header-sys-msg-box">
+			<SPAN id="sys-msg">(*❦ω❦)</SPAN>
+		</div>
+
+		<DIV id="danmu-msg" class="danmu-msg">
+
+		</DIV>
+		
+		<div class="footer-gift-feed-box">
+			<SPAN id="gift-feed">(*❦ω❦)</SPAN>
+		</div>
+
+		*/-->
+
+<html>
+  <head>
+    <style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+		}
+
+        html{height:100%;}
+		/* SimSun 宋体英文名 */
+        body{
+			min-height:100%;
+			position:relative;
+			font-family:Arial;SimSun;
+			font-size:16px;	
+		}
+		
+		.pointer{
+			cursor: pointer;
+		}  
+		.pointer:hover {
+			background-color:pink;
+            color:white;
+		}
+		
+		.user-name{
+			color:#23ade5;
+		}
+
+		.btn-like-span{
+			color:#23ade5;
+			background-color:Transparent; 
+            border-style:none;     //无边框
+            outline:none;		//获得焦点也无边框
+			height:auto; 
+			font-size:16px;	
+			width:auto;
+			height:auto;	
+		}
+
+		/* danmu-msg 的 padding-bottom 值要等于或大于 footer-gift-feed-box 的 height 值 
+		不然礼物框会遮挡弹幕 */
+         .danmu-msg{
+			padding-bottom:45px;
+			padding-top:6.18px;
+		 }  
+
+		.danmu-msg p{
+			/* margin:10px auto; */
+			padding:6.18px;
+		}
+
+		.header-sys-msg-box{
+			position:fixed;
+			top:0; 
+			left:0;
+			width:100%;
+			color:White;
+			background-color:HighLight;
+		}
+
+		.header-sys-msg-box span{
+			/* margin:10px auto; */
+			padding:6.18px;
+		}
+
+		.danmu-msg-clear{
+			position:fixed;
+			bottom:0; 
+			right:0;		
+		}
+
+		.danmu-window-adjust{
+			position:fixed;
+			bottom:0; 
+			right:10;		
+		}
+
+		.footer-right-btn-group{
+			position:fixed;
+			bottom:0; 
+			right:0;
+			width:88px;
+			height:20px;
+			background-color:pink;
+		}
+
+		/*
+        .footer-gift-feed-box{
+			position:fixed;
+			bottom:0; 
+			left:0;
+			width:100%;
+			height:auto;
+			color:White;
+			background-color:HighLight;
+		}
+
+		.footer-gift-feed-box span{
+			padding:6.18px;
+		}
+		 */
+    </style>
+  </head>
+  
+  <body>
+	<DIV class="chat-history-panel">
+		<div class="header-sys-msg-box">
+			<SPAN id="sys-msg">(*❦ω❦)</SPAN>
+		</div>
+
+		<DIV id="danmu-msg" class="danmu-msg"></DIV>	
+
+		<div class="footer-right-btn-group">
+			<input type="button" id="danmu-window-adjust" class="btn-like-span danmu-window-adjust pointer"  value=" 缩小 ">
+			<input type="button" id="danmu-msg-clear" class="btn-like-span danmu-msg-clear pointer"  value=" 清空 ">
+		</div>
+
+		<!-- 
+		<div class="footer-gift-feed-box">
+			<SPAN id="gift-feed">(*❦ω❦)</SPAN>
+		</div>
+		-->
+	</DIV>
+	
+  </body>
+</html>

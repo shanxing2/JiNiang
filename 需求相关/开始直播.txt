@@ -1,0 +1,57 @@
+开始直播
+
+Request URL:https://api.live.bilibili.com/room/v1/Room/startLive
+Request Method:POST
+Status Code:200 OK
+Remote Address:111.230.84.59:443
+
+Response Headers
+view source
+Access-Control-Allow-Credentials:true
+Access-Control-Allow-Headers:Origin,No-Cache,X-Requested-With,If-Modified-Since,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,Access-Control-Allow-Credentials
+Access-Control-Allow-Origin:https://link.bilibili.com
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Length:437
+Content-Type:application/json
+Date:Mon, 30 Jul 2018 03:38:53 GMT
+Expires:Mon, 30 Jul 2018 03:38:52 GMT
+Server:swoole-http-server
+Vary:Accept-Encoding,Origin
+X-Cache:BYPASS from tx-gz3-webcdn-02.hdslb.com
+X-TKID:1532921951907153838683
+
+Request Headers
+view source
+Accept:application/json, text/plain, */*
+Accept-Encoding:gzip, deflate
+Accept-Language:zh-CN,zh;q=0.8
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Length:82
+Content-Type:application/x-www-form-urlencoded; charset=UTF-8
+Cookie:sid=9vwg21cp; fts=1510035592; buvid3=B24F1AF9-583D-44B9-9555-63351DD6E40D26536infoc; pgv_pvi=8766843904; rpdid=olpxxioxsqdosowmksxqw; LIVE_BUVID=389bddb32b4dc3fabb4b95655e8e7375; LIVE_BUVID__ckMd5=19b58dc689d8d222; UM_distinctid=1636dd5f8b940-0878cf0c7b913e-1571466f-100200-1636dd5f8ba59; user_face=https%3A%2F%2Fi2.hdslb.com%2Fbfs%2Fface%2F013fc7e64839ab9002f0641678890957fece11db.jpg; CURRENT_QUALITY=64; finger=91f716ad; DedeUserID=52155851; DedeUserID__ckMd5=d6cf14dfb452c9c5; SESSDATA=8c4a2498%2C1533018906%2C97f8fd32; bili_jct=2e4fc13ed042ebd2c63a78355d93a6f5; LIVE_PLAYER_TYPE=2; im_seqno_52155851=291; im_local_unread_52155851=0; bp_t_offset_52155851=145018711757499261; Hm_lvt_8a6d461cf92ec46bd14513876885e489=1532616473; im_notify_type_52155851=0; GIFT_BLOCK_COOKIE=GIFT_BLOCK_COOKIE; Hm_lvt_8a6e55dbd2870f0f5bc9194cddf32a02=1532780022,1532855598,1532886994,1532921794; Hm_lpvt_8a6e55dbd2870f0f5bc9194cddf32a02=1532921818; _dfcaptcha=45492145c89a1faf1b0ca9aee7308b52
+DNT:1
+Host:api.live.bilibili.com
+Origin:https://link.bilibili.com
+Pragma:no-cache
+Referer:https://link.bilibili.com/p/center/index?visit_id=5wdle3kace4g
+User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0
+
+Form Data
+view source
+view URL encoded
+room_id:4236342
+platform:pc
+area_v2:27
+csrf_token:2e4fc13ed042ebd2c63a78355d93a6f5
+
+拼接后
+room_id=4236342&platform=pc&area_v2=27&csrf_token=2e4fc13ed042ebd2c63a78355d93a6f5
+
+返回
+{"code":0,"msg":"","message":"","data":{"change":1,"status":"LIVE","rtmp":{"addr":"rtmp://qn.live-send.acg.tv/live-qn/","code":"?streamname=live_52155851_4896039&key=3aff169b13c56e33f8c6095d67639b27","new_link":"http://pili-ipswitch.qiniuapi.com/v1/bilibili/publish?up_rtmp=qn.live-send.acg.tv%2Flive-qn%2F%3Fstreamname%3Dlive_52155851_4896039%26key%3D3aff169b13c56e33f8c6095d67639b27","provider":"qn"},"try_time":"0000-00-00 00:00:00"}}
+
+
+返回二
+{"code":0,"msg":"重复开播","message":"重复开播","data":{"status":"LIVE","change":0,"rtmp":{"addr":"rtmp://qn.live-send.acg.tv/live-qn/","code":"?streamname=live_52155851_4896039&key=3aff169b13c56e33f8c6095d67639b27","new_link":"http://pili-ipswitch.qiniuapi.com/v1/bilibili/publish?up_rtmp=qn.live-send.acg.tv%2Flive-qn%2F%3Fstreamname%3Dlive_52155851_4896039%26key%3D3aff169b13c56e33f8c6095d67639b27","provider":"qn"}}}
