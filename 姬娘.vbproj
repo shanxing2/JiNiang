@@ -480,7 +480,7 @@
     </None>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="README.md" />
+    <None Include="res\小电视动图.gif" />
     <None Include="ShanXingTech.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -504,14 +504,12 @@
     <Content Include="res\DanmuDisplayTemplete.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="res\DanmuDisplayTempleteTest.html" />
     <Content Include="res\snail_128px.ico" />
     <None Include="res\StreamPusher.txt" />
     <Content Include="res\YanText.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="res\弹幕发送处理流程.txt" />
-    <None Include="res\小电视动图.gif" />
     <None Include="res\蓝 小电视.png" />
   </ItemGroup>
   <ItemGroup>
