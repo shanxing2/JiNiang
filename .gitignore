@@ -341,3 +341,12 @@ healthchecksdb
 
 # 忽略需求文档
 需求相关/
+/res/图标资源.svg
+/res/小电视动图.gif
+/res/蓝 小电视.png
+/res/弹幕发送处理流程.txt
+/res/test.png
+/res/StreamPusher.txt
+/res/snail_128px.png
+/res/loading-tv.gif
+
