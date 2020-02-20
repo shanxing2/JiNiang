@@ -29,7 +29,7 @@
     <ProductName>姬娘</ProductName>
     <PublisherName>ShanXingTech</PublisherName>
     <SuiteName>Bilibili大数据</SuiteName>
-    <ApplicationRevision>57</ApplicationRevision>
+    <ApplicationRevision>58</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -97,7 +97,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>ShanXingTech.pfx</AssemblyOriginatorKeyFile>
