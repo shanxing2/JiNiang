@@ -129,10 +129,6 @@ Public NotInheritable Class BilibiliApi
 	''' 而且程序生命周期内仅调用一次
 	''' </summary>
 	Shared Sub New()
-		'User = New UserInfo
-		'm_LoginManager = New LoginManager(User)
-		'Configment = New ConfigEntity
-
 		m_HttpHeadersParam = New Dictionary(Of String, String) From {
 			{"User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0"},
 			{"Connection", "keep-alive"},

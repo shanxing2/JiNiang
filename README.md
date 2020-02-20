@@ -1,5 +1,5 @@
 # JiNiang(中文名：`姬娘`，下面都用`姬娘`表示)
-bilibili直播姬、弹幕姬、各种姬，VB(新VB.NET)实现，***史上结构最乱项目(官方吐槽)***
+bilibili直播姬、弹幕姬、danmuku、各种姬，VB(新VB.NET)实现，***史上结构最乱项目(官方吐槽)***
 ## 软件包
 [软件包](https://github.com/shanxing2/JiNiang_Release)
 

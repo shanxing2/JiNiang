@@ -339,7 +339,7 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-# 忽略需求文档
+# 忽略不需要的文件
 需求相关/
 /res/图标资源.svg
 /res/小电视动图.gif
@@ -349,4 +349,4 @@ healthchecksdb
 /res/StreamPusher.txt
 /res/snail_128px.png
 /res/loading-tv.gif
-
+c
