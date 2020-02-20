@@ -480,6 +480,7 @@
     </None>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="README.md" />
     <None Include="ShanXingTech.pfx" />
   </ItemGroup>
   <ItemGroup>
