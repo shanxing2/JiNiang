@@ -218,7 +218,9 @@ Public Class FrmQuickLogin
 			If(NotLoginUserId = m_User.Id, LoginResult.NotLogin, LoginResult.Yes))
 		m_LoginMode = If(rdbtnLoginWithBrowser.Checked,
 			LoginMode.Browser,
-			LoginMode.Cookies)
+			If(rdbtnLoginUseCookies.Checked,
+			LoginMode.Cookies,
+			LoginMode.QRCode))
 
 		Me.Close()
 	End Sub

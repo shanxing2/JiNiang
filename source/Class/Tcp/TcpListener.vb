@@ -221,16 +221,29 @@ Public Class TcpListener
 		m_Initialized = True
 	End Sub
 
-	Private Sub EnsureInitCancellationToken()
-		m_Cts = New CancellationTokenSource
-		m_Ct = m_Cts.Token
-	End Sub
+	''' <summary>	
+	''' 连接到弹幕服务器
+	''' </summary>
+	Public Async Function ConnectAsync(ByVal roomId As Integer, ByVal userId As String, ByVal upId As String, Optional ByVal serverHost As String = "broadcastlv.chat.bilibili.com", Optional ByVal serverPort As Integer = 2243) As Task
+		If 0 = roomId Then
+			Throw New ArgumentException(String.Format(My.Resources.ArgumentOutOfRange & "   这个房间不存在" & RandomEmoji.Helpless, NameOf(roomId), ">0"))
+		End If
+		If Not Net2.NetHelper.IsConnectedToInternet() Then
+			Throw New ArgumentException("网络异常")
+		End If
 
-	Private Async Function EnsureNetConnectedAsync() As Task
-		While Not Net2.NetHelper.IsConnected()
-			If m_Ct.IsCancellationRequested Then Exit While
-			Await Task.Delay(6180)
-		End While
+		_UserId = userId
+		_UpId = upId
+		_RoomId = roomId
+		_ServerHost = serverHost
+		_ServerPort = serverPort
+
+		Await EnsurePreInitAsync()
+		EnsureInitCancellationToken()
+
+		' 确保网络可用再连接
+		Await EnsureNetConnectedAsync()
+		Await InternalConnectAsync(Me.RoomId, Me.UserId, Me.ServerHost, Me.ServerPort)
 	End Function
 
 	''' <summary>
@@ -254,29 +267,16 @@ Public Class TcpListener
 		m_Initialized = True
 	End Function
 
-	''' <summary>	
-	''' 连接到弹幕服务器
-	''' </summary>
-	Public Async Function ConnectAsync(ByVal roomId As Integer, ByVal userId As String, ByVal upId As String, Optional ByVal serverHost As String = "broadcastlv.chat.bilibili.com", Optional ByVal serverPort As Integer = 2243) As Task
-		If 0 = roomId Then
-			Throw New ArgumentException(String.Format(My.Resources.ArgumentOutOfRange & "   这个房间不存在" & RandomEmoji.Helpless, NameOf(roomId), ">0"))
-		End If
-		If Not Net2.NetHelper.IsConnected() Then
-			Throw New ArgumentException("网络异常")
-		End If
+	Private Sub EnsureInitCancellationToken()
+		m_Cts = New CancellationTokenSource
+		m_Ct = m_Cts.Token
+	End Sub
 
-		_UserId = userId
-		_UpId = upId
-		_RoomId = roomId
-		_ServerHost = serverHost
-		_ServerPort = serverPort
-
-		Await EnsurePreInitAsync()
-		EnsureInitCancellationToken()
-
-		' 确保网络可用再连接
-		Await EnsureNetConnectedAsync()
-		Await InternalConnectAsync(Me.RoomId, Me.UserId, Me.ServerHost, Me.ServerPort)
+	Private Async Function EnsureNetConnectedAsync() As Task
+		While Not Net2.NetHelper.IsConnectedToInternet()
+			If m_Ct.IsCancellationRequested Then Exit While
+			Await Task.Delay(6180)
+		End While
 	End Function
 
 	''' <summary>
