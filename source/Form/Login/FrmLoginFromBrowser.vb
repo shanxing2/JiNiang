@@ -9,12 +9,6 @@ Imports ShanXingTech.Net2
 ''' </summary>
 Public Class FrmLoginFromBrowser
 #Region "属性区"
-    Public ReadOnly Property IsLogined() As Boolean?
-        Get
-            Return m_LoginedCookies?.Count > 0
-        End Get
-    End Property
-
     Private m_LoginedUrl As String
 
     Private m_LoginedCookies As CookieContainer

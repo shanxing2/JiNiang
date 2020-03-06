@@ -60,7 +60,8 @@ Public Class FrmQuickLogin
 		m_RoomIdAndUpNameDic = New Dictionary(Of String, String）(m_ShowViewedRoomCount)
 		m_UserDic = New Dictionary(Of String, UserInfo)
 
-		rdbtnLoginWithBrowser.Checked = True
+		' 默认扫码登录模式
+		rdbtnLoginUseQRCode.Checked = True
 		m_SeeBefore = "我先瞅瞅" & RandomEmoji.Happy
 
 		pnlLoginOptions.Enabled = False
@@ -218,7 +219,9 @@ Public Class FrmQuickLogin
 			If(NotLoginUserId = m_User.Id, LoginResult.NotLogin, LoginResult.Yes))
 		m_LoginMode = If(rdbtnLoginWithBrowser.Checked,
 			LoginMode.Browser,
-			LoginMode.Cookies)
+			If(rdbtnLoginUseCookies.Checked,
+			LoginMode.Cookies,
+			LoginMode.QRCode))
 
 		Me.Close()
 	End Sub

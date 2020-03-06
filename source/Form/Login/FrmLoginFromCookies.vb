@@ -1,6 +1,8 @@
-﻿Imports ShanXingTech
+﻿Imports System.Net
+Imports ShanXingTech
 
 Public Class FrmLoginFromCookies
+
 #Region "属性区"
     Private Const CS_NOCLOSE = &H200
 
@@ -13,12 +15,6 @@ Public Class FrmLoginFromCookies
         End Get
     End Property
 
-    Public ReadOnly Property IsLogined() As Boolean?
-        Get
-            Return m_LoginedCookies?.Count > 0
-        End Get
-    End Property
-
     Private m_LoginedCookies As Net.CookieContainer
     Public ReadOnly Property LoginedCookies As Net.CookieContainer
         Get
@@ -26,6 +22,16 @@ Public Class FrmLoginFromCookies
         End Get
     End Property
 #End Region
+
+    Sub New()
+
+        ' 此调用是设计器所必需的。
+        InitializeComponent()
+
+        ' 在 InitializeComponent() 调用之后添加任何初始化。
+        Me.TopMost = True
+        Me.StartPosition = FormStartPosition.CenterParent
+    End Sub
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         Dim domain = txtDomain.Text.Trim

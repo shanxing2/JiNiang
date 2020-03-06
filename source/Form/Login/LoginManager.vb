@@ -28,8 +28,18 @@ Public Class LoginManager
 
 #Region "枚举区"
     Enum LoginMode
+        ''' <summary>
+        ''' 使用浏览器登录
+        ''' </summary>
         Browser
+        ''' <summary>
+        ''' 使用cookie登录
+        ''' </summary>
         Cookies
+        ''' <summary>
+        ''' 扫码登录
+        ''' </summary>
+        QRCode
     End Enum
 #End Region
 
@@ -104,7 +114,13 @@ Public Class LoginManager
                     loginRst = Await ShowLoginFormAsync(loginWay)
                 Else
                     ' 如果能获取到之前登录后的cookies并且能用cookie获取到用户信息，那就不需要再登录
-                    Dim isLogined = Await GetCookiesFromDBAsync()
+                    Dim success = GetCookiesFromDB()
+                    If Not success Then
+                        loginRst = Await ShowLoginFormAsync(loginWay)
+                        Exit Try
+                    End If
+                    Dim cookiesKvp = m_User.Cookies.ToKeyValuePairs
+                    Dim isLogined = Await EnsureLoginAsync(cookiesKvp)
                     If isLogined Then
                         HttpAsync.ReInit(m_User.Cookies)
                     Else
@@ -124,25 +140,26 @@ Public Class LoginManager
     Private Async Function ShowLoginFormAsync(ByVal loginWay As LoginMode) As Task(Of LoginResult)
         Dim loginResult As LoginResult
 
-        Dim isLogined As Boolean?
         If loginWay = LoginMode.Browser Then
             Using frm As New FrmLoginFromBrowser(NavigateUrl)
                 frm.ShowDialog()
-                isLogined = frm.IsLogined
+                m_User.Cookies = frm.LoginedCookies
+            End Using
+        ElseIf loginWay = LoginMode.Cookies Then
+            Using frm As New FrmLoginFromCookies
+                frm.ShowDialog()
                 m_User.Cookies = frm.LoginedCookies
             End Using
         Else
-            Using frm As New FrmLoginFromCookies
-                frm.StartPosition = FormStartPosition.CenterScreen
-                frm.TopMost = True
+            Using frm As New FrmLoginFromQRCode()
                 frm.ShowDialog()
-                isLogined = frm.IsLogined
                 m_User.Cookies = frm.LoginedCookies
             End Using
         End If
 
+        Dim isLogined As Boolean?
         ' 登录失败 或者 未登录，不需要进行bili组件初始化操作
-        If isLogined Then
+        If m_User.Cookies?.Count > 0 Then
             Dim cookiesKvp = m_User.Cookies.ToKeyValuePairs
             isLogined = Await EnsureLoginAsync(cookiesKvp)
         End If
@@ -154,8 +171,7 @@ Public Class LoginManager
     ''' <summary>
     ''' 获取上一次用IE登录之后保存的cookies
     ''' </summary>
-    ''' <returns></returns>
-    Private Async Function GetCookiesFromDBAsync() As Task(Of Boolean)
+    Private Function GetCookiesFromDB() As Boolean
         Dim sql = "SELECT Cookies FROM UserInfo WHERE Id = " & m_User.Id
 
         Dim cookiesKvp = IO2.Database.SQLiteHelper.GetFirst(sql)
@@ -163,23 +179,22 @@ Public Class LoginManager
 
         Dim tempCookiesKvp = cookiesKvp.ToString.DecryptCookies
         m_User.Cookies.GetFromKeyValuePairs(tempCookiesKvp, NavigateUrl)
-
-        Dim isLogined = Await EnsureLoginAsync(tempCookiesKvp)
-
-        Return isLogined
+        Return True
     End Function
 
+    ''' <summary>
+    ''' 确保传入的 cookie 可用于访问登录后的资源（能访问就是已经登录成功啦）
+    ''' </summary>
+    ''' <param name="cookiesKvp"></param>
+    ''' <returns></returns>
     Public Async Function EnsureLoginAsync(ByVal cookiesKvp As String) As Task(Of Boolean)
         Dim funcRst As Boolean
-        ' 有SESSDATA的不一定是不需要登录的，但是没有SESSDATA一定是需要登录
         Dim haveLoginFlag = (cookiesKvp.IndexOf("DedeUserID=") > -1 AndAlso cookiesKvp.IndexOf("bili_jct=") > -1)
         If haveLoginFlag Then
             HttpAsync.ReInit(m_User.Cookies)
 
             Try
-                Dim url = "https://api.live.bilibili.com/User/getUserInfo?ts=" & Date.Now.ToTimestampString(TimePrecision.Millisecond)
-                m_HttpHeadersParam("Referer") = "https://live.bilibili.com/"
-                Dim getRst = Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":""REPONSE_OK""", 3)
+                Dim getRst = Await BilibiliApi.GetCurrentUserNavAsync()
                 funcRst = getRst.Success
             Catch ex As Exception
                 Logger.WriteLine(ex)

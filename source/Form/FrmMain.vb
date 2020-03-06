@@ -70,7 +70,7 @@ Public Class FrmMain
 
     Private Async Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 #If Not DEBUG Then
-        ' 检测到被附加到其他进程(比如od?)调试时，强制退出
+        ' 检测到被附加到其他进程(比如od?vs release调试)调试时，强制退出
         If Win32API.IsDebuggerPresent Then
             Me.Visible = False
             MessageBox.Show(ShanXingTechQ2287190283, "温馨提示", MessageBoxButtons.OK, MessageBoxIcon.Stop)
@@ -212,6 +212,11 @@ Public Class FrmMain
     ''' </summary>
     Private Async Function TryLoginAsync() As Task
         Try
+            If Not Net2.NetHelper.IsConnectedToInternet() Then
+                Windows2.DrawTipsTask(Me, "网络异常 " & RandomEmoji.Helpless, 3000, False, False)
+                Return
+            End If
+
             AddHandler DanmuEntry.UserEnsured, AddressOf UserEnsuredTask
             AddHandler DanmuEntry.RoomRealIdEnsured, AddressOf RoomRealIdEnsuredTask
 

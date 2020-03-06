@@ -964,7 +964,7 @@ Public NotInheritable Class DanmuEntry
     ''' </summary>
     Private Shared Async Function ConfigureHimesByUserAsync() As Task(Of Boolean)
         ' 获取当前登录用户信息
-        Dim getRst = Await BilibiliApi.GetCurrentUserAsync
+        Dim getRst = Await BilibiliApi.GetCurrentUserInfoAsync
         Dim json = getRst.Message
         Dim funcRst = getRst.Success
 
@@ -1124,12 +1124,11 @@ Public NotInheritable Class DanmuEntry
         Return status
     End Function
 
-
     Protected Friend Shared Async Function GetFansNickAsync(ByVal userId As String) As Task(Of String)
         Dim funcRst = String.Empty
 
         Try
-            Dim postRst = Await BilibiliApi.GetUserInfoAsync(userId)
+            Dim postRst = Await BilibiliApi.GetMemberInfoAsync(userId)
             If Not postRst.Success Then Exit Try
             Dim json = postRst.Message
 
@@ -1236,7 +1235,7 @@ Public NotInheritable Class DanmuEntry
     End Function
 
     Private Shared Async Function InternalGetUserIfnoAsync(ByVal viewerId As String) As Task(Of (Uid As String, Uname As String))
-        Dim getRst = Await BilibiliApi.GetUserInfoAsync(viewerId)
+        Dim getRst = Await BilibiliApi.GetMemberInfoAsync(viewerId)
         If getRst.Success Then
             Try
                 Dim root = MSJsSerializer.Deserialize(Of UserInfoEntity.Root)(getRst.Message)

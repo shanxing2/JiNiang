@@ -34,10 +34,11 @@ Partial Class FrmQuickLogin
         Me.Label5 = New System.Windows.Forms.Label()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.pnlLoginOptions = New System.Windows.Forms.Panel()
+        Me.btnTryDeleteCookies = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.rdbtnLoginUseCookies = New System.Windows.Forms.RadioButton()
         Me.rdbtnLoginWithBrowser = New System.Windows.Forms.RadioButton()
-        Me.btnTryDeleteCookies = New System.Windows.Forms.Button()
+        Me.rdbtnLoginUseQRCode = New System.Windows.Forms.RadioButton()
         Me.pnlLoginOptions.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -120,6 +121,7 @@ Partial Class FrmQuickLogin
         '
         'pnlLoginOptions
         '
+        Me.pnlLoginOptions.Controls.Add(Me.rdbtnLoginUseQRCode)
         Me.pnlLoginOptions.Controls.Add(Me.btnTryDeleteCookies)
         Me.pnlLoginOptions.Controls.Add(Me.Label6)
         Me.pnlLoginOptions.Controls.Add(Me.rdbtnLoginUseCookies)
@@ -130,6 +132,15 @@ Partial Class FrmQuickLogin
         Me.pnlLoginOptions.Name = "pnlLoginOptions"
         Me.pnlLoginOptions.Size = New System.Drawing.Size(322, 89)
         Me.pnlLoginOptions.TabIndex = 124
+        '
+        'btnTryDeleteCookies
+        '
+        Me.btnTryDeleteCookies.Location = New System.Drawing.Point(0, 59)
+        Me.btnTryDeleteCookies.Name = "btnTryDeleteCookies"
+        Me.btnTryDeleteCookies.Size = New System.Drawing.Size(96, 23)
+        Me.btnTryDeleteCookies.TabIndex = 125
+        Me.btnTryDeleteCookies.Text = "删除旧Cookies"
+        Me.btnTryDeleteCookies.UseVisualStyleBackColor = True
         '
         'Label6
         '
@@ -160,14 +171,15 @@ Partial Class FrmQuickLogin
         Me.rdbtnLoginWithBrowser.Text = "浏览器"
         Me.rdbtnLoginWithBrowser.UseVisualStyleBackColor = True
         '
-        'btnTryDeleteCookies
+        'rdbtnLoginUseQRCode
         '
-        Me.btnTryDeleteCookies.Location = New System.Drawing.Point(0, 59)
-        Me.btnTryDeleteCookies.Name = "btnTryDeleteCookies"
-        Me.btnTryDeleteCookies.Size = New System.Drawing.Size(96, 23)
-        Me.btnTryDeleteCookies.TabIndex = 125
-        Me.btnTryDeleteCookies.Text = "删除旧Cookies"
-        Me.btnTryDeleteCookies.UseVisualStyleBackColor = True
+        Me.rdbtnLoginUseQRCode.AutoSize = True
+        Me.rdbtnLoginUseQRCode.Location = New System.Drawing.Point(208, 15)
+        Me.rdbtnLoginUseQRCode.Name = "rdbtnLoginUseQRCode"
+        Me.rdbtnLoginUseQRCode.Size = New System.Drawing.Size(71, 16)
+        Me.rdbtnLoginUseQRCode.TabIndex = 133
+        Me.rdbtnLoginUseQRCode.Text = "扫码登录"
+        Me.rdbtnLoginUseQRCode.UseVisualStyleBackColor = True
         '
         'FrmQuickLogin
         '
@@ -210,4 +222,5 @@ Partial Class FrmQuickLogin
     Friend WithEvents rdbtnLoginUseCookies As RadioButton
     Friend WithEvents rdbtnLoginWithBrowser As RadioButton
     Friend WithEvents btnTryDeleteCookies As Button
+    Friend WithEvents rdbtnLoginUseQRCode As RadioButton
 End Class

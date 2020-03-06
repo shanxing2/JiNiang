@@ -586,23 +586,34 @@ Public NotInheritable Class BilibiliApi
         Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
     End Function
 
-    ''' <summary>
-    ''' 获取当前登录用户信息
-    ''' </summary>
-    ''' <returns></returns>
-    Public Shared Async Function GetCurrentUserAsync() As Task(Of HttpResponse)
+	''' <summary>
+	''' 获取当前登录用户信息
+	''' </summary>
+	''' <returns></returns>
+	Public Shared Async Function GetCurrentUserInfoAsync() As Task(Of HttpResponse)
 		Dim url = "https://api.live.bilibili.com/live_user/v1/UserInfo/live_info"
 		m_HttpHeadersParam("Referer") = "http://link.bilibili.com/p/center/index"
 
-        Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
-    End Function
+		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+	End Function
 
-    ''' <summary>
-    ''' 获取真正的直播间Id
-    ''' </summary>
-    ''' <param name="shortRoomId">直播间短Id</param>
-    ''' <returns></returns>
-    Public Shared Async Function GetRoomRealIdFromNetworkAsync(ByVal shortRoomId As String) As Task(Of (Success As Boolean, RoomShortId As Integer, RoomRealId As Integer))
+	''' <summary>
+	''' 获取当前登录用户资产信息
+	''' </summary>
+	''' <returns></returns>
+	Public Shared Async Function GetCurrentUserNavAsync() As Task(Of HttpResponse)
+		Dim url = "https://api.bilibili.com/x/web-interface/nav"
+		m_HttpHeadersParam("Referer") = "https://www.bilibili.com/"
+
+		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """isLogin"":true", 3)
+	End Function
+
+	''' <summary>
+	''' 获取真正的直播间Id
+	''' </summary>
+	''' <param name="shortRoomId">直播间短Id</param>
+	''' <returns></returns>
+	Public Shared Async Function GetRoomRealIdFromNetworkAsync(ByVal shortRoomId As String) As Task(Of (Success As Boolean, RoomShortId As Integer, RoomRealId As Integer))
         Dim funcRst As Boolean
         Dim shortId As Integer
         Dim realId As Integer
@@ -739,7 +750,7 @@ Public NotInheritable Class BilibiliApi
 	''' </summary>
 	''' <param name="userId"></param>
 	''' <returns></returns>
-	Public Shared Async Function GetUserInfoAsync(ByVal userId As String) As Task(Of HttpResponse)
+	Public Shared Async Function GetMemberInfoAsync(ByVal userId As String) As Task(Of HttpResponse)
 		Dim url = "https://space.bilibili.com/ajax/member/GetInfo"
 		Dim postData = $"mid={userId}&csrf={m_User.Token}"
 		Dim referer = "https://space.bilibili.com/" & userId
@@ -755,6 +766,27 @@ Public NotInheritable Class BilibiliApi
 	Public Shared Async Function GetMedalInfoAsync(ByVal viewerUid As String, ByVal upUid As String) As Task(Of HttpResponse)
 		Dim url = $"https://api.live.bilibili.com/fans_medal/v1/fans_medal/get_fans_medal_info?source=1&uid={viewerUid}&target_id={upUid}"
 		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+	End Function
+
+	''' <summary>
+	''' 获取登录Url（暂时是用于生成二维码）
+	''' </summary>
+	''' <returns></returns>
+	Public Shared Async Function GetLoginUrlAsync() As Task(Of HttpResponse)
+		Dim url = "https://passport.bilibili.com/qrcode/getLoginUrl"
+		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+	End Function
+
+	''' <summary>
+	''' 获取登录（扫码）结果，data值含义:-2 二维码过期或者已确认授权，登录成功、 -4 未扫码、-5 已扫码未确认、。
+	''' </summary>
+	''' <param name="oauthKey"></param>
+	''' <returns></returns>
+	Public Shared Async Function GetLoginInfoAsync(ByVal oauthKey As String) As Task(Of HttpResponse)
+		Dim url = "https://passport.bilibili.com/qrcode/getLoginInfo"
+		Dim postData = $"oauthKey={oauthKey}&gourl=https://www.bilibili.com/"
+		Dim referer = "https://passport.bilibili.com/login"
+		Return Await DoPostAsync(url, postData, referer)
 	End Function
 #End Region
 End Class

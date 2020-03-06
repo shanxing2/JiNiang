@@ -23,14 +23,5 @@ Namespace My
             Logger.WriteLine(e.Exception)
             MessageBox.Show("程序遇到未处理异常，请关闭程序后重启程序", "温馨提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Sub
-
-        Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
-#If Not DEBUG Then
-            ' 检测到被附加到其他进程(比如od?)调试时，强制退出
-            If Win32API.IsDebuggerPresent Then
-                Environment.Exit(0)
-            End If
-#End If
-        End Sub
     End Class
 End Namespace
