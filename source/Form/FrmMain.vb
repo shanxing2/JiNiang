@@ -117,12 +117,18 @@ Public Class FrmMain
 
             Me.Visible = False
             Try
+#If Not DEBUG Then
+                Logger.WriteLine("closing")
+#End If
                 ConfigureEvents(False)
                 DmTcpClient?.Close()
                 If stopLive Then
                     Await m_StartLiveSettingForm.OnStopLiveAsync()
                 End If
                 DanmuEntry.Close(Me.DanmuControl)
+#If Not DEBUG Then
+                Logger.WriteLine("closed")
+#End If
             Catch ex As Exception
                 Me.Visible = True
             End Try
@@ -370,7 +376,7 @@ Public Class FrmMain
     Private Async Function UpdateChatHistoryAsync() As Task
         Dim getRst = Await DanmuEntry.GetDanmuAsync()
         If getRst.NeedChangeChatHistory Then
-            DanmuControl.UpdateChatHistory(getRst.Message)
+            DanmuControl.AppendToChatHistory(getRst.Message)
         End If
     End Function
 
@@ -669,7 +675,7 @@ Public Class FrmMain
     End Sub
 
     Private Sub DanmuParser_ChatHistoryChanged(sender As Object, e As DanmuChangedEventArgs) Handles DanmuParser.ChatHistoryChanged
-        DanmuControl.UpdateChatHistory(e.Danmu)
+        DanmuControl.AppendToChatHistory(e.Danmu)
     End Sub
 
     Public Sub DanmuParser_SilverFed(sender As Object, e As FedEventArgs)

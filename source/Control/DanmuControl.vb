@@ -460,7 +460,7 @@ Public Class DanmuControl
         ' 2.或者情况不明
         ' 为了更好的用户体验，直接将发送失败的消息当做弹幕显示
         If Not e.IsAllow OrElse e.Danmu Is Nothing Then
-            UpdateChatHistory(e.Danmu.Context)
+            AppendToChatHistory(e.Danmu.Context)
         End If
 
         ' 用户发送弹幕时才需要更改UI
@@ -487,7 +487,11 @@ Public Class DanmuControl
         End If
     End Sub
 
-    Public Sub UpdateChatHistory(ByVal danmu As String)
+    ''' <summary>
+    ''' 向弹幕显示框插入一条新弹幕
+    ''' </summary>
+    ''' <param name="danmu"></param>
+    Public Sub AppendToChatHistory(ByVal danmu As String)
         Dim p = m_WebDoc.CreateElement("p")
         p.InnerHtml = danmu
         DanmuDiv.AppendChild(p)
@@ -511,6 +515,9 @@ Public Class DanmuControl
         End If
     End Sub
 
+    ''' <summary>
+    ''' 滚动条划到最下
+    ''' </summary>
     Public Sub ScrollToBottom()
         If webChatHistory.InvokeRequired Then
             Me.BeginInvoke(Sub() m_WebDoc.Window.ScrollTo(0, m_WebDoc.Body.ScrollRectangle.Height))

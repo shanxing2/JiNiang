@@ -316,6 +316,8 @@ Public Class DmCmdParser
 
                 Case DmCmd.ACTIVITY_BANNER_UPDATE_V2
 
+                Case DmCmd.ACTIVITY_BANNER_UPDATE_BLS
+
                 Case DmCmd.ROOM_CHANGE
                     ROOM_CHANGE(jDic)
                 Case DmCmd.ACTIVITY_BANNER_RED_NOTICE_CLOSE
@@ -323,7 +325,11 @@ Public Class DmCmdParser
                 Case DmCmd.new_anchor_reward,
                     DmCmd.ANCHOR_LOT_START,
                     DmCmd.ANCHOR_LOT_END,
-                    DmCmd.ANCHOR_LOT_AWARD
+                    DmCmd.ANCHOR_LOT_AWARD，
+                     DmCmd.ANCHOR_NORMAL_NOTIFY
+                Case DmCmd.HOT_ROOM_NOTIFY
+                Case DmCmd.MATCH_TEAM_GIFT_RANK
+
                 Case Else
                     Logger.WriteLine(cmdJson)
                     Return

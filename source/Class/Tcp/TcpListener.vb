@@ -629,9 +629,11 @@ Public Class TcpListener
 	''' 关闭连接
 	''' </summary>
 	Public Sub Close()
+		' 先关掉tcp包缓存器，再关tcp连接
+		m_TcpPacketBC?.CompleteAdding()
+
 		m_TcpStream?.Close()
 		m_TcpClient?.Close()
-		m_TcpPacketBC?.CompleteAdding()
 
 		m_Cts?.Cancel()
 	End Sub

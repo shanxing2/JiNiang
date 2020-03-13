@@ -29,7 +29,7 @@
     <ProductName>姬娘</ProductName>
     <PublisherName>ShanXingTech</PublisherName>
     <SuiteName>Bilibili大数据</SuiteName>
-    <ApplicationRevision>60</ApplicationRevision>
+    <ApplicationRevision>61</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -133,8 +133,9 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="姬娘插件">
-      <HintPath>..\插件测试\姬娘插件\bin\Debug\姬娘插件.dll</HintPath>
+    <Reference Include="姬娘插件, Version=1.0.0.1, Culture=neutral, PublicKeyToken=e18498c638d75b92, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\插件测试\姬娘插件\bin\Debug\姬娘插件.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
