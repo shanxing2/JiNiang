@@ -178,7 +178,7 @@ Public Class FrmQuickLogin
 		' 获取访问过的直播间Id/up昵称
 		Using reader = Await IO2.Database.SQLiteHelper.GetDataReaderAsync($"select RealId,UpName from ViewedRoomInfo  order by LastViewedTimestamp desc limit 0, {m_ShowViewedRoomCount.ToStringOfCulture};")
 			While Await reader?.ReadAsync
-				m_RoomIdAndUpNameDic.Add(reader(0).ToString, $"{reader(0).ToString}{m_RommIdAndUpNameSeparator}{reader(1).ToString}")
+				m_RoomIdAndUpNameDic.Add(reader(0).ToString, $"{reader(0)}{m_RommIdAndUpNameSeparator}{reader(1)}")
 			End While
 		End Using
 		cmbViewedRooms.Items.Clear()
@@ -310,6 +310,14 @@ Public Class FrmQuickLogin
 
 		Return roomId
 	End Function
+
+	Private Sub cmbUsersNick_KeyUp(sender As Object, e As KeyEventArgs) Handles cmbUsersNick.KeyUp
+		If e.KeyCode = Keys.Enter Then
+			cmbUsersNick.DroppedDown = True
+		ElseIf e.KeyCode = Keys.Space Then
+			cmbUsersNick.DroppedDown = False
+		End If
+	End Sub
 
 	Private Sub cmbUsersNick_Leave(sender As Object, e As EventArgs) Handles cmbUsersNick.Leave
 		GetSelectUserInfo()

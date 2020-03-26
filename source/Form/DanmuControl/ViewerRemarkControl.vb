@@ -106,37 +106,37 @@ Public Class ViewerRemarkControl
     End Function
 
     Private Async Sub btnOK_ClickAsync(sender As Object, e As EventArgs) Handles btnOK.Click
-		Dim uidOrUname = txtViewerIdOrViewerName.Text.Trim
-		If uidOrUname.Length = 0 Then
-			Windows2.DrawTipsTask(Me, "请输入UID或用户名" & RandomEmoji.Helpless, 2000, False, False)
-			txtViewerIdOrViewerName.Focus()
-			Return
-		End If
+        Dim uidOrUname = txtViewerIdOrViewerName.Text.Trim
+        If uidOrUname.Length = 0 Then
+            Windows2.DrawTipsTask(Me, "请输入UID或用户名" & RandomEmoji.Helpless, 2000, False, False)
+            txtViewerIdOrViewerName.Focus()
+            Return
+        End If
 
-		' 如果备注不为默认（跟昵称一样）则同时清空传入的观众id
-		If uidOrUname <> m_ViewerIdOrViewerName AndAlso
-			uidOrUname <> m_ViewerId Then
-			m_ViewerId = String.Empty
-		End If
+        ' 如果备注不为默认（跟昵称一样）则同时清空传入的观众id
+        If uidOrUname <> m_ViewerIdOrViewerName AndAlso
+            uidOrUname <> m_ViewerId Then
+            m_ViewerId = String.Empty
+        End If
 
-		Dim remark = txtRemark.Text.Trim
-		Dim isViewerNickAsRemark As Boolean
-		If remark.Length = 0 Then
-			Dim dlgRst = MessageBox.Show("你还没有输入备注，备注是否跟昵称一致？", "温馨提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-			If dlgRst = DialogResult.Yes Then
-				isViewerNickAsRemark = True
-			Else
-				Windows2.DrawTipsTask(Me, "请输入备注" & RandomEmoji.Helpless, 2000, False, False)
-				txtRemark.Focus()
-				Return
-			End If
-		End If
+        Dim remark = txtRemark.Text.Trim
+        Dim isViewerNickAsRemark As Boolean
+        If remark.Length = 0 Then
+            Dim dlgRst = MessageBox.Show("你还没有输入备注，备注是否跟昵称一致？", "温馨提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If dlgRst = DialogResult.Yes Then
+                isViewerNickAsRemark = True
+            Else
+                Windows2.DrawTipsTask(Me, "请输入备注" & RandomEmoji.Helpless, 2000, False, False)
+                txtRemark.Focus()
+                Return
+            End If
+        End If
 
-		Try
-			btnOK.Parent.Enabled = False
+        Try
+            btnOK.Parent.Enabled = False
 
-			Dim user = Await DanmuEntry.GetUserInfoAsync(m_ViewerId, uidOrUname)
-			If user.Uid.IsNullOrEmpty Then
+            Dim user = Await DanmuEntry.GetUserInfoAsync(m_ViewerId, uidOrUname)
+            If user.Uid.IsNullOrEmpty Then
                 Common.ShowOperateResultTask(Me, False)
                 Exit Try
             End If

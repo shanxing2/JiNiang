@@ -82,7 +82,10 @@ Public NotInheritable Class MedalUpgradeHime
 #If DEBUG Then
 
                 Else
-                    IO2.Writer.WriteText($".\medal_{Now.ToString("yyyyMMdd")}.txt", $"已经提示过升级,{NameOf(upUid)}:{upUid} {NameOf(fedInfo.ViewerUid)}:{fedInfo.ViewerUid} {NameOf(fedInfo.ViewerUnick)}:{fedInfo.ViewerUnick} {NameOf(root.data.level)}:{root.data.level.ToString}  {NameOf(fedInfo.Count)}:{fedInfo.Count.ToString}  {NameOf(fedInfo.Price)}:{fedInfo.Price.ToString}", IO.FileMode.Append, IO2.CodePage.UTF8)
+                    IO2.Writer.WriteText($".\medal_{Now.ToString("yyyyMMdd")}.txt",
+                                         $"已经提示过升级,{NameOf(upUid)}:{upUid} {NameOf(fedInfo.ViewerUid)}:{fedInfo.ViewerUid} {NameOf(fedInfo.ViewerUnick)}:{fedInfo.ViewerUnick} {NameOf(root.data.level)}:{root.data.level}  {NameOf(fedInfo.Count)}:{fedInfo.Count}  {NameOf(fedInfo.Price)}:{fedInfo.Price}",
+                                         IO.FileMode.Append,
+                                         IO2.CodePage.UTF8)
 #End If
                 End If
 

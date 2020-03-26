@@ -49,6 +49,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <DefineConstants>
     </DefineConstants>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -78,7 +79,7 @@
     <ApplicationIcon>res\snail_128px.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>A88C2114CB2A34D3DEC6BE1C5B181919E499085A</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>530BB10DE99C1B7A885478029E5182445284EDD1</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>
@@ -212,13 +213,13 @@
     <Compile Include="Class\LightLiver.vb" />
     <Compile Include="Class\Tcp\TcpEvents.vb" />
     <Compile Include="Class\Tcp\TcpPacketParser.vb" />
-    <Compile Include="Control\DanmuControl.Designer.vb">
+    <Compile Include="Form\DanmuControl\DanmuControl.Designer.vb">
       <DependentUpon>DanmuControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="Control\DanmuControl.vb">
+    <Compile Include="Form\DanmuControl\DanmuControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Control\DanmuControlFunctionTest.vb">
+    <Compile Include="Form\DanmuControl\DanmuControlFunctionTest.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Control\FansInfoEditControl.Designer.vb">
@@ -282,12 +283,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\DanmuControl\IViewerManageBaseControl.vb" />
-    <Compile Include="Form\DanmuControl\UserAnchorGlobalShieldControl.Designer.vb">
-      <DependentUpon>UserAnchorGlobalShieldControl.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Form\DanmuControl\UserAnchorGlobalShieldControl.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Form\DanmuControl\RoomGlobalSilentControl.Designer.vb">
       <DependentUpon>RoomGlobalSilentControl.vb</DependentUpon>
     </Compile>
@@ -402,7 +397,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Control\DanmuControl.resx">
+    <EmbeddedResource Include="Form\DanmuControl\DanmuControl.resx">
       <DependentUpon>DanmuControl.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -436,9 +431,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\DanmuControl\RoomAdminControl.resx">
       <DependentUpon>RoomAdminControl.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\DanmuControl\UserAnchorGlobalShieldControl.resx">
-      <DependentUpon>UserAnchorGlobalShieldControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\DanmuControl\RoomGlobalSilentControl.resx">
       <DependentUpon>RoomGlobalSilentControl.vb</DependentUpon>

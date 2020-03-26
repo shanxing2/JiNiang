@@ -280,7 +280,7 @@ Public NotInheritable Class BilibiliApi
 	''' <returns></returns>
 	Public Shared Async Function RoomReportDanmuAsync(ByVal roomId As String, ByVal viewerId As String, ByVal ts As String, ByVal sign As String, ByVal danmu As String, ByVal reason As ReportReason) As Task(Of (Success As Boolean, Message As String, Result As String))
 		Dim url = "https://api.live.bilibili.com/room_ex/v1/Danmu/danmuReport"
-		Dim postData = $"id=0&roomid={roomId}&uid={viewerId}&msg={danmu}&reason={reason.ToString}&ts={ts}&sign={sign}&reason_id={reason.ToString}&token=&csrf_token={m_User.Token}&csrf={m_User.Token}&visit_id"
+		Dim postData = $"id=0&roomid={roomId}&uid={viewerId}&msg={danmu}&reason={reason}&ts={ts}&sign={sign}&reason_id={reason}&token=&csrf_token={m_User.Token}&csrf={m_User.Token}&visit_id"
 
 		Return Await DoApiPostAsync(url, postData, Referer)
 	End Function

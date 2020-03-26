@@ -678,7 +678,7 @@ Public Class DanmuControl
         mnitmDeleteReMark.Enabled = Not mnitmUseUseNickAsReMark.Enabled
         If remark Is Nothing Then remark = "未设置备注"
         ' 备注与昵称相同则不显示备注
-        mnitmNickAndRemark.Text = $"{m_SelectViewerNick}{If(m_SelectViewerNick.Equals(remark.ToString), String.Empty, $"（{remark.ToString}）")}"
+        mnitmNickAndRemark.Text = $"{m_SelectViewerNick}{If(m_SelectViewerNick.Equals(remark.ToString), String.Empty, $"（{remark}）")}"
 
         m_SelectDanmu = m_WebDoc.ActiveElement.Parent.Children(3).InnerText
         m_SelectViewerTs = m_WebDoc.ActiveElement.GetAttribute("data-ts")

@@ -3,7 +3,7 @@
 Public NotInheritable Class Common
 #Region "常量"
     ''' <summary>
-    ''' 观众弹幕模板
+    ''' 观众弹幕模板(uid-ts-ct-nickname-timestamp-danmu)
     ''' </summary>
     Public Const ViewerDanmuTemplete As String = "<div style=""display:inline""><input type=""button"" class=""btn-like-span pointer open-menu"" data-uid=""{0}"" data-ts=""{1}"" data-ct=""{2}"" value=""{3}""/><span> {4}</span><br/><span>{5}</span></div>"
     ''' <summary>
@@ -49,7 +49,7 @@ Public NotInheritable Class Common
     ''' <param name="tips">提示</param>
     ''' <param name="timeout">倒计时，单位毫秒</param>
     Public Shared Sub ShowOperateResultTask(ByVal ownerControl As Control, ByVal success As Boolean, ByVal tips As String, Optional ByVal timeout As Integer = 1000)
-        Windows2.DrawTipsTask(If(ownerControl.Parent, ownerControl), tips, timeout, success, False)
+        Windows2.DrawTipsTask(ownerControl, tips, timeout, success, False)
     End Sub
 #End Region
 End Class

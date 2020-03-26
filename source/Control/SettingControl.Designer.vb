@@ -63,6 +63,7 @@ Partial Class SettingControl
         Me.pnlHimesEnablerContainer = New System.Windows.Forms.Panel()
         Me.chkEnabledMedalUpgradeHime = New System.Windows.Forms.CheckBox()
         Me.txtViewRoomId = New System.Windows.Forms.TextBox()
+        Me.chkDisplayOriginalNick = New System.Windows.Forms.CheckBox()
         CType(Me.nudBrokeSilenceInterval, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.trbFormOpacity, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudHeartbeatInterval, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -437,6 +438,7 @@ Partial Class SettingControl
         '
         'pnlHimesEnablerContainer
         '
+        Me.pnlHimesEnablerContainer.Controls.Add(Me.chkDisplayOriginalNick)
         Me.pnlHimesEnablerContainer.Controls.Add(Me.chkEnabledMedalUpgradeHime)
         Me.pnlHimesEnablerContainer.Controls.Add(Me.chkEnabledThanksHime)
         Me.pnlHimesEnablerContainer.Controls.Add(Me.chkOpenSilverBoxAuto)
@@ -468,6 +470,16 @@ Partial Class SettingControl
         Me.txtViewRoomId.Name = "txtViewRoomId"
         Me.txtViewRoomId.Size = New System.Drawing.Size(100, 21)
         Me.txtViewRoomId.TabIndex = 153
+        '
+        'chkDisplayOriginalNick
+        '
+        Me.chkDisplayOriginalNick.AutoSize = True
+        Me.chkDisplayOriginalNick.Location = New System.Drawing.Point(185, 26)
+        Me.chkDisplayOriginalNick.Name = "chkDisplayOriginalNick"
+        Me.chkDisplayOriginalNick.Size = New System.Drawing.Size(84, 16)
+        Me.chkDisplayOriginalNick.TabIndex = 138
+        Me.chkDisplayOriginalNick.Text = "显示原昵称"
+        Me.chkDisplayOriginalNick.UseVisualStyleBackColor = True
         '
         'SettingControl
         '
@@ -553,5 +565,6 @@ Partial Class SettingControl
     Friend WithEvents pnlHimesEnablerContainer As Panel
     Friend WithEvents txtViewRoomId As TextBox
     Friend WithEvents chkEnabledMedalUpgradeHime As CheckBox
+    Friend WithEvents chkDisplayOriginalNick As CheckBox
 End Class
 

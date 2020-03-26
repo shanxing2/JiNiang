@@ -66,9 +66,9 @@ Partial Class PagerControl
         'btnGotoNextPage
         '
         Me.btnGotoNextPage.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGotoNextPage.Location = New System.Drawing.Point(282, 0)
+        Me.btnGotoNextPage.Location = New System.Drawing.Point(278, 0)
         Me.btnGotoNextPage.Name = "btnGotoNextPage"
-        Me.btnGotoNextPage.Size = New System.Drawing.Size(24, 23)
+        Me.btnGotoNextPage.Size = New System.Drawing.Size(28, 23)
         Me.btnGotoNextPage.TabIndex = 3
         Me.btnGotoNextPage.Text = ">"
         Me.btnGotoNextPage.UseVisualStyleBackColor = True
@@ -76,9 +76,9 @@ Partial Class PagerControl
         'btnGotoPreviousPage
         '
         Me.btnGotoPreviousPage.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGotoPreviousPage.Location = New System.Drawing.Point(252, 0)
+        Me.btnGotoPreviousPage.Location = New System.Drawing.Point(248, 0)
         Me.btnGotoPreviousPage.Name = "btnGotoPreviousPage"
-        Me.btnGotoPreviousPage.Size = New System.Drawing.Size(24, 23)
+        Me.btnGotoPreviousPage.Size = New System.Drawing.Size(28, 23)
         Me.btnGotoPreviousPage.TabIndex = 2
         Me.btnGotoPreviousPage.Text = "<"
         Me.btnGotoPreviousPage.UseVisualStyleBackColor = True
@@ -86,21 +86,21 @@ Partial Class PagerControl
         'btnGotoLastPage
         '
         Me.btnGotoLastPage.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGotoLastPage.Location = New System.Drawing.Point(312, 0)
+        Me.btnGotoLastPage.Location = New System.Drawing.Point(308, 0)
         Me.btnGotoLastPage.Name = "btnGotoLastPage"
-        Me.btnGotoLastPage.Size = New System.Drawing.Size(24, 23)
+        Me.btnGotoLastPage.Size = New System.Drawing.Size(28, 23)
         Me.btnGotoLastPage.TabIndex = 4
-        Me.btnGotoLastPage.Text = "》"
+        Me.btnGotoLastPage.Text = ">|"
         Me.btnGotoLastPage.UseVisualStyleBackColor = True
         '
         'btnGotoFirstPage
         '
         Me.btnGotoFirstPage.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGotoFirstPage.Location = New System.Drawing.Point(222, 0)
+        Me.btnGotoFirstPage.Location = New System.Drawing.Point(218, 0)
         Me.btnGotoFirstPage.Name = "btnGotoFirstPage"
-        Me.btnGotoFirstPage.Size = New System.Drawing.Size(24, 23)
+        Me.btnGotoFirstPage.Size = New System.Drawing.Size(28, 23)
         Me.btnGotoFirstPage.TabIndex = 1
-        Me.btnGotoFirstPage.Text = "《"
+        Me.btnGotoFirstPage.Text = "|<"
         Me.btnGotoFirstPage.UseVisualStyleBackColor = True
         '
         'lblTotalCount

@@ -29,7 +29,7 @@ Public Class RoomShieldControl
 #End Region
 
 #Region "构造函数"
-	Sub New(ByVal isUper As Boolean, ByVal isAdmin As Boolean)
+	Public Sub New(ByVal isUper As Boolean, ByVal isAdmin As Boolean)
 
 		' 此调用是设计器所必需的。
 		InitializeComponent()

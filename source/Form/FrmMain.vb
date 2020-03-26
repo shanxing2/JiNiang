@@ -79,11 +79,9 @@ Public Class FrmMain
         End If
 #End If
 
-        If Deployment.Application.ApplicationDeployment.IsNetworkDeployed Then
-            Me.Text = $"{My.Settings.APPName}   V{Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString()}"
-        Else
-            Me.Text = $"{My.Settings.APPName}   V{Application.ProductVersion}"
-        End If
+        Me.Text = If(Deployment.Application.ApplicationDeployment.IsNetworkDeployed,
+            $"{My.Settings.APPName}   V{Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion}",
+            $"{My.Settings.APPName}   V{Application.ProductVersion}")
 
 #Disable Warning BC42358 ' 在调用完成之前，会继续执行当前方法，原因是此调用不处于等待状态
 
@@ -234,28 +232,29 @@ Public Class FrmMain
             Dim loginTask = DanmuEntry.TryLoginAsync()
             Await Task.WhenAll(InitDanmuSenderAsync, initTcpTask, loginTask)
             m_LoginResult = loginTask.Result
-            If LoginResult.Yes = m_LoginResult OrElse
-                LoginResult.NotLogin = m_LoginResult Then
-                Debug.Print(Logger.MakeDebugString("登录成功"))
-                Windows2.DrawTipsTask(Me, "等一分钟.gif    " & RandomEmoji.Helpless, 3000, True, False)
+            Select Case m_LoginResult
+                Case LoginResult.Yes, LoginResult.NotLogin
+                    Debug.Print(Logger.MakeDebugString("登录成功"))
+                    Windows2.DrawTipsTask(Me, "等一分钟.gif    " & RandomEmoji.Helpless, 3000, True, False)
 
-                Me.BeginInvoke(Sub() ConofigureSettingControlByPersonal())
-                Dim succeed = Await ConfigureHimesAsync()
-                If succeed Then
-                    EnabledHimes()
-                    ' 登录成功之后 获取最新弹幕
+                    Me.BeginInvoke(Sub() ConofigureSettingControlByPersonal())
+                    Dim succeed = Await ConfigureHimesAsync()
+                    If succeed Then
+                        EnabledHimes()
+                        ' 登录成功之后 获取最新弹幕
 #Disable Warning bc42358
-                    UpdateChatHistoryAsync()
+                        UpdateChatHistoryAsync()
 #Enable Warning bc42358
-                End If
-            ElseIf m_LoginResult = LoginResult.Cancel Then
-                Me.Close()
-            ElseIf m_LoginResult = LoginResult.UserOnly Then
-                ' 仅仅是加载个人设置
-                Me.BeginInvoke(Sub() ConofigureSettingControlByPersonal())
-            Else
-                Windows2.DrawTipsTask(Me, "登录失败" & RandomEmoji.Sad, 1000, False, False)
-            End If
+                    End If
+
+                Case LoginResult.Cancel
+                    Me.Close()
+                Case LoginResult.UserOnly
+                    ' 仅仅是加载个人设置
+                    Me.BeginInvoke(Sub() ConofigureSettingControlByPersonal())
+                Case Else
+                    Windows2.DrawTipsTask(Me, "登录失败" & RandomEmoji.Sad, 1000, False, False)
+            End Select
         Catch ex As Exception
             Logger.WriteLine(ex)
         Finally

@@ -183,122 +183,42 @@ Namespace DanmuEntity.SEND_GIFT
         ''' SYS_MSG
         ''' </summary>
         Public Property cmd() As String
-            Get
-                Return m_cmd
-            End Get
-            Set
-                m_cmd = Value
-            End Set
-        End Property
-        Private m_cmd As String
         ''' <summary>
         ''' 哔哩哔哩直播:?送给:?两仪滚:?一个小电视飞船，点击前往TA的房间去抽奖吧
         ''' </summary>
         Public Property msg() As String
-            Get
-                Return m_msg
-            End Get
-            Set
-                m_msg = Value
-            End Set
-        End Property
-        Private m_msg As String
         ''' <summary>
         ''' 哔哩哔哩直播:?送给:?两仪滚:?一个小电视飞船，点击前往TA的房间去抽奖吧
         ''' </summary>
         Public Property msg_text() As String
-            Get
-                Return m_msg_text
-            End Get
-            Set
-                m_msg_text = Value
-            End Set
-        End Property
-        Private m_msg_text As String
         ''' <summary>
         ''' Rep
         ''' </summary>
         Public Property rep() As Integer
-            Get
-                Return m_rep
-            End Get
-            Set
-                m_rep = Value
-            End Set
-        End Property
-        Private m_rep As Integer
         ''' <summary>
         ''' StyleType
         ''' </summary>
         Public Property styleType() As Integer
-            Get
-                Return m_styleType
-            End Get
-            Set
-                m_styleType = Value
-            End Set
-        End Property
-        Private m_styleType As Integer
         ''' <summary>
         ''' http://live.bilibili.com/388
         ''' </summary>
         Public Property url() As String
-            Get
-                Return m_url
-            End Get
-            Set
-                m_url = Value
-            End Set
-        End Property
-        Private m_url As String
         ''' <summary>
         ''' Roomid
         ''' </summary>
         Public Property roomid() As Integer
-            Get
-                Return m_roomid
-            End Get
-            Set
-                m_roomid = Value
-            End Set
-        End Property
-        Private m_roomid As Integer
         ''' <summary>
         ''' Real_roomid
         ''' </summary>
         Public Property real_roomid() As Integer
-            Get
-                Return m_real_roomid
-            End Get
-            Set
-                m_real_roomid = Value
-            End Set
-        End Property
-        Private m_real_roomid As Integer
         ''' <summary>
         ''' Rnd
         ''' </summary>
         Public Property rnd() As Integer
-            Get
-                Return m_rnd
-            End Get
-            Set
-                m_rnd = Value
-            End Set
-        End Property
-        Private m_rnd As Integer
         ''' <summary>
         ''' Tv_id
         ''' </summary>
         Public Property tv_id() As Integer
-            Get
-                Return m_tv_id
-            End Get
-            Set
-                m_tv_id = Value
-            End Set
-        End Property
-        Private m_tv_id As Integer
     End Class
 
     Public Class Colorful

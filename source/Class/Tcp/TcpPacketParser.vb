@@ -240,10 +240,6 @@ Public NotInheritable Class TcpPacketParser
     ''' <param name="receiveBytes">从服务器接收到的字节数组</param>
     ''' <returns></returns>
     Public Async Function UnPackAsync(ByVal receiveBytes As Byte()) As Task(Of Integer)
-        ' 处理乱包？
-        'Dim removeCount = TryRemoveDataBetweenNullCharOld(receiveBytes)
-
-        Dim receiveData = String.Empty
         ' 已经从整个封包中解包的字节数
         Dim totalUpPacketByteCount As Integer = 0
 
@@ -258,6 +254,8 @@ Public NotInheritable Class TcpPacketParser
                     Exit While
                 End If
 
+                ' 处理乱包？
+                'Dim removeCount = TryRemoveDataBetweenNullCharOld(receiveBytes)
                 If header.PacketSize < 16 Then
 #Region "未知包"
                     ' 如果 PostSize 长度小于16，那可能是未知包 不需要再解析数据体
@@ -266,7 +264,7 @@ Public NotInheritable Class TcpPacketParser
                     For i = 0 To subBuffer.Length - 1
                         sb.Append(receiveBytes(i).ToString("x2"))
                     Next
-                    receiveData = StringBuilderCache.GetStringAndReleaseBuilder(sb)
+                    Dim receiveData = StringBuilderCache.GetStringAndReleaseBuilder(sb)
 
                     Dim tcpPacketData = New TcpPacketData With {
                         .Header = header,
@@ -280,7 +278,7 @@ Public NotInheritable Class TcpPacketParser
 #Region "心跳包"
                     ' 如果长度为16，表示这是一个心跳包
 
-                    receiveData = subBuffer.ToHexString(UpperLowerCase.Lower)
+                    Dim receiveData = subBuffer.ToHexString(UpperLowerCase.Lower)
 
                     Dim tcpPacketData = New TcpPacketData With {
                         .Header = header,
@@ -295,7 +293,7 @@ Public NotInheritable Class TcpPacketParser
                     ' 这表示是一个人气值包,直播页面上显示 -,表示轮播
                     ' 直接解析后面的人气值包的内容(后4个字节)，前面的心跳包不要了
                     ' 人气值包如果跟其他包一起发来，前后会分别有‘0’作为分隔符，如 ‘00 0000001400100001000000030000000100022acf 00（没有空格）’
-                    receiveData = $"&H{subBuffer(16).ToString("x2")}{subBuffer(17).ToString("x2")}{subBuffer(18).ToString("x2")}{subBuffer(19).ToString("x2")}"
+                    Dim receiveData = $"&H{subBuffer(16).ToString("x2")}{subBuffer(17).ToString("x2")}{subBuffer(18).ToString("x2")}{subBuffer(19).ToString("x2")}"
 
                     Dim tcpPacketData As New TcpPacketData With {
                         .Header = header,
@@ -393,9 +391,7 @@ Public NotInheritable Class TcpPacketParser
         '9   | 78 DA | 1F 8B 
 #End Region
 
-        Dim receiveData = String.Empty
         Dim totalDeCompressedByteLength As Integer = 0
-
         Dim subCompressBytes As Byte() = New Byte(header.PacketSize - header.Size - 1) {}
         Array.Copy(receiveBytes, header.Size + totalDeCompressedByteLength, subCompressBytes, 0, header.PacketSize - header.Size)
 
@@ -418,7 +414,7 @@ Public NotInheritable Class TcpPacketParser
                     For bIndex = 0 To deCompressBytes.Length
                         sb.Append(receiveBytes(bIndex).ToString("x2"))
                     Next
-                    receiveData = StringBuilderCache.GetStringAndReleaseBuilder(sb)
+                    Dim receiveData = StringBuilderCache.GetStringAndReleaseBuilder(sb)
 
                     Dim tcpPacketData = New TcpPacketData With {
                         .Header = header,
@@ -435,7 +431,7 @@ Public NotInheritable Class TcpPacketParser
             Else
 #Region "不需要解压"
                 ' 这种包的类型有 ROOM_RANK、SYS_MSG、人气值
-                receiveData = Encoding.UTF8.GetString(subCompressBytes)
+                Dim receiveData = Encoding.UTF8.GetString(subCompressBytes)
                 receiveData = receiveData.TryRemoveNewLine()
                 'receiveData = receiveData.TryUnescape()
 

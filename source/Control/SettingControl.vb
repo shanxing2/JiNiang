@@ -205,7 +205,7 @@ Public Class SettingControl
         ToolTip1.Show(DanmuEntry.User.SignRewards, chkSignAuto)
     End Sub
 
-    Private Sub chk_Click(sender As Object, e As EventArgs) Handles chkEnabledThanksHime.Click, chkSignAuto.Click, chkEnabledAttentionHime.Click, chkEnabledWelcomeHime.Click, chkEnabledSystemMessageHime.Click, chkReceiveDoubleWatchAwardAuto.Click, chkFlashWindow.Click, chkEnabledMedalUpgradeHime.Click
+    Private Sub chk_Click(sender As Object, e As EventArgs) Handles chkEnabledThanksHime.Click, chkSignAuto.Click, chkEnabledAttentionHime.Click, chkEnabledWelcomeHime.Click, chkEnabledSystemMessageHime.Click, chkReceiveDoubleWatchAwardAuto.Click, chkFlashWindow.Click, chkEnabledMedalUpgradeHime.Click, chkDisplayOriginalNick.Click
         Dim chk = DirectCast(sender, CheckBox)
         If chk Is Nothing Then Return
 

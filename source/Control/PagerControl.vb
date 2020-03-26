@@ -155,7 +155,7 @@ Public Class PagerControl
     ''' <returns></returns>
     Private Function CanGotoPreviousPage() As Boolean
         If m_CurrentPage = 1 Then
-            Common.ShowOperateResultTask(Me, False, "已到第一页")
+            Common.ShowOperateResultTask(Me.Parent, False, "已到第一页")
             Return False
         Else
             Return True
@@ -168,7 +168,7 @@ Public Class PagerControl
     ''' <returns></returns>
     Private Function CanGotoNextPage() As Boolean
         If m_CurrentPage >= TotalPage Then
-            Common.ShowOperateResultTask(Me, False, "已到最后一页")
+            Common.ShowOperateResultTask(Me.Parent, False, "已到最后一页")
             Return False
         Else
             m_OldPageSize = nudPageSize.Value.ToIntegerOfCulture

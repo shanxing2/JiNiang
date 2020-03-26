@@ -18,7 +18,7 @@ Public Class LightLiver
 #End Region
 
 #Region "字段区"
-    Private m_HttpHeadersParam As Dictionary(Of String, String)
+    Private ReadOnly m_HttpHeadersParam As Dictionary(Of String, String)
     Private ReadOnly m_Referer As String = "http://link.bilibili.com/p/center/index"
     Private ReadOnly m_RoomApiBaseUrl As String = "https://api.live.bilibili.com/room/v1/Room/"
     Private ReadOnly m_MessagePattern As String = ",""msg"":""(.*?)"","
@@ -70,7 +70,7 @@ Public Class LightLiver
     ''' <returns></returns>
     Private Async Function UpdateInternalAsync(ByVal apiPath As ApiPath， ParamArray ByVal kvps As KeyValuePair(Of String, String)()) As Task(Of (Success As Boolean, Message As String, Result As String))
         Dim url = m_RoomApiBaseUrl & apiPath.ToString()
-        Dim postData = String.Empty
+        Dim postData As String
         If kvps.Length = 0 Then
             postData = $"room_id={Room.RealId}&csrf_token={Token}"
         ElseIf kvps.Length = 1 Then
@@ -258,12 +258,9 @@ Public Class LightLiver
         Dim roomTitles As Object() = {}
 
         Try
-            Dim sql = String.Empty
-            If DanmuEntry.Configment.DisplayUesdTitleCount = 0 Then
-                sql = $"select Title from RoomUsedTitle where roomid = {Room.RealId};"
-            Else
-                sql = $"select Title from RoomUsedTitle where roomid = {Room.RealId} order by LastUseTimestamp desc limit 0, {DanmuEntry.Configment.DisplayUesdTitleCount.ToStringOfCulture};"
-            End If
+            Dim sql = If(DanmuEntry.Configment.DisplayUesdTitleCount = 0,
+                $"select Title from RoomUsedTitle where roomid = {Room.RealId};",
+                $"select Title from RoomUsedTitle where roomid = {Room.RealId} order by LastUseTimestamp desc limit 0, {DanmuEntry.Configment.DisplayUesdTitleCount.ToStringOfCulture};")
 
             Dim index As Integer
             Using reader = Await IO2.Database.SQLiteHelper.GetDataReaderAsync(sql)

@@ -34,11 +34,11 @@ Partial Class FrmQuickLogin
         Me.Label5 = New System.Windows.Forms.Label()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.pnlLoginOptions = New System.Windows.Forms.Panel()
+        Me.rdbtnLoginUseQRCode = New System.Windows.Forms.RadioButton()
         Me.btnTryDeleteCookies = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.rdbtnLoginUseCookies = New System.Windows.Forms.RadioButton()
         Me.rdbtnLoginWithBrowser = New System.Windows.Forms.RadioButton()
-        Me.rdbtnLoginUseQRCode = New System.Windows.Forms.RadioButton()
         Me.pnlLoginOptions.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -76,7 +76,7 @@ Partial Class FrmQuickLogin
         Me.cmbUsersNick.Location = New System.Drawing.Point(12, 24)
         Me.cmbUsersNick.Name = "cmbUsersNick"
         Me.cmbUsersNick.Size = New System.Drawing.Size(322, 20)
-        Me.cmbUsersNick.TabIndex = 4
+        Me.cmbUsersNick.TabIndex = 2
         '
         'cmbViewedRooms
         '
@@ -84,7 +84,7 @@ Partial Class FrmQuickLogin
         Me.cmbViewedRooms.Location = New System.Drawing.Point(10, 62)
         Me.cmbViewedRooms.Name = "cmbViewedRooms"
         Me.cmbViewedRooms.Size = New System.Drawing.Size(322, 20)
-        Me.cmbViewedRooms.TabIndex = 6
+        Me.cmbViewedRooms.TabIndex = 3
         '
         'Label3
         '
@@ -102,7 +102,7 @@ Partial Class FrmQuickLogin
         Me.chkStoreCookies.Margin = New System.Windows.Forms.Padding(3, 3, 0, 3)
         Me.chkStoreCookies.Name = "chkStoreCookies"
         Me.chkStoreCookies.Size = New System.Drawing.Size(96, 16)
-        Me.chkStoreCookies.TabIndex = 122
+        Me.chkStoreCookies.TabIndex = 3
         Me.chkStoreCookies.Text = "记住登录状态"
         Me.chkStoreCookies.UseVisualStyleBackColor = True
         '
@@ -133,12 +133,22 @@ Partial Class FrmQuickLogin
         Me.pnlLoginOptions.Size = New System.Drawing.Size(322, 89)
         Me.pnlLoginOptions.TabIndex = 124
         '
+        'rdbtnLoginUseQRCode
+        '
+        Me.rdbtnLoginUseQRCode.AutoSize = True
+        Me.rdbtnLoginUseQRCode.Location = New System.Drawing.Point(208, 15)
+        Me.rdbtnLoginUseQRCode.Name = "rdbtnLoginUseQRCode"
+        Me.rdbtnLoginUseQRCode.Size = New System.Drawing.Size(71, 16)
+        Me.rdbtnLoginUseQRCode.TabIndex = 2
+        Me.rdbtnLoginUseQRCode.Text = "扫码登录"
+        Me.rdbtnLoginUseQRCode.UseVisualStyleBackColor = True
+        '
         'btnTryDeleteCookies
         '
         Me.btnTryDeleteCookies.Location = New System.Drawing.Point(0, 59)
         Me.btnTryDeleteCookies.Name = "btnTryDeleteCookies"
         Me.btnTryDeleteCookies.Size = New System.Drawing.Size(96, 23)
-        Me.btnTryDeleteCookies.TabIndex = 125
+        Me.btnTryDeleteCookies.TabIndex = 4
         Me.btnTryDeleteCookies.Text = "删除旧Cookies"
         Me.btnTryDeleteCookies.UseVisualStyleBackColor = True
         '
@@ -157,7 +167,7 @@ Partial Class FrmQuickLogin
         Me.rdbtnLoginUseCookies.Location = New System.Drawing.Point(65, 15)
         Me.rdbtnLoginUseCookies.Name = "rdbtnLoginUseCookies"
         Me.rdbtnLoginUseCookies.Size = New System.Drawing.Size(137, 16)
-        Me.rdbtnLoginUseCookies.TabIndex = 131
+        Me.rdbtnLoginUseCookies.TabIndex = 1
         Me.rdbtnLoginUseCookies.Text = "使用登录后的Cookies"
         Me.rdbtnLoginUseCookies.UseVisualStyleBackColor = True
         '
@@ -167,19 +177,9 @@ Partial Class FrmQuickLogin
         Me.rdbtnLoginWithBrowser.Location = New System.Drawing.Point(0, 15)
         Me.rdbtnLoginWithBrowser.Name = "rdbtnLoginWithBrowser"
         Me.rdbtnLoginWithBrowser.Size = New System.Drawing.Size(59, 16)
-        Me.rdbtnLoginWithBrowser.TabIndex = 130
+        Me.rdbtnLoginWithBrowser.TabIndex = 0
         Me.rdbtnLoginWithBrowser.Text = "浏览器"
         Me.rdbtnLoginWithBrowser.UseVisualStyleBackColor = True
-        '
-        'rdbtnLoginUseQRCode
-        '
-        Me.rdbtnLoginUseQRCode.AutoSize = True
-        Me.rdbtnLoginUseQRCode.Location = New System.Drawing.Point(208, 15)
-        Me.rdbtnLoginUseQRCode.Name = "rdbtnLoginUseQRCode"
-        Me.rdbtnLoginUseQRCode.Size = New System.Drawing.Size(71, 16)
-        Me.rdbtnLoginUseQRCode.TabIndex = 133
-        Me.rdbtnLoginUseQRCode.Text = "扫码登录"
-        Me.rdbtnLoginUseQRCode.UseVisualStyleBackColor = True
         '
         'FrmQuickLogin
         '

@@ -60,7 +60,6 @@ Public Class ConfigEntity
 	''' </summary>
 	''' <returns></returns>
 	Property EnabledMedalUpgradeHime As Boolean
-
 	''' <summary>
 	''' 显示用过的标题个数，默认值为 0 ，表示显示全部
 	''' </summary>
