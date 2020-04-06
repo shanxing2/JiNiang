@@ -279,12 +279,7 @@ Public Class FrmSelectArea
 	''' <param name="parentAreaLabel"></param>
 	Private Sub ShowChildArea(ByVal parentAreaLabel As Label)
 		' 选中的 主分区 字体颜色为  SystemColors.Highlight，其他为 Color.Black
-		For Each ctrl As Control In parentAreaLabel.Parent.Controls
-			Dim lbl = TryCast(ctrl, Label)
-			If lbl Is Nothing Then Continue For
-
-			lbl.ForeColor = Color.Black
-		Next
+		CancelHighlightParentAreaLabel()
 		parentAreaLabel.ForeColor = SystemColors.Highlight
 
 		' 显示子分区
@@ -307,7 +302,6 @@ Public Class FrmSelectArea
 
 	Private Sub ShowChildAreaInternal(ByVal childAreas As AreaInfo())
 		'Dim yantextArr As String() = {"娱乐 · 学习", "游戏 · 英雄联盟", " 娱乐 · 催眠电台", "娱乐 · 学习2", "游戏 · 英雄联盟2", " 娱乐 · 催眠电台2"}
-		CancelSelectParentAreaLabel()
 		ClearChildArea()
 
 		Dim lblArr(childAreas.Length - 1) As Label
@@ -324,7 +318,7 @@ Public Class FrmSelectArea
 		End If
 	End Sub
 
-	Private Sub CancelSelectParentAreaLabel()
+	Private Sub CancelHighlightParentAreaLabel()
 		For Each ctrl As Control In tlpParentAreaContainer.Controls
 			Dim lbl = TryCast(ctrl, Label)
 			If lbl Is Nothing Then Continue For
@@ -332,7 +326,6 @@ Public Class FrmSelectArea
 			lbl.ForeColor = Color.Black
 		Next
 	End Sub
-
 
 	Private Sub FrmYanText_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 		If Not m_GotChooseArea Then

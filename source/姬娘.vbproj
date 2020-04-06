@@ -79,11 +79,10 @@
     <ApplicationIcon>res\snail_128px.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>530BB10DE99C1B7A885478029E5182445284EDD1</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>9CC52B1A8111CA339960138CFCBD6066A539C781</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>
-    </ManifestKeyFile>
+    <ManifestKeyFile>姬娘_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -502,6 +501,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="ShanXingTech.pfx" />
+    <None Include="姬娘_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
