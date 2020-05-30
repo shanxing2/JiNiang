@@ -97,7 +97,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>ShanXingTech.pfx</AssemblyOriginatorKeyFile>
@@ -152,6 +152,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Class\ApplicationEvents.vb" />
     <Compile Include="Class\Common.vb" />
     <Compile Include="Class\DanmuEntry\DanmuEntry.vb" />
@@ -253,9 +254,9 @@
     </Compile>
     <Compile Include="EnumDefine\ConnectMode.vb" />
     <Compile Include="EnumDefine\CookieSource.vb" />
-    <Compile Include="EnumDefine\DanmuRepeatOptions.vb" />
+    <Compile Include="Class\DanmuSender\DanmuRepeatOptions.vb" />
     <Compile Include="EnumDefine\LoginResult.vb" />
-    <Compile Include="EnumDefine\SendStatus.vb" />
+    <Compile Include="Class\DanmuSender\SendStatus.vb" />
     <Compile Include="EnumDefine\UserRole.vb" />
     <Compile Include="Form\DanmuControl\RoomAdminControl.Designer.vb">
       <DependentUpon>RoomAdminControl.vb</DependentUpon>

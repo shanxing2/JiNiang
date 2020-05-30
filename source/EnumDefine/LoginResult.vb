@@ -1,6 +1,6 @@
 ﻿Public Enum LoginResult
     ''' <summary>
-    ''' 只获取到用户名
+    ''' 只获取到用户名(我先瞅瞅)
     ''' </summary>
     UserOnly
     ''' <summary>

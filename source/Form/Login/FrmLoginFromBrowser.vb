@@ -122,22 +122,25 @@ Public Class FrmLoginFromBrowser
 
         ' 获取程序内部使用的IE内核浏览器版本
         'url = "http://ie.icoa.cn/"
-        Try
-#Region "多线程加载网页"
-            ' 多线程加载网页(WebBrowser只能是单线程单元)
-            ' 因为task模型不能直接设置Threading.ApartmentState.STA，所以这里目前只能用Threading.Thread实现 20170924
-            ' 此处必须加载先一个页面，这里用about:blank，否则会发生“无法获取“WebBrowser”控件的窗口句柄。不支持无窗口的 ActiveX 控件。”错误
-            Web1.Navigate("about:blank")
-            Dim newThread As New Threading.Thread(Sub() Web1.Navigate(m_NavigateUrl))
-            ' 多线程操作webbrowser控件，一定要设置为 STA 模式
-            newThread.TrySetApartmentState(Threading.ApartmentState.STA)
 
-            ' 如果已经有登录之后的cookie  可以直接去往目标地址
-            newThread.Start()
+#Region "多线程加载网页"
+        ' 多线程加载网页(WebBrowser只能是单线程单元)
+        ' 因为task模型不能直接设置Threading.ApartmentState.STA，所以这里目前只能用Threading.Thread实现 20170924
+        ' 此处必须加载先一个页面，这里用about:blank，否则会发生“无法获取“WebBrowser”控件的窗口句柄。不支持无窗口的 ActiveX 控件。”错误
+        Web1.Navigate("about:blank")
+        Dim newThread As New Threading.Thread(Sub()
+                                                  Try
+                                                      Web1.Navigate(m_NavigateUrl)
+                                                  Catch ex As Exception
+                                                      MessageBox.Show("加载登录页失败，请关闭网页后重新打开再试" & RandomEmoji.Sad, "温馨提示", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                                  End Try
+                                              End Sub)
+        ' 多线程操作webbrowser控件，一定要设置为 STA 模式
+        newThread.TrySetApartmentState(Threading.ApartmentState.STA)
+
+        ' 如果已经有登录之后的cookie  可以直接去往目标地址
+        newThread.Start()
 #End Region
-        Catch ex As Exception
-            Windows2.DrawTipsTask(Me, "加载登录页失败，请重新打开" & RandomEmoji.Sad, 3000, True, False)
-        End Try
     End Sub
 
     Private Sub FrmWeb_FormClosing(sender As Object, e As CancelEventArgs) Handles Me.FormClosing

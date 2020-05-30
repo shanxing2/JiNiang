@@ -202,6 +202,10 @@ Public Class FrmLoginFromQRCode
     End Sub
 
     Private Sub DrawScanTipsInternal(ByRef bmp As Image, ByVal tips As String, ByVal tipsColor As Color)
+        If bmp Is Nothing Then
+            Return
+        End If
+
         Using g As Graphics = Graphics.FromImage(bmp)
             Dim drawBrush As New SolidBrush(tipsColor)
             Dim drawFont As Font = New Font("宋体", 16, FontStyle.Regular, GraphicsUnit.Pixel)
@@ -251,6 +255,12 @@ Public Class FrmLoginFromQRCode
     End Function
 
     Private Async Function GetOauthInfoAsync() As Task(Of LoginUrlEntity.Data)
+        Dim cts As New Threading.CancellationTokenSource
+        cts.CancelAfter(TimeSpan.FromMinutes(1))
+
+GetOauthKeyLoop:
+        If cts.IsCancellationRequested Then Return Nothing
+
         Dim getRst = Await BilibiliApi.GetLoginUrlAsync
         If Not getRst.Success Then
             ShowFailureTips()
@@ -264,11 +274,20 @@ Public Class FrmLoginFromQRCode
             Return Nothing
         End If
 
+        If root.data?.oauthKey.IsNullOrEmpty Then
+            ShowFailureTips("获取OauthKey失败，重试")
+            GoTo GetOauthKeyLoop
+        End If
+
         Return root.data
     End Function
 
     Private Sub ShowFailureTips()
         Windows2.DrawTipsTask(Me, "获取登录信息失败 " & RandomEmoji.Helpless, 3000, False, False)
+    End Sub
+
+    Private Sub ShowFailureTips(ByVal value As String)
+        Windows2.DrawTipsTask(Me, value & " " & RandomEmoji.Helpless, 3000, False, False)
     End Sub
 
     Private Sub ShowSuccessTips()
@@ -296,6 +315,7 @@ Public Class FrmLoginFromQRCode
             Case Else
                 m_ScanStatus = ScanStatus.Unknown
                 m_ScanTimer.Stop()
+                Logger.WriteLine($"{NameOf(m_OauthKey)}:{m_OauthKey} {NameOf(getRst.Message)}:{getRst.Message}",,,)
                 MessageBox.Show("扫码登录遇到未知情况，请反馈给开发者修复", "温馨提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End Select
 
@@ -341,7 +361,15 @@ Public Class FrmLoginFromQRCode
 
     Private Async Sub m_PictureBox_Click(sender As Object, e As EventArgs) Handles m_PictureBox.Click
         If m_ScanStatus <> ScanStatus.NeedRefresh Then Return
-        Await ShowQRCodeAsync()
+        Try
+            m_PictureBox.Enabled = False
+            DrawScanTipsInternal(m_PictureBox.Image, "二维码加载中...", Color.Gold)
+            Await ShowQRCodeAsync()
+        Catch ex As Exception
+            Logger.WriteLine(ex)
+        Finally
+            m_PictureBox.Enabled = True
+        End Try
     End Sub
 
     Private Sub m_PictureBox_Resize(sender As Object, e As EventArgs) Handles m_PictureBox.Resize

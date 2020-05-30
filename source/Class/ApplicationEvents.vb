@@ -9,8 +9,8 @@ Namespace My
     ' UnhandledException:在应用程序遇到未经处理的异常时引发。
     ' StartupNextInstance:在启动单实例应用程序且应用程序已处于活动状态时引发。 
     ' NetworkAvailabilityChanged:在连接或断开网络连接时引发。
-    ' 注：Release版才有效
     Partial Friend Class MyApplication
+        ' 注：在非Visual Studio中调试时才生效
         Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs) Handles Me.UnhandledException
             If Not DanmuEntry.IsClosed Then
                 Try

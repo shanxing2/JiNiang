@@ -81,6 +81,10 @@ Public Class DanmuSender
     ''' 重复的弹幕表
     ''' </summary>
     Private m_RepeatitiveBC As BlockingCollection(Of RepeatDanmuInfo)
+    Private m_TrySendLoopAsyncTask As Task
+    Private m_TryScheduleLoopTask As Task
+    Private m_TrySendRepeatTask As Task
+    Private m_TryTakeBeforFiveSecondTask As Task
     ''' <summary>
     ''' 上一次发送弹幕的Ticks
     ''' </summary>
@@ -152,16 +156,10 @@ Public Class DanmuSender
                 m_Cts = Nothing
             End If
 
-			'm_Cts.Cancel()
-			' 标记为完成，以便 BC.GetConsumingEnumerable 退出阻塞遍历
-			m_ScheduleSendBC?.CompleteAdding()
-			m_RepeatitiveBC?.CompleteAdding()
-			m_SendingBC?.CompleteAdding()
-			m_SentBC?.CompleteAdding()
-			' 等待异步任务退出
-			While m_CancelTasks <> LoopTaskCanceledOptions.All
-                Windows2.Delay(100)
-            End While
+            m_ScheduleSendBC.TryRelease(m_TryScheduleLoopTask)
+            m_RepeatitiveBC.TryRelease(m_TrySendRepeatTask)
+            m_SendingBC.TryRelease(m_TrySendLoopAsyncTask)
+            m_SentBC.TryRelease(m_TryTakeBeforFiveSecondTask)
         End If
 
         ' TODO: 释放未托管资源(未托管对象)并在以下内容中替代 Finalize()。
@@ -188,41 +186,6 @@ Public Class DanmuSender
 #End Region
 
 #Region "构造函数区"
-    'Sub New(ByVal roomId As String, ByVal token As String, ByVal joinedLiveRoomTimestamp As Long, ByVal maxLength As Integer, ByVal color As Integer, ByVal fontSize As Integer， ByVal danmuRepeatitiveHandle As DanmuRepeatOptions)
-    '    m_SendRepeatitiveInterval = 50000001
-    '    m_SentQueueMaxLength = 618
-    '    m_Referer = "https://live.bilibili.com/" & roomId
-
-    '    Dim sender = New DanmuSenderInfo With {
-    '        .RoomId = roomId,
-    '        .Token = token,
-    '        .JoinedLiveRoomTimestamp = joinedLiveRoomTimestamp.ToStringOfCulture,
-    '        .DanmuMaxLength = maxLength,
-    '        .DanmuColorDec = color,
-    '        .DanmuFontSize = fontSize,
-    '        .Level = GuardLevel.常人
-    '    }
-    '    Configure(sender, danmuRepeatitiveHandle)
-    'End Sub
-
-    'Sub New(ByVal roomId As String, ByVal token As String, ByVal joinedLiveRoomTimestamp As Long, ByVal guard As GuardInfo， ByVal danmuRepeatitiveHandle As DanmuRepeatOptions)
-    '    m_SendRepeatitiveInterval = 50000001
-    '    m_SentQueueMaxLength = 618
-    '    m_Referer = "https://live.bilibili.com/" & roomId
-
-    '    Dim sender = New DanmuSenderInfo With {
-    '        .RoomId = roomId,
-    '        .Token = token,
-    '        .JoinedLiveRoomTimestamp = joinedLiveRoomTimestamp.ToStringOfCulture,
-    '        .DanmuMaxLength = guard.DanmuMaxLength,
-    '        .DanmuColorDec = guard.DanmuColorDec,
-    '        .DanmuFontSize = guard.DanmuFontSize,
-    '        .Level = guard.Level
-    '    }
-
-    '    Configure(sender, danmuRepeatitiveHandle)
-    'End Sub
-
     Sub New()
         m_SendRepeatitiveInterval = 50000001
         m_SentQueueMaxLength = 618
@@ -284,11 +247,11 @@ Public Class DanmuSender
         If Not m_IsWorking Then
             m_IsWorking = True
 
-			Task.Run(action:=Async Sub() Await TrySendLoopAsync())
-			Task.Run(AddressOf TryScheduleLoop)
-			Task.Run(AddressOf TrySendRepeat)
-			Task.Run(AddressOf TryTakeBeforFiveSecond)
-		End If
+            m_TrySendLoopAsyncTask = Task.Run(action:=Async Sub() Await TrySendLoopAsync())
+            m_TryScheduleLoopTask = Task.Run(AddressOf TryScheduleLoop)
+            m_TrySendRepeatTask = Task.Run(AddressOf TrySendRepeat)
+            m_TryTakeBeforFiveSecondTask = Task.Run(AddressOf TryTakeBeforFiveSecond)
+        End If
     End Sub
 
     ''' <summary>
@@ -350,12 +313,6 @@ Public Class DanmuSender
         Catch ex As Exception
             Logger.WriteLine(ex)
         Finally
-            If m_SendingBC IsNot Nothing Then
-                m_SendingBC.Dispose()
-                m_SendingBC = Nothing
-            End If
-
-            m_CancelTasks = m_CancelTasks Or LoopTaskCanceledOptions.Send
             Debug.Print(Logger.MakeDebugString("弹幕发送器关闭"))
         End Try
     End Function
@@ -398,12 +355,6 @@ Public Class DanmuSender
         Catch ex As Exception
             Logger.WriteLine(ex)
         Finally
-            If m_ScheduleSendBC IsNot Nothing Then
-                m_ScheduleSendBC.Dispose()
-                m_ScheduleSendBC = Nothing
-            End If
-            m_CancelTasks = m_CancelTasks Or LoopTaskCanceledOptions.Schedule
-
             Debug.Print(Logger.MakeDebugString("弹幕规划器关闭"))
         End Try
     End Sub
@@ -438,12 +389,6 @@ Public Class DanmuSender
         Catch ex As Exception
             Logger.WriteLine(ex)
         Finally
-            If m_SentBC IsNot Nothing Then
-                m_SentBC.Dispose()
-                m_SentBC = Nothing
-            End If
-
-            m_CancelTasks = m_CancelTasks Or LoopTaskCanceledOptions.TakeBeforeFiveSecond
             Debug.Print(Logger.MakeDebugString("已发弹幕回收器关闭"))
         End Try
     End Sub
@@ -488,12 +433,6 @@ Public Class DanmuSender
         Catch ex As Exception
             Logger.WriteLine(ex)
         Finally
-            If m_RepeatitiveBC IsNot Nothing Then
-                m_RepeatitiveBC.Dispose()
-                m_RepeatitiveBC = Nothing
-            End If
-
-            m_CancelTasks = m_CancelTasks Or LoopTaskCanceledOptions.HandleRepeat
             Debug.Print(Logger.MakeDebugString("重复弹幕发送器关闭"))
         End Try
     End Sub
@@ -920,8 +859,8 @@ Public Class DanmuSender
 
 			' 记录log以给程序猿分析
 			If Not sendRst.Success Then
-				Logger.WriteLine(danmuContext & "，失败原因 → " & sendRst.Message)
-			End If
+                Logger.WriteLine($"{danmuContext}，失败原因 → '{sendRst.Message}'，直播间Id:{s_SenderInfo.RoomId}")
+            End If
 		End If
 	End Function
 
@@ -974,7 +913,7 @@ Public Class DanmuSender
 				ReportSendCompletedAction((sentSubDanmu, sendRst.Success, sendRst.IsAllow, sendRst.Message))
 
                 ' 记录log以给程序猿分析
-                Logger.WriteLine($"整串：【{context}】 子串：【{subDanmu}】，失败原因 → {sendRst.Message}")
+                Logger.WriteLine($"整串：【{context}】 子串：【{subDanmu}】，失败原因 → '{sendRst.Message}'，直播间Id:{s_SenderInfo.RoomId}")
                 Exit Do
             End If
         Loop Until sentLength > context.Length
@@ -1209,28 +1148,12 @@ Public Class DanmuSender
         MakeDanmuSendTemplete()
     End Sub
 
-	''' <summary>
-	''' 生成发送弹幕模板
-	''' </summary>
-	Private Shared Sub MakeDanmuSendTemplete()
-		' ################################ mode 和 bubble参数暂时不清楚有何用途 ################################
-		Interlocked.Exchange(m_DanmuSendTemplete, $"color={s_SenderInfo.DanmuColorDec.ToStringOfCulture}&fontsize={s_SenderInfo.DanmuFontSize.ToStringOfCulture}&mode=1&msg={{0}}&rnd={s_SenderInfo.JoinedLiveRoomTimestamp}&roomid={s_SenderInfo.RoomId}&bubble=0&csrf_token={s_SenderInfo.Token}&csrf={s_SenderInfo.Token}")
-	End Sub
-
-	'''' <summary>
-	'''' 停止并关闭弹幕发送器
-	'''' </summary>
-	'Public Sub Close()
-	'    Try
-	'        m_Cts.Cancel()
-	'        ' 标记为完成，以便 BC.GetConsumingEnumerable 退出阻塞遍历
-	'        m_ScheduleSendBC.CompleteAdding()
-	'        m_RepeatitiveBC.CompleteAdding()
-	'        m_SendingBC.CompleteAdding()
-	'        m_SentBC.CompleteAdding()
-	'    Catch ex As Exception
-	'        '
-	'    End Try
-	'End Sub
+    ''' <summary>
+    ''' 生成发送弹幕模板
+    ''' </summary>
+    Private Shared Sub MakeDanmuSendTemplete()
+        ' ################################ mode 和 bubble参数暂时不清楚有何用途 ################################
+        Interlocked.Exchange(m_DanmuSendTemplete, $"color={s_SenderInfo.DanmuColorDec.ToStringOfCulture}&fontsize={s_SenderInfo.DanmuFontSize.ToStringOfCulture}&mode=1&msg={{0}}&rnd={s_SenderInfo.JoinedLiveRoomTimestamp}&roomid={s_SenderInfo.RoomId}&bubble=0&csrf_token={s_SenderInfo.Token}&csrf={s_SenderInfo.Token}")
+    End Sub
 #End Region
 End Class

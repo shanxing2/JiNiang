@@ -25,7 +25,7 @@ Public Class FrmMain
     Private m_StartLiveSettingForm As FrmLiveSetting
     Private m_SettingControl As SettingControl
     Private tpStartLiveSetting As TabPage
-
+    Private temptask As Task
 #End Region
 
 #Region "常量区"
@@ -62,92 +62,15 @@ Public Class FrmMain
         ' 此调用是设计器所必需的。
         InitializeComponent()
 
-        ' 在 InitializeComponent() 调用之后添加任何初始化。
 
+        ' 在 InitializeComponent() 调用之后添加任何初始化。
+        ' 窗体出现的位置只能由 Control.Position 设置
+        Me.StartPosition = FormStartPosition.Manual
+
+        ' 不可在构造函数中关闭主窗体，否则会引发无法捕获的 ObjectDisposedException
+        TryLogin()
     End Sub
 #End Region
-
-
-    Private Async Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-#If Not DEBUG Then
-        ' 检测到被附加到其他进程(比如od?vs release调试)调试时，强制退出
-        If Win32API.IsDebuggerPresent Then
-            Me.Visible = False
-            MessageBox.Show(ShanXingTechQ2287190283, "温馨提示", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-            Environment.Exit(0)
-            Return
-        End If
-#End If
-
-        Me.Text = If(Deployment.Application.ApplicationDeployment.IsNetworkDeployed,
-            $"{My.Settings.APPName}   V{Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion}",
-            $"{My.Settings.APPName}   V{Application.ProductVersion}")
-
-#Disable Warning BC42358 ' 在调用完成之前，会继续执行当前方法，原因是此调用不处于等待状态
-
-        Await TryLoginAsync()
-#Enable Warning BC42358 ' 在调用完成之前，会继续执行当前方法，原因是此调用不处于等待状态
-    End Sub
-
-
-    Private Async Sub FrmMain_FormClosingAsync(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        ' ###################### 注意 ######################
-        ' # 如果实现了IDisposble接口，则必须在 过程Protected Overrides Sub Dispose(disposing As Boolean)的
-        ' # 最后调用 MyBase.Dispose(Disposing),否则无法关闭窗体
-        ' # 20180806
-        ' ###################### 注意 ######################
-        If m_LoginResult = LoginResult.Yes Then
-            ' 没使用过开播设置窗体，说明不是用的这个进程开播，或者是非此直播间的Up
-            ' 以上两种情况都不需要此进程处理关播
-            Dim isLiving = m_StartLiveSettingForm IsNot Nothing
-            Dim stopLive As Boolean
-            ' 使用过开播设置窗体并且是处于直播状态，说明一定是此直播间的Up，需要提示是否关播
-            If isLiving AndAlso DanmuEntry.User.ViewRoom.Status = LiveStatus.Live Then
-                If MessageBox.Show("直播中，是否关播???", "温馨提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                    stopLive = True
-                End If
-            Else
-                If MessageBox.Show("确定要退出软件嘛 (╬ﾟдﾟ)▄︻┻┳═一", "温馨提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.Cancel Then
-                    e.Cancel = True
-                    Return
-                End If
-            End If
-
-            Me.Visible = False
-            Try
-#If Not DEBUG Then
-                Logger.WriteLine("closing")
-#End If
-                ConfigureEvents(False)
-                DmTcpClient?.Close()
-                If stopLive Then
-                    Await m_StartLiveSettingForm.OnStopLiveAsync()
-                End If
-                DanmuEntry.Close(Me.DanmuControl)
-#If Not DEBUG Then
-                Logger.WriteLine("closed")
-#End If
-            Catch ex As Exception
-                Me.Visible = True
-            End Try
-        ElseIf m_LoginResult = LoginResult.NotLogin Then
-            If MessageBox.Show("确定要退出软件嘛 (╬ﾟдﾟ)▄︻┻┳═一", "温馨提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.Cancel Then
-                e.Cancel = True
-                Return
-            End If
-
-            Me.Visible = False
-            Try
-                ConfigureEvents(False)
-                DmTcpClient?.Close()
-                DanmuEntry.Close(Me.DanmuControl)
-            Catch ex As Exception
-                Me.Visible = True
-            End Try
-        ElseIf m_LoginResult = LoginResult.UserOnly Then
-            DanmuEntry.Close(Me.DanmuControl)
-        End If
-    End Sub
 
 #Region "IDisposable Support"
     ' 要检测冗余调用
@@ -211,56 +134,133 @@ Public Class FrmMain
     'End Sub
 #End Region
 
-    ''' <summary>
-    ‘’‘
-    ''' </summary>
-    Private Async Function TryLoginAsync() As Task
+    Private Async Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+#If Not DEBUG Then
+        ' 检测到被附加到其他进程(比如od?vs release调试)调试时，强制退出
+        If Win32API.IsDebuggerPresent Then
+            Me.Visible = False
+            MessageBox.Show(ShanXingTechQ2287190283, "温馨提示", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            Environment.Exit(0)
+            Return
+        End If
+#End If
+
+        Await DealWithLoginResultAsync()
+
+        If m_LoginResult = LoginResult.Cancel Then Return
+
+        Me.Text = If(Deployment.Application.ApplicationDeployment.IsNetworkDeployed,
+            $"{My.Settings.APPName}   V{Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion}",
+            $"{My.Settings.APPName}   V{Application.ProductVersion}")
+    End Sub
+
+
+    Private Async Sub FrmMain_FormClosingAsync(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        ' ###################### 注意 ######################
+        ' # 如果实现了IDisposble接口，则必须在 过程Protected Overrides Sub Dispose(disposing As Boolean)的
+        ' # 最后调用 MyBase.Dispose(Disposing),否则无法关闭窗体
+        ' # 20180806
+        ' ###################### 注意 ######################
+        If m_LoginResult = LoginResult.Yes Then
+            ' 没使用过开播设置窗体，说明不是用的这个进程开播，或者是非此直播间的Up
+            ' 以上两种情况都不需要此进程处理关播
+            Dim isLiving = m_StartLiveSettingForm IsNot Nothing
+            Dim stopLive As Boolean
+            ' 使用过开播设置窗体并且是处于直播状态，说明一定是此直播间的Up，需要提示是否关播
+            If isLiving AndAlso DanmuEntry.User.ViewRoom.Status = LiveStatus.Live Then
+                If MessageBox.Show("直播中，是否关播???", "温馨提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                    stopLive = True
+                End If
+            Else
+                If MessageBox.Show("确定要退出软件嘛 (╬ﾟдﾟ)▄︻┻┳═一", "温馨提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.Cancel Then
+                    e.Cancel = True
+                    Return
+                End If
+            End If
+
+            Me.Visible = False
+            Try
+#If Not DEBUG Then
+                Logger.WriteLine("closing")
+#End If
+                ConfigureEvents(False)
+                DmTcpClient?.Close()
+                If stopLive Then
+                    Await m_StartLiveSettingForm.OnStopLiveAsync()
+                End If
+                DanmuEntry.Close(Me.DanmuControl)
+#If Not DEBUG Then
+                Logger.WriteLine("closed")
+#End If
+            Catch ex As Exception
+                Me.Visible = True
+            End Try
+        ElseIf m_LoginResult = LoginResult.NotLogin Then
+            If MessageBox.Show("确定要退出软件嘛 (╬ﾟдﾟ)▄︻┻┳═一", "温馨提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.Cancel Then
+                e.Cancel = True
+                Return
+            End If
+
+            Me.Visible = False
+            Try
+                ConfigureEvents(False)
+                DmTcpClient?.Close()
+                DanmuEntry.Close(Me.DanmuControl)
+            Catch ex As Exception
+                Me.Visible = True
+            End Try
+        ElseIf m_LoginResult = LoginResult.UserOnly Then
+            DanmuEntry.Close(Me.DanmuControl)
+        End If
+    End Sub
+
+    Private Function TryLogin() As LoginResult
         Try
             If Not Net2.NetHelper.IsConnectedToInternet() Then
                 Windows2.DrawTipsTask(Me, "网络异常 " & RandomEmoji.Helpless, 3000, False, False)
-                Return
+                Return LoginResult.No
             End If
 
             AddHandler DanmuEntry.UserEnsured, AddressOf UserEnsuredTask
             AddHandler DanmuEntry.RoomRealIdEnsured, AddressOf RoomRealIdEnsuredTask
 
-            Me.Invoke(Sub() LoadPlugins())
-
-            ' 尽可能利用登录的空余时间初始化各种器
-            Dim initTcpTask = InitTcpAsync()
-            Dim initDanmuSenderTask = InitDanmuSenderAsync()
-            Dim loginTask = DanmuEntry.TryLoginAsync()
-            Await Task.WhenAll(InitDanmuSenderAsync, initTcpTask, loginTask)
-            m_LoginResult = loginTask.Result
-            Select Case m_LoginResult
-                Case LoginResult.Yes, LoginResult.NotLogin
-                    Debug.Print(Logger.MakeDebugString("登录成功"))
-                    Windows2.DrawTipsTask(Me, "等一分钟.gif    " & RandomEmoji.Helpless, 3000, True, False)
-
-                    Me.BeginInvoke(Sub() ConofigureSettingControlByPersonal())
-                    Dim succeed = Await ConfigureHimesAsync()
-                    If succeed Then
-                        EnabledHimes()
-                        ' 登录成功之后 获取最新弹幕
-#Disable Warning bc42358
-                        UpdateChatHistoryAsync()
-#Enable Warning bc42358
-                    End If
-
-                Case LoginResult.Cancel
-                    Me.Close()
-                Case LoginResult.UserOnly
-                    ' 仅仅是加载个人设置
-                    Me.BeginInvoke(Sub() ConofigureSettingControlByPersonal())
-                Case Else
-                    Windows2.DrawTipsTask(Me, "登录失败" & RandomEmoji.Sad, 1000, False, False)
-            End Select
+            m_LoginResult = DanmuEntry.TryLoginAsync()
         Catch ex As Exception
             Logger.WriteLine(ex)
-        Finally
-            RemoveHandler DanmuEntry.UserEnsured, AddressOf UserEnsuredTask
-            RemoveHandler DanmuEntry.RoomRealIdEnsured, AddressOf RoomRealIdEnsuredTask
         End Try
+        Return m_LoginResult
+    End Function
+
+    Private Async Function DealWithLoginResultAsync() As Task
+        Select Case m_LoginResult
+            Case LoginResult.Yes, LoginResult.NotLogin
+                Debug.Print(Logger.MakeDebugString("登录成功"))
+                Windows2.DrawTipsTask(Me, "等一分钟.gif    " & RandomEmoji.Helpless, 3000, True, False)
+
+                Me.Invoke(Sub() LoadPlugins())
+
+                ' 尽可能利用登录的空余时间初始化各种器
+                Dim initTcpTask = InitTcpAsync()
+                Dim initDanmuSenderTask = InitDanmuSenderAsync()
+                Await Task.WhenAll(initDanmuSenderTask， initTcpTask)
+
+                Me.Invoke(Sub() ConofigureSettingControlByPersonal())
+                Dim succeed = Await ConfigureHimesAsync()
+                If succeed Then
+                    EnabledHimes()
+                    ' 登录成功之后 获取最新弹幕
+#Disable Warning bc42358
+                    UpdateChatHistoryAsync()
+#Enable Warning bc42358
+                End If
+            Case LoginResult.Cancel
+                Me.Dispose()
+            Case LoginResult.UserOnly
+                ' 仅仅是加载个人设置
+                Me.BeginInvoke(Sub() ConofigureSettingControlByPersonal())
+            Case Else
+                Windows2.DrawTipsTask(Me, "登录失败" & RandomEmoji.Sad, 1000, False, False)
+        End Select
     End Function
 
 #Region "通讯初始化 用户配置与相应UI 处理"
@@ -446,6 +446,7 @@ Public Class FrmMain
     Private Sub ConofigureSettingControlByPersonal()
         Me.SuspendLayout()
         Me.TabControl1.SuspendLayout()
+
         With SettingControl
             .SuspendLayout()
 
@@ -480,6 +481,7 @@ Public Class FrmMain
 
             .ResumeLayout(False)
         End With
+
         Me.TabControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
     End Sub
@@ -490,52 +492,62 @@ Public Class FrmMain
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub UserEnsuredTask(sender As Object, e As UserEnsuredEventArgs)
-        Me.tpLiveRoom.SuspendLayout()
+        Try
+            Me.tpLiveRoom.SuspendLayout()
 
-        SettingControl.trbFormOpacity.Value = e.MainForm.Opacity
-        Me.Opacity = SettingControl.trbFormOpacity.Value / 100
-        SettingControl.lblMainFormOpacity.Text = Me.Opacity.ToString("P0")
+            SettingControl.trbFormOpacity.Value = e.MainForm.Opacity
+            Me.Opacity = SettingControl.trbFormOpacity.Value / 100
+            SettingControl.lblMainFormOpacity.Text = Me.Opacity.ToString("P0")
 
-        If e.MainForm.Location.IsEmpty OrElse
-            e.MainForm.Size.IsEmpty Then
-            ' 第一次运行居中显示
-            Me.StartPosition = FormStartPosition.CenterScreen
-            e.MainForm.Location = Me.Location
-            e.MainForm.Size = Me.Size
-        Else
-            Me.Location = e.MainForm.Location
-            Me.Size = e.MainForm.Size
-        End If
+            If e.MainForm.Location.IsEmpty OrElse
+                e.MainForm.Size.IsEmpty Then
+                ' 第一次运行居中显示
+                Me.StartPosition = FormStartPosition.CenterScreen
+                e.MainForm.Location = Me.Location
+                e.MainForm.Size = Me.Size
+            Else
+                Me.Location = e.MainForm.Location
+                Me.Size = e.MainForm.Size
+            End If
 
 #If CLICKONCE OrElse Not DEBUG Then
-        ' 不能在构造函数中设置窗体的 TopMost 属性，因为窗体句柄还没有设置，会导致无法执行到置顶代码（）
-        ' TopMost 属性源码 https://referencesource.microsoft.com/#System.Windows.Forms/winforms/Managed/System/WinForms/Form.cs,2d8f4b4dd33cce53
-        'Me.Activate()
-        Me.TopMost = e.MainForm.TopMost
+            ' 不能在构造函数中设置窗体的 TopMost 属性，因为窗体句柄还没有设置，会导致无法执行到置顶代码（）
+            ' TopMost 属性源码 https://referencesource.microsoft.com/#System.Windows.Forms/winforms/Managed/System/WinForms/Form.cs,2d8f4b4dd33cce53
+            'Me.Activate()
+            Me.TopMost = e.MainForm.TopMost
 #Else
         ' 为调试方便，调试模式时默认不置顶
         Me.TopMost = False
 #End If
-        If e.LoginResult = LoginResult.Yes Then
+            If e.LoginResult = LoginResult.Yes Then
 #If CLICKONCE OrElse Not DEBUG Then
-            LiveRoomControl.chkTopMost.Checked = e.MainForm.TopMost
+                'LiveRoomControl.chkTopMost.Checked = e.MainForm.TopMost
 #Else
         ' 为调试方便，调试模式时默认不置顶
         LiveRoomControl.chkTopMost.Checked = False
 #End If
-        End If
+            End If
 
-        ' ##################开发人员调试专区##################
-        ' Id 请更改为开发者的B站用户Id
-        IAmDeveloper(DanmuEntry.User.Id = "52155851")
-        ' ##################开发人员调试专区##################
+            ' ##################开发人员调试专区##################
+            ' Id 请更改为开发者的B站用户Id
+            IAmDeveloper(DanmuEntry.User.Id = "52155851")
+            ' ##################开发人员调试专区##################
 
-        Me.tpLiveRoom.ResumeLayout(False)
+            Me.tpLiveRoom.ResumeLayout(False)
+        Finally
+            ' 过河拆桥
+            RemoveHandler DanmuEntry.UserEnsured, AddressOf UserEnsuredTask
+        End Try
     End Sub
 
     Private Sub RoomRealIdEnsuredTask(sender As Object, e As EventArgs)
-        LiveRoomControl.Init(DanmuEntry.User, New Point(0, 0), Me.tpLiveRoom.Size, Me.Handle)
-        DanmuControl.Init(DanmuEntry.User, DanmuEntry.Configment.ThanksHime, New Point(0, LiveRoomControl.Height), Me.tpLiveRoom.Size)
+        Try
+            LiveRoomControl.Init(DanmuEntry.User, New Point(0, 0), Me.tpLiveRoom.Size, Me.Handle)
+            DanmuControl.Init(DanmuEntry.User, DanmuEntry.Configment.ThanksHime, New Point(0, LiveRoomControl.Height), Me.tpLiveRoom.Size)
+        Finally
+            ' 过河拆桥
+            RemoveHandler DanmuEntry.RoomRealIdEnsured, AddressOf RoomRealIdEnsuredTask
+        End Try
     End Sub
 
     Private Sub IAmDeveloper(ByVal enabled As Boolean)

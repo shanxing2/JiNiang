@@ -502,7 +502,7 @@ Namespace DanmuEntity.WELCOME_GUARD
 End Namespace
 
 Namespace DanmuEntity.WISH_BOTTLE
-    Public Class Wish
+    Public Class WishBase
         ''' <summary>
         ''' Id
         ''' </summary>
@@ -535,15 +535,29 @@ Namespace DanmuEntity.WISH_BOTTLE
         ''' 猛男勋章领取处
         ''' </summary>
         Public Property content() As String
-        ''' <summary>
-        ''' 2018-01-27 18:53:19
-        ''' </summary>
-        Public Property ctime() As Date
+
         ''' <summary>
         ''' Count_map
         ''' </summary>
         Public Property count_map() As List(Of Integer)
     End Class
+
+    Public Class Wish1
+        Inherits WishBase
+        ''' <summary>
+        ''' 2018-01-27 18:53:19
+        ''' </summary>
+        Public Property ctime() As Date
+    End Class
+
+    Public Class Wish2
+        Inherits WishBase
+        ''' <summary>
+        ''' 1517050399
+        ''' </summary>
+        Public Property ctime() As Long
+    End Class
+
 
     Public Class Data
         ''' <summary>
@@ -557,7 +571,22 @@ Namespace DanmuEntity.WISH_BOTTLE
         ''' <summary>
         ''' Wish
         ''' </summary>
-        Public Property wish() As Wish
+        Public Property wish() As Wish1
+    End Class
+
+    Public Class Data2
+        ''' <summary>
+        ''' update
+        ''' </summary>
+        Public Property action() As String
+        ''' <summary>
+        ''' Id
+        ''' </summary>
+        Public Property id() As Integer
+        ''' <summary>
+        ''' Wish
+        ''' </summary>
+        Public Property wish() As Wish2
     End Class
 
     Public Class Root

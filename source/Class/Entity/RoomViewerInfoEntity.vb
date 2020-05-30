@@ -194,7 +194,50 @@
         ''' <summary>
         ''' Curr_weared
         ''' </summary>
-        Public Property curr_weared() As String
+        Public Property curr_weared() As Curr_weared
+    End Class
+
+    Public Class Curr_weared
+        ''' <summary>
+        ''' Target_id
+        ''' </summary>
+        Public Property target_id() As Integer
+        ''' <summary>
+        ''' 一抹桃
+        ''' </summary>
+        Public Property target_name() As String
+        ''' <summary>
+        ''' 蜜桃
+        ''' </summary>
+        Public Property medal_name() As String
+        ''' <summary>
+        ''' Target_roomid
+        ''' </summary>
+        Public Property target_roomid() As Integer
+        ''' <summary>
+        ''' Level
+        ''' </summary>
+        Public Property level() As Integer
+        ''' <summary>
+        ''' Intimacy
+        ''' </summary>
+        Public Property intimacy() As Integer
+        ''' <summary>
+        ''' Next_intimacy
+        ''' </summary>
+        Public Property next_intimacy() As Integer
+        ''' <summary>
+        ''' Day_limit
+        ''' </summary>
+        Public Property day_limit() As Integer
+        ''' <summary>
+        ''' Today_feed
+        ''' </summary>
+        Public Property today_feed() As Integer
+        ''' <summary>
+        ''' Is_union
+        ''' </summary>
+        Public Property is_union() As Integer
     End Class
 
     Public Class Extra_config

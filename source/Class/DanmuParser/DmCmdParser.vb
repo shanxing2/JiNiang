@@ -130,10 +130,7 @@ Public Class DmCmdParser
 
         ' TODO: 释放托管资源(托管对象)。
         If disposing Then
-            'If m_TcpPacketReceivedBC IsNot Nothing Then
-            '    m_TcpPacketReceivedBC.Dispose()
-            '    m_TcpPacketReceivedBC = Nothing
-            'End If
+
         End If
 
         ' TODO: 释放未托管资源(未托管对象)并在以下内容中替代 Finalize()。
@@ -296,7 +293,7 @@ Public Class DmCmdParser
                 Case DmCmd.USER_TOAST_MSG
 #Region "PK包未解析"
                     ' 包信息 .\需求相关\弹幕json\PK包.txt
-                Case DmCmd.PK_MIC_END, DmCmd.PK_MATCH, DmCmd.PK_PRE, DmCmd.PK_START, DmCmd.PK_END, DmCmd.PK_PROCESS, DmCmd.PK_SETTLE, DmCmd.PK_CLICK_AGAIN, DmCmd.PK_AGAIN, DmCmd.PK_INVITE_INIT, DmCmd.PK_INVITE_SWITCH_CLOSE, DmCmd.PK_INVITE_SWITCH_OPEN, DmCmd.PK_INVITE_CANCEL
+                Case DmCmd.PK_MIC_END, DmCmd.PK_MATCH, DmCmd.PK_PRE, DmCmd.PK_START, DmCmd.PK_END, DmCmd.PK_PROCESS, DmCmd.PK_SETTLE, DmCmd.PK_CLICK_AGAIN, DmCmd.PK_AGAIN, DmCmd.PK_INVITE_INIT, DmCmd.PK_INVITE_SWITCH_CLOSE, DmCmd.PK_INVITE_SWITCH_OPEN, DmCmd.PK_INVITE_CANCEL, DmCmd.PK_BATTLE_START, DmCmd.PK_BATTLE_END, DmCmd.PK_BATTLE_CRIT, DmCmd.PK_BATTLE_ENTRANCE, DmCmd.PK_BATTLE_PRE, DmCmd.PK_BATTLE_PROCESS, DmCmd.PK_BATTLE_SETTLE, DmCmd.PK_BATTLE_SETTLE_USER, DmCmd.PK_CLICK_AGAIN, DmCmd.PK_LOTTERY_START
 
 
 #End Region
@@ -329,6 +326,10 @@ Public Class DmCmdParser
                      DmCmd.ANCHOR_NORMAL_NOTIFY
                 Case DmCmd.HOT_ROOM_NOTIFY
                 Case DmCmd.MATCH_TEAM_GIFT_RANK
+                Case DmCmd.ROOM_SKIN_MSG
+                Case DmCmd.SUPER_CHAT_MESSAGE
+                Case DmCmd.SUPER_CHAT_MESSAGE_JPN
+                Case DmCmd.WEEK_STAR_CLOCK
 
                 Case Else
                     Logger.WriteLine(cmdJson)
@@ -471,8 +472,18 @@ Public Class DmCmdParser
 
     Private Sub WISH_BOTTLE(ByRef jDic As Dictionary(Of String, Object))
         m_DanmuBuilder.Clear()
-        Dim data = MSJsSerializer.ConvertToType(Of DanmuEntity.WISH_BOTTLE.Data)(jDic("data"))
-        m_DanmuBuilder.Append("许愿瓶：").Append(data.wish.content).Append(" ").Append(data.action).Append(" 进度：").Append(data.wish.wish_progress).Append("|").Append(data.wish.wish_limit)
+        Dim data As DanmuEntity.WISH_BOTTLE.Data
+        Try
+            data = MSJsSerializer.ConvertToType(Of DanmuEntity.WISH_BOTTLE.Data)(jDic("data"))
+            m_DanmuBuilder.Append("许愿瓶：").Append(data.wish.content).Append(" ").Append(data.action).Append(" 进度：").Append(data.wish.wish_progress).Append("|").Append(data.wish.wish_limit)
+        Catch ex As Exception
+        End Try
+#Disable Warning BC42104 ' 在为变量赋值之前，变量已被使用
+        If data Is Nothing Then
+#Enable Warning BC42104 ' 在为变量赋值之前，变量已被使用
+            Dim data2 = MSJsSerializer.ConvertToType(Of DanmuEntity.WISH_BOTTLE.Data2)(jDic("data"))
+            m_DanmuBuilder.Append("许愿瓶：").Append(data2.wish.content).Append(" ").Append(data2.action).Append(" 进度：").Append(data2.wish.wish_progress).Append("|").Append(data2.wish.wish_limit)
+        End If
         m_Danmu = StringBuilderCache.GetStringAndReleaseBuilder(m_DanmuBuilder)
         RaiseEvent GoldFed(Nothing, New FedEventArgs(m_Danmu, -1, GiftUnit.None))
     End Sub
@@ -568,10 +579,10 @@ Public Class DmCmdParser
     Private Sub WELCOME_GUARD(ByRef jDic As Dictionary(Of String, Object))
         m_DanmuBuilder.Clear()
 
-        ' 舰长大人/提督大人/总督大人 随机happy表情
+        ' 舰长大人/提督大人/总督大人
         Dim data = MSJsSerializer.ConvertToType(Of DanmuEntity.WELCOME_GUARD.Data)(jDic("data"))
         Dim level = If(1 = CInt(data.guard_level), GuardLevel.总督, If(2 = CInt(data.guard_level), GuardLevel.提督, GuardLevel.舰长))
-        m_DanmuBuilder.Append("欢迎 ").Append(level.ToString).Append("大人").Append(RandomEmoji.Happy).Append(data.username).Append(" ").Append("，空调已开放")
+        m_DanmuBuilder.Append("欢迎 ").Append(level.ToString).Append("大人 ").Append(data.username).Append(" ").Append("，空调已开放")
         m_Danmu = StringBuilderCache.GetStringAndReleaseBuilder(m_DanmuBuilder)
         RaiseEvent GuardEntered(Nothing, New GuardEnteredEventArgs(level, m_Danmu))
     End Sub

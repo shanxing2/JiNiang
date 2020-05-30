@@ -207,20 +207,77 @@ Public Class DanmuFormatEntity
             .CustomStyle = Nothing,
             .Memo = Nothing}},
             {DmCmd.ENTRY_EFFECT.ToString, New FormatInfo With {
-            .Id = DmCmd.ENTRY_EFFECT,
-            .DefaultStyle = "",
-            .CustomStyle = Nothing,
-            .Memo = Nothing}},
+                .Id = DmCmd.ENTRY_EFFECT,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
             {DmCmd.PK_CLICK_AGAIN.ToString, New FormatInfo With {
-            .Id = DmCmd.PK_CLICK_AGAIN,
-            .DefaultStyle = "",
-            .CustomStyle = Nothing,
-            .Memo = Nothing}},
+                .Id = DmCmd.PK_CLICK_AGAIN,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
             {DmCmd.PK_AGAIN.ToString, New FormatInfo With {
-            .Id = DmCmd.PK_AGAIN,
-            .DefaultStyle = "",
-            .CustomStyle = Nothing,
-            .Memo = Nothing}},
+                .Id = DmCmd.PK_AGAIN,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.PK_BATTLE_PROCESS.ToString, New FormatInfo With {
+                .Id = DmCmd.PK_BATTLE_PROCESS,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.PK_BATTLE_START.ToString, New FormatInfo With {
+                .Id = DmCmd.PK_BATTLE_START,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.PK_BATTLE_END.ToString, New FormatInfo With {
+                .Id = DmCmd.PK_BATTLE_END,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.PK_BATTLE_SETTLE.ToString, New FormatInfo With {
+                .Id = DmCmd.PK_BATTLE_SETTLE,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.PK_BATTLE_SETTLE_USER.ToString, New FormatInfo With {
+                .Id = DmCmd.PK_BATTLE_SETTLE_USER,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.PK_BATTLE_ENTRANCE.ToString, New FormatInfo With {
+                .Id = DmCmd.PK_BATTLE_ENTRANCE,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.PK_LOTTERY_START.ToString, New FormatInfo With {
+                .Id = DmCmd.PK_LOTTERY_START,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.PK_BATTLE_PRE.ToString, New FormatInfo With {
+                .Id = DmCmd.PK_BATTLE_PRE,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.PK_BATTLE_CRIT.ToString, New FormatInfo With {
+                .Id = DmCmd.PK_BATTLE_CRIT,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
             {DmCmd.NOTICE_MSG.ToString, New FormatInfo With {
             .Id = DmCmd.NOTICE_MSG,
             .DefaultStyle = "",
@@ -257,22 +314,22 @@ Public Class DanmuFormatEntity
             .CustomStyle = Nothing,
             .Memo = Nothing}},
             {DmCmd.CHANGE_ROOM_INFO.ToString, New FormatInfo With {
-            .Id = DmCmd.USER_TOAST_MSG,
+            .Id = DmCmd.CHANGE_ROOM_INFO,
             .DefaultStyle = "",
             .CustomStyle = Nothing,
             .Memo = Nothing}},
             {DmCmd.ROOM_REAL_TIME_MESSAGE_UPDATE.ToString, New FormatInfo With {
-            .Id = DmCmd.USER_TOAST_MSG,
-            .DefaultStyle = "",
-            .CustomStyle = Nothing,
-            .Memo = Nothing}},
-            {DmCmd.BOSS_ENERGY.ToString, New FormatInfo With {
-            .Id = DmCmd.BOSS_ENERGY,
+            .Id = DmCmd.ROOM_REAL_TIME_MESSAGE_UPDATE,
             .DefaultStyle = "",
             .CustomStyle = Nothing,
             .Memo = Nothing}},
             {DmCmd.ROOM_CHANGE.ToString, New FormatInfo With {
             .Id = DmCmd.ROOM_CHANGE,
+            .DefaultStyle = "",
+            .CustomStyle = Nothing,
+            .Memo = Nothing}},
+            {DmCmd.BOSS_ENERGY.ToString, New FormatInfo With {
+            .Id = DmCmd.BOSS_ENERGY,
             .DefaultStyle = "",
             .CustomStyle = Nothing,
             .Memo = Nothing}},
@@ -291,13 +348,23 @@ Public Class DanmuFormatEntity
             .DefaultStyle = "",
             .CustomStyle = Nothing,
             .Memo = Nothing}},
+            {DmCmd.ACTIVITY_BANNER_UPDATE_BLS.ToString, New FormatInfo With {
+                .Id = DmCmd.ACTIVITY_BANNER_UPDATE_BLS,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}},
             {DmCmd.DAILY_QUEST_NEWDAY.ToString, New FormatInfo With {
-            .Id = DmCmd.DAILY_QUEST_NEWDAY,
+                .Id = DmCmd.DAILY_QUEST_NEWDAY,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}},
+            {DmCmd.ACTIVITY_MATCH_GIFT.ToString, New FormatInfo With {
+            .Id = DmCmd.ACTIVITY_MATCH_GIFT,
             .DefaultStyle = "",
             .CustomStyle = Nothing,
             .Memo = Nothing}},
-            {DmCmd.ACTIVITY_MATCH_GIFT.ToString, New FormatInfo With {
-            .Id = DmCmd.ACTIVITY_MATCH_GIFT,
+            {DmCmd.MATCH_TEAM_GIFT_RANK.ToString, New FormatInfo With {
+            .Id = DmCmd.MATCH_TEAM_GIFT_RANK,
             .DefaultStyle = "",
             .CustomStyle = Nothing,
             .Memo = Nothing}},
@@ -345,6 +412,42 @@ Public Class DanmuFormatEntity
             },
             {DmCmd.ANCHOR_LOT_AWARD.ToString, New FormatInfo With {
                 .Id = DmCmd.ANCHOR_LOT_AWARD,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.ANCHOR_NORMAL_NOTIFY.ToString, New FormatInfo With {
+                .Id = DmCmd.ANCHOR_NORMAL_NOTIFY,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.HOT_ROOM_NOTIFY.ToString, New FormatInfo With {
+                .Id = DmCmd.HOT_ROOM_NOTIFY,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.ROOM_SKIN_MSG.ToString, New FormatInfo With {
+                .Id = DmCmd.ROOM_SKIN_MSG,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.ROOM_BOX_MASTER.ToString, New FormatInfo With {
+                .Id = DmCmd.ROOM_BOX_MASTER,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.SUPER_CHAT_MESSAGE.ToString, New FormatInfo With {
+                .Id = DmCmd.SUPER_CHAT_MESSAGE,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.SUPER_CHAT_MESSAGE_JPN.ToString, New FormatInfo With {
+                .Id = DmCmd.SUPER_CHAT_MESSAGE_JPN,
                 .DefaultStyle = "",
                 .CustomStyle = Nothing,
                 .Memo = Nothing}

@@ -41,15 +41,16 @@ Public Class TcpListener
 
 #Region "字段区"
 	Private m_TcpClient As TcpClient
-	Private m_TcpStream As NetworkStream
+	'Private tcpStream As NetworkStream
 	Private m_TcpPacketBC As Concurrent.BlockingCollection(Of Byte())
+	Private m_TryParsePacketLoopAsyncTask As Task
 	Private m_HeartbeatStart As Boolean
 	Private m_Reconnect As Boolean
 	Private m_TcpPacketParser As TcpPacketParser
 	Private m_ReceiveStop As Boolean
 	Private m_TcpPacketReceivedBC As Concurrent.BlockingCollection(Of TcpPacketData)
+	Private m_TryPushReceivedLoopTask As Task
 	Private m_Initialized As Boolean
-	Private m_LoopFlags As LoopFlags
 	Private m_Cts As CancellationTokenSource
 	Private m_Ct As CancellationToken
 #End Region
@@ -154,36 +155,16 @@ Public Class TcpListener
 				m_Cts = Nothing
 			End If
 
-			If m_TcpStream IsNot Nothing Then
-				While Not m_ReceiveStop
-					Windows2.Delay(100)
-				End While
-				If m_TcpStream IsNot Nothing Then
-					m_TcpStream.Dispose()
-					m_TcpStream = Nothing
-				End If
-			End If
+			ReleaseTcp()
+			m_TcpClient = Nothing
 
-			If m_TcpClient IsNot Nothing Then
-				m_TcpClient.Dispose()
-				m_TcpClient = Nothing
-			End If
-
-			m_TcpPacketBC?.CompleteAdding()
-			Do
-				Windows2.Delay(100)
-			Loop Until LoopFlags.ParsePacketLoop = (m_LoopFlags And LoopFlags.ParsePacketLoop)
-			m_TcpPacketBC?.Dispose()
+			m_TcpPacketBC.TryRelease(m_TryParsePacketLoopAsyncTask)
 
 			If m_TcpPacketParser IsNot Nothing Then
 				RemoveHandler m_TcpPacketParser.Parsed, AddressOf TcpPacketParser_Parsed
 			End If
 
-			m_TcpPacketReceivedBC?.CompleteAdding()
-			Do
-				Windows2.Delay(100)
-			Loop Until LoopFlags.PushReceivedLoop = (m_LoopFlags And LoopFlags.PushReceivedLoop)
-			m_TcpPacketReceivedBC?.Dispose()
+			m_TcpPacketReceivedBC.TryRelease(m_TryPushReceivedLoopTask)
 		End If
 
 		' TODO: 释放未托管资源(未托管对象)并在以下内容中替代 Finalize()。
@@ -213,10 +194,10 @@ Public Class TcpListener
 		Me.m_TcpPacketBC = New Concurrent.BlockingCollection(Of Byte())(MaxTcpPacketCount)
 		m_TcpPacketParser = New TcpPacketParser()
 		AddHandler m_TcpPacketParser.Parsed, AddressOf TcpPacketParser_Parsed
-		Task.Run(action:=Async Sub() Await TryParsePacketLoopAsync())
+		m_TryParsePacketLoopAsyncTask = Task.Run(action:=Async Sub() Await TryParsePacketLoopAsync())
 
 		m_TcpPacketReceivedBC = New Concurrent.BlockingCollection(Of TcpPacketData)
-		Task.Run(AddressOf TryPushReceivedLoop)
+		m_TryPushReceivedLoopTask = Task.Run(AddressOf TryPushReceivedLoop)
 
 		m_Initialized = True
 	End Sub
@@ -307,8 +288,6 @@ Public Class TcpListener
 		st.Stop()
 		Debug.Print(Logger.MakeDebugString("TCP连接耗时 " & st.ElapsedMilliseconds.ToStringOfCulture))
 
-		m_TcpStream = m_TcpClient.GetStream()
-
 		' 加入直播间
 		Dim joinRst = Await JoinLiveRoomAsync(roomId, userId.ToIntegerOfCulture)
 		If Not joinRst Then
@@ -350,10 +329,7 @@ Public Class TcpListener
 		Debug.Print(Logger.MakeDebugString("心跳任务完成"))
 
 		' 释放已经实例化的实例并关闭已有连接
-		If m_TcpStream?.CanRead OrElse m_TcpStream?.CanWrite Then
-			m_TcpStream?.Close()
-			m_TcpClient.Close()
-		End If
+		ReleaseTcp()
 
 		' 等待上一个连接关闭
 		Debug.Print(Logger.MakeDebugString("尝试等待已有连接关闭..."))
@@ -388,8 +364,9 @@ Public Class TcpListener
 
 		Dim body = MSJsSerializer.Serialize(joinLiveRoomPakect)
 		Dim data = m_TcpPacketParser.Pack(body, OpCode.JoinLiveRoom)
-		If m_TcpStream.CanWrite Then
-			Await m_TcpStream.WriteAsync(data, 0, data.Length)
+		Dim tcpStream = m_TcpClient.GetStream
+		If tcpStream?.CanWrite Then
+			Await tcpStream.WriteAsync(data, 0, data.Length)
 
 			Debug.Print(Logger.MakeDebugString("进入直播间：" & data.ToHexString(UpperLowerCase.Lower)))
 			Return True
@@ -404,19 +381,20 @@ Public Class TcpListener
 	Private Async Function SendHeartBeatAsync() As Task
 		Debug.Print(Logger.MakeDebugString("发送心跳包进程启动"))
 
-		' 由于用的是 Task，所以此过程退出之后，m_TcpStream 和 对应的 m_TcpClient 都会被GC
+		' 由于用的是 Task，所以此过程退出之后，tcpStream 和 对应的 m_TcpClient 都会被GC
 		' 其他地方如果想再次使用，得重新实例化一个 m_TcpClient
 
 		' 另 断点调式的时候 可能会因为超时不发心跳包而导致连接关闭
 		Try
 			Dim heartBeatBytes = New Byte() {0, 0, 0, 16, 0, 16, 0, 1, 0, 0, 0, 2, 0, 0, 0, 1}
-			While m_TcpStream.CanWrite AndAlso
+			Dim tcpStream = m_TcpClient.GetStream
+			While tcpStream?.CanWrite AndAlso
 				Not m_Ct.IsCancellationRequested
 				' 连接上服务器之后，开启一个线程，每隔60秒向服务器发送一个心跳包（wiresharp抓包结果是官方70秒发送一次）
 				' 1.第一次发送心跳包，服务器会回复一个心跳包+人气值包 0000001000100001000000080000000100000014001000010000000300000001000023da
 				' 2.往后服务器都是返回直播间人气值包 0000001400100001000000030000000100002414 
 				' 4字节00002414  &H00002414 十进制为 9236；直播页面上显示 '-’,表示 轮播
-				Await m_TcpStream.WriteAsync(heartBeatBytes, 0, heartBeatBytes.Length, m_Ct)
+				Await tcpStream.WriteAsync(heartBeatBytes, 0, heartBeatBytes.Length, m_Ct)
 				Debug.Print(Logger.MakeDebugString("发送心跳包：" & heartBeatBytes.ToHexString(UpperLowerCase.Lower)))
 
 				RaiseEvent HeartBeatSendCompleted(Nothing, New HeartBeatSendCompletedEventArgs(ConnectMode.Tcp))
@@ -463,12 +441,13 @@ Public Class TcpListener
 			' TcpClient  NetworkStream  是基于流的。DataAvailable在TCP中并不是充当信息边界的，只能标识缓冲是否有数据可读，
 			' 一直读取，直到缓冲区没有数据可以读取
 			Try
+				Dim tcpStream = If(m_TcpClient?.Connected, m_TcpClient.GetStream, Nothing)
 				Do
 					If m_Ct.IsCancellationRequested Then Exit Do
-					If Not m_TcpStream.CanRead Then Exit Do
+					If Not tcpStream?.CanRead Then Exit Do
 
 					' NetworkStream 流不兹词取消，此处使用 cancellationToken 参数并不是用来取消流读取操作的
-					numByteRead = Await m_TcpStream?.ReadAsync(readBuffer, 0, readBuffer.Length， m_Ct)
+					numByteRead = Await tcpStream?.ReadAsync(readBuffer, 0, readBuffer.Length， m_Ct)
 					Debug.Print(Logger.MakeDebugString("读取了字节长度：" & numByteRead.ToStringOfCulture))
 
 					' 如果已经读取到的总字节数大于总字节数组长度，那就把总字节数组的长度重新定义为 totalNumberOfBytesRead 的两倍，并且保留原数 
@@ -482,9 +461,9 @@ Public Class TcpListener
 					totalByteRead = tempTotalByteRead
 
 					If m_Ct.IsCancellationRequested Then Exit While
-				Loop While m_TcpStream?.DataAvailable
+				Loop While tcpStream?.DataAvailable
 			Catch ex As ObjectDisposedException
-				' ReadAsync 过程中可能会因为程序关闭而释放了m_TcpStream
+				' ReadAsync 过程中可能会因为程序关闭而释放了tcpStream
 				' do nothing
 			Catch ex As TaskCanceledException
 				' 调用者主动取消，不需要做 任何事
@@ -504,7 +483,7 @@ Public Class TcpListener
 				If m_Ct.IsCancellationRequested Then
 					Debug.Print(Logger.MakeDebugString("取消连接"))
 				Else
-					m_Cts.Cancel()
+					m_Cts?.Cancel()
 					RaiseLiveStatusChangedEvent(LiveStatus.Break)
 				End If
 				Exit While
@@ -554,7 +533,6 @@ Public Class TcpListener
 		Catch ex As Exception
 			Logger.WriteLine(ex)
 		Finally
-			m_LoopFlags = m_LoopFlags Or LoopFlags.ParsePacketLoop
 			Debug.Print(Logger.MakeDebugString("Tcp解包器关闭"))
 		End Try
 	End Function
@@ -632,10 +610,21 @@ Public Class TcpListener
 		' 先关掉tcp包缓存器，再关tcp连接
 		m_TcpPacketBC?.CompleteAdding()
 
-		m_TcpStream?.Close()
-		m_TcpClient?.Close()
+		ReleaseTcp()
 
 		m_Cts?.Cancel()
+	End Sub
+
+	Private Sub ReleaseTcp()
+		If m_TcpClient Is Nothing Then Return
+
+		If m_TcpClient.Connected Then
+			m_TcpClient.Client?.Shutdown(SocketShutdown.Both)
+		End If
+		If m_TcpClient.Connected Then
+			m_TcpClient.GetStream?.Close()
+		End If
+		m_TcpClient.Close()
 	End Sub
 
 	''' <summary>
@@ -663,7 +652,6 @@ Public Class TcpListener
 		Catch ex As Exception
 			Logger.WriteLine(ex)
 		Finally
-			m_LoopFlags = m_LoopFlags Or LoopFlags.PushReceivedLoop
 			Debug.Print(Logger.MakeDebugString("弹幕消息推送器关闭"))
 		End Try
 	End Sub

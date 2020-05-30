@@ -235,21 +235,21 @@ Partial Class DanmuControl
         Me.mnitmNickAndRemark.Size = New System.Drawing.Size(184, 22)
         Me.mnitmNickAndRemark.Text = "昵称（未设置备注）"
         '
-        'mnitmUseNickAsReMark
+        'mnitmUseUseNickAsReMark
         '
-        Me.mnitmUseUseNickAsReMark.Name = "mnitmUseNickAsReMark"
+        Me.mnitmUseUseNickAsReMark.Name = "mnitmUseUseNickAsReMark"
         Me.mnitmUseUseNickAsReMark.Size = New System.Drawing.Size(172, 22)
         Me.mnitmUseUseNickAsReMark.Text = "使用昵称作为备注"
         '
-        'mnitmReMarkSetting
+        'mnitmSettingReMark
         '
-        Me.mnitmSettingReMark.Name = "mnitmReMarkSetting"
+        Me.mnitmSettingReMark.Name = "mnitmSettingReMark"
         Me.mnitmSettingReMark.Size = New System.Drawing.Size(172, 22)
         Me.mnitmSettingReMark.Text = "设置备注"
         '
-        'mnitmReMarkDelete
+        'mnitmDeleteReMark
         '
-        Me.mnitmDeleteReMark.Name = "mnitmReMarkDelete"
+        Me.mnitmDeleteReMark.Name = "mnitmDeleteReMark"
         Me.mnitmDeleteReMark.Size = New System.Drawing.Size(172, 22)
         Me.mnitmDeleteReMark.Text = "删除备注"
         '

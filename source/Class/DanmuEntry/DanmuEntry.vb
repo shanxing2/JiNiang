@@ -146,9 +146,13 @@ Public NotInheritable Class DanmuEntry
             Debug.Print(Logger.MakeDebugString("无数据需要保存到数据库"))
         Else
             Dim sql = StringBuilderCache.GetStringAndReleaseBuilderSuper(sb)
-            IO2.Database.SQLiteHelper.ExecuteNonQuery(sql)
-
-            Debug.Print(Logger.MakeDebugString("数据保存到数据库成功"))
+            Try
+                IO2.Database.SQLiteHelper.ExecuteNonQuery(sql)
+                Debug.Print(Logger.MakeDebugString("数据保存到数据库成功"))
+            Catch ex As Exception
+                Logger.WriteLine(ex, sql,,,)
+                Debug.Print(Logger.MakeDebugString("数据保存到数据库失败，请看log"))
+            End Try
         End If
 
         IsClosed = True
@@ -174,6 +178,11 @@ Public NotInheritable Class DanmuEntry
         Dim shortId As Integer
         Dim realId As Integer
         Dim funcRst As Boolean
+
+        ' 短Id为0的直播间有很多（没有短Id的都是0），所以不能使用短Id为0去获取真实Id
+        If "0"c = shortRoomId.Chars(0) Then
+            Return (True, 0, -1)
+        End If
 
         Dim sql = $"select ShortId,RealId from ViewedRoomInfo where RealId = '{shortRoomId}' or ShortId = '{shortRoomId}'"
         Using reader = Await IO2.Database.SQLiteHelper.GetDataReaderAsync(sql)
@@ -349,7 +358,7 @@ Public NotInheritable Class DanmuEntry
 
             Return guard
         Catch ex As Exception
-            Logger.WriteLine(ex)
+            Logger.WriteLine(ex, json,,,)
         End Try
 
         Dim guard2 As New GuardInfo With {
@@ -806,15 +815,14 @@ Public NotInheritable Class DanmuEntry
         Return sql
     End Function
 
-
     Private Shared Function MakeStoreUserInfoSQL() As String
         If User.Cookies Is Nothing OrElse
-            User.Id Is Nothing Then
+            User.Id.IsNullOrEmpty Then
             Return String.Empty
         End If
 
         Dim cookiesKvp = If(User.StoreCookies, User.Cookies.EncryptCookies, String.Empty)
-
+        ' RoomShortId 当前用户
         Dim sql = $"INSERT
                     OR REPLACE INTO UserInfo (
 	                    Id,
@@ -824,7 +832,7 @@ Public NotInheritable Class DanmuEntry
 	                    SignRewards,
 	                    StoreCookies,
 	                    LastViewedRoomRealId,
-                        RoomShortId,
+                        RoomShortId,            
                         RoomRealId
                     )
                     VALUES
@@ -905,9 +913,11 @@ Public NotInheritable Class DanmuEntry
     ''' 
     ''' </summary>
     ''' <returns></returns>
-    Protected Friend Shared Async Function TryLoginAsync() As Task(Of LoginResult)
+    Protected Friend Shared Function TryLoginAsync() As LoginResult
         Open()
-        Return Await m_LoginManager.TryLoginAsync()
+        ' 由于顶层调用是在构造函数中，不能使用Await关键字，所以此处亦不能，否则会阻塞，导致本函数永远不会执行完毕（可查阅Await关键字实现过程）
+        ' https://referencesource.microsoft.com/#mscorlib/system/threading/Tasks/Future.cs,e1d639f68b66715a
+        Return m_LoginManager.TryLoginAsync().GetAwaiter.GetResult
     End Function
 
     ''' <summary>
@@ -968,13 +978,15 @@ Public NotInheritable Class DanmuEntry
         Dim json = getRst.Message
         Dim funcRst = getRst.Success
 
-        If Not funcRst Then Return False
+        If Not funcRst Then
+            Return False
+        End If
         'room_id 5096
         'short_id    388
 
         ' "uid":52155851,"uname":"\u5c0f\u6bcd\u732a\u4e0e90\u540e\u5927\u53d4"
         ' "roomid":"4236342"
-        Dim pattern = """uid"":(\d+),""uname"":""(.*?)"".*?""roomid"":""?(\d+)""?"
+        Dim pattern = """uid"":(\d+),""uname"":""(.*?)"".*?""roomid"":""?(\d+|false)""?"
         Dim match = Regex.Match(json, pattern, RegexOptions.IgnoreCase Or RegexOptions.Compiled)
         If Not match.Success Then
             Return False
@@ -982,7 +994,8 @@ Public NotInheritable Class DanmuEntry
 
         User.Id = match.Groups(1).Value
         User.Nick = match.Groups(2).Value.TryUnescape
-        User.RoomShortId = match.Groups(3).Value.ToIntegerOfCulture
+        Dim roomid = match.Groups(3).Value
+        User.RoomShortId = If("false".Equals(roomid, StringComparison.OrdinalIgnoreCase), 0, roomid.ToIntegerOfCulture)
 
         Dim taskGetRealRoomId = Await GetRoomRealIdAsync(User.RoomShortId.ToStringOfCulture)
         User.RoomRealId = taskGetRealRoomId.RoomRealId

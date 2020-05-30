@@ -275,8 +275,15 @@ Public Class DanmuControl
         ' 多线程加载网页(WebBrowser只能是单线程单元)
         ' 因为task模型不能直接设置Threading.ApartmentState.STA，所以这里目前只能用Threading.Thread实现 20170924
         ' 此处必须加载先一个页面，这里用about:blank，否则会发生“无法获取“WebBrowser”控件的窗口句柄。不支持无窗口的 ActiveX 控件。”错误
-        webChatHistory.Navigate("about:blank")
-        Dim newThread As New Threading.Thread(Sub() webChatHistory.Navigate(startPath & "res\DanmuDisplayTemplete.html"))
+        Dim newThread As New Threading.Thread(
+            Sub()
+                Try
+                    webChatHistory.Navigate("about:blank")
+                    webChatHistory.Navigate(startPath & "res\DanmuDisplayTemplete.html")
+                Catch ex As Exception
+                    MessageBox.Show("加载登录页失败，请关闭网页后重新打开再试" & RandomEmoji.Sad, "温馨提示", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+            End Sub)
         ' 多线程操作webbrowser控件，一定要设置为 STA 模式
         newThread.TrySetApartmentState(Threading.ApartmentState.STA)
         newThread.Start()
@@ -301,11 +308,12 @@ Public Class DanmuControl
     Public Sub Init(ByRef user As UserInfo, ByRef thanksHime As ThanksHimeEntity, ByVal location As Point, ByVal containerSize As Size)
         ' 初始化弹幕发送器
         Try
+            m_User = user
+            m_ThanksHime = thanksHime
+
             Me.Location = location
             Me.Size = New Size(containerSize.Width, containerSize.Height - location.Y)
 
-            m_User = user
-            m_ThanksHime = thanksHime
 
             If LoginManager.NotLoginUserId = m_User.Id Then
                 pnlSendComponentContainer.Enabled = False
@@ -314,6 +322,8 @@ Public Class DanmuControl
                 lblBorderRight.Height = lblBorderLeft.Height
                 Exit Try
             End If
+
+            SetDanmuLengthLabel()
 
             RegistHotkey()
 
@@ -357,11 +367,16 @@ Public Class DanmuControl
     End Sub
 
     Private Sub cmbDanmuInput_TextChanged(sender As Object, e As EventArgs) Handles cmbDanmuInput.TextChanged
+        SetDanmuLengthLabel()
+    End Sub
+
+    Private Sub SetDanmuLengthLabel()
         Dim danmuLength = cmbDanmuInput.Text.Length
-        lblDanmuLength.Text = danmuLength.ToStringOfCulture & "/" & m_User.ViewRoom.Guard.DanmuMaxLength
+        Dim maxLength = If(m_User Is Nothing, 20, m_User.ViewRoom.Guard.DanmuMaxLength)
+        lblDanmuLength.Text = danmuLength.ToStringOfCulture & "/" & maxLength.ToStringOfCulture
 
         ' 符合长度 绿色，超长 红色
-        lblDanmuLength.ForeColor = If(danmuLength > m_User.ViewRoom.Guard.DanmuMaxLength, Color.Red, Color.Green)
+        lblDanmuLength.ForeColor = If(danmuLength > maxLength, Color.Red, Color.Green)
     End Sub
 
     Private Sub cmbDanmuInput_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDanmuInput.SelectedIndexChanged
@@ -911,5 +926,9 @@ Public Class DanmuControl
         End If
         'm_User.ViewRoom.IsAdmin
         m_RoomViewerManageForm.ShowAndActivate()
+    End Sub
+
+    Private Sub lblDanmuLength_MouseHover(sender As Object, e As EventArgs) Handles lblDanmuLength.MouseHover
+        lblDanmuLength.ShowTips("领取成就奖励之后才可以发20以上长度弹幕")
     End Sub
 End Class

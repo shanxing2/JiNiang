@@ -5,7 +5,11 @@ Imports 姬娘插件.Events
 Public Class UserInfo
     Public Property Id As String
     Public Property Nick As String
-	Public Property RoomShortId As Integer
+    ''' <summary>
+    ''' 直播间短Id，没有的为 0
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property RoomShortId As Integer
 	''' <summary>
 	''' 直播间真实Id
 	''' </summary>

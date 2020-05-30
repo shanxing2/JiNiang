@@ -27,7 +27,7 @@ Public NotInheritable Class OpCodeParser
 
 #Region "字段区"
     Private m_TcpPacketDataBC As Concurrent.BlockingCollection(Of TcpPacketData)
-
+    Private m_TryParseLoopTask As Task
 #End Region
 #Region "常量区"
     Private Const m_MaxCount As Integer = 100
@@ -44,8 +44,8 @@ Public NotInheritable Class OpCodeParser
 
 		' TODO: 释放托管资源(托管对象)。
 		If disposing Then
-			m_TcpPacketDataBC?.CompleteAdding()
-		End If
+            m_TcpPacketDataBC?.TryRelease(m_TryParseLoopTask)
+        End If
 
 		' TODO: 释放未托管资源(未托管对象)并在以下内容中替代 Finalize()。
 		' TODO: 将大型字段设置为 null。
@@ -91,7 +91,7 @@ Public NotInheritable Class OpCodeParser
 
         m_TcpPacketDataBC = New Concurrent.BlockingCollection(Of TcpPacketData)(m_MaxCount)
 
-        Task.Run(AddressOf TryParseLoop)
+        m_TryParseLoopTask = Task.Run(AddressOf TryParseLoop)
     End Sub
 #End Region
 
@@ -113,11 +113,6 @@ Public NotInheritable Class OpCodeParser
         Catch ex As Exception
             Logger.WriteLine(ex)
         Finally
-            If m_TcpPacketDataBC Is Nothing Then
-                m_TcpPacketDataBC.Dispose()
-                m_TcpPacketDataBC = Nothing
-            End If
-
             Debug.Print(Logger.MakeDebugString("OpCode解析器关闭"))
         End Try
     End Sub
