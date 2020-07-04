@@ -23,6 +23,9 @@
 解决方法：  
 右键项目——属性——签名，去掉勾选 “为程序集签名(A)”，或者选择（或创建）你自己的强名称密钥文件。  
 
+## FQA
+1.软件运行不出现录界面，直接出现空白主界面。
+解决：根据系统位数查看软件目录下是否自动生成 x86 或者 x64 文件夹，并且里面有一个名为 ‘SQLite.Interop.dll’ 的文件。如果有，查看 C:\ShanXingTech\Log 目录下是否有 log文件，如果有，打开，查看是否有类似 ‘无法加载 DLL“SQLite.Interop.dll”: 找不到指定的模块。 (异常来自 HRESULT:0x8007007E)。’log，如果有，打开电脑‘控制面板’，查看是否有‘[Microsoft Visual C++ 2015 Redistributable(X64或X86)](https://www.microsoft.com/zh-cn/download/details.aspx?id=53840)’,如果没有，请下载安装，安装完成后，重新打开姬娘再看是否可以解决。
 
 ## 已有功能（主要）
 
@@ -50,3 +53,6 @@ Q群：[797522112](https://jq.qq.com/?_wv=1027&k=5MuFkkR) 胖头鱼煲汤好好�
 
 ## 小破站直播间
 [4236342](https://live.bilibili.com/4236342)，[关注他](https://space.bilibili.com/52155851)
+
+## 淘宝恰饭
+[胖头鱼煲汤好好次](http://shop68147918.taobao.com/)
