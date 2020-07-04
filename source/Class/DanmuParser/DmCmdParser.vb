@@ -218,7 +218,9 @@ Public Class DmCmdParser
 #Disable Warning BC42030 ' 在为变量赋值之前，变量已被引用传递
             If jDic.TryGetValue("cmd", cmdValue) Then
 #Enable Warning BC42030 ' 在为变量赋值之前，变量已被引用传递
-                If Not System.Enum.TryParse(cmdValue.ToString, True, cmd) Then
+                ' DANMU_MSG:4:0:2:2:2:0  20200604 B站调整
+                If Not System.Enum.TryParse(cmdValue.ToString, True, cmd) AndAlso
+                    "DANMU_MSG:4:0:2:2:2:0" <> cmdValue.ToString Then
                     Logger.WriteLine($"后台无此CMD类型，暂时无法解析:{Environment.NewLine}{cmdJson}")
                     Return
                 End If
