@@ -254,21 +254,7 @@ Public Class FunctionTestControl
 
     Private settingControl As SettingControl
     Private Async Sub Button3_ClickAsync(sender As Object, e As EventArgs) Handles Button3.Click
-        'webChatHistory.Url = Nothing
-        'webChatHistory.Document.Write(TextBox1.Text)
-        'm_MainForm.SettingControl.TextBox1.SetCueBanner("请输入弹幕 DA☆ZE～  按Enter键发送，超长后自动分条发送")
-
-        Dim a = ToKeyValuePairs("isg=dfdf&cookie=fd&fe&name=&size=20")
-
-        Return
-        'Dim doc = TryCast(webChatHistory.Document.DomDocument， IHTMLDocument2)
-        Dim aaaa = "isg=dfdf&cookie=fdfd&name=&size=20"
-
-        Dim bbbb = aaaa.ToHexString(UpperLowerCase.Upper)
-        Dim cccc = bbbb.FromHexString
-        Dim ddd = bbbb.HexStringToBytes
-        Dim eee = Await ddd.CompressAsync
-        Dim fff = Await eee.DeCompressAsync
+        Await MedalUpgradeHime.TryCheckMedalUpgradeAsync("2878144", New FedEventArgs("", "10874250", "理解不能ayeye", 1, 100, GiftUnit.Count))
     End Sub
 
     Private Sub btnPushStream_Click(sender As Object, e As EventArgs) Handles btnPushStream.Click

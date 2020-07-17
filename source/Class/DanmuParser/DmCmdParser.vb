@@ -96,8 +96,9 @@ Public Class DmCmdParser
 #End Region
 
 #Region "字段区"
-    Private m_DanmuBuilder As StringBuilder
+    Private ReadOnly m_DanmuBuilder As StringBuilder
     Private m_Danmu As String
+    Private ReadOnly m_Log As List(Of String)
 #End Region
 #Region "属性区"
     Public Property DanmuFormatDic As Dictionary(Of String, DanmuFormatEntity.FormatInfo)
@@ -114,6 +115,7 @@ Public Class DmCmdParser
     Sub New(ByVal danmuFormatDic As Dictionary(Of String, DanmuFormatEntity.FormatInfo))
         Me.DanmuFormatDic = danmuFormatDic
         m_DanmuBuilder = StringBuilderCache.Acquire(108)
+        m_Log = New List(Of String)
         'm_TcpPacketReceivedBC = New Concurrent.BlockingCollection(Of DanmuReceivedEventArgs)
         'Task.Run(AddressOf TryPushReceivedLoop)
     End Sub
@@ -221,7 +223,10 @@ Public Class DmCmdParser
                 ' DANMU_MSG:4:0:2:2:2:0  20200604 B站调整
                 If Not System.Enum.TryParse(cmdValue.ToString, True, cmd) AndAlso
                     "DANMU_MSG:4:0:2:2:2:0" <> cmdValue.ToString Then
-                    Logger.WriteLine($"后台无此CMD类型，暂时无法解析:{Environment.NewLine}{cmdJson}")
+                    If Not m_Log.Contains(cmdValue.ToString) Then
+                        Logger.WriteLine($"后台无此CMD类型，暂时无法解析:{Environment.NewLine}{cmdJson}")
+                        m_Log.Add(cmdValue.ToString)
+                    End If
                     Return
                 End If
             Else
@@ -334,11 +339,17 @@ Public Class DmCmdParser
                 Case DmCmd.WEEK_STAR_CLOCK
 
                 Case Else
-                    Logger.WriteLine(cmdJson)
+                    If Not m_Log.Contains(cmdJson) Then
+                        Logger.WriteLine(cmdJson)
+                        m_Log.Add(cmdJson)
+                    End If
                     Return
             End Select
         Catch ex As Exception
-            Logger.WriteLine(ex, cmdJson,,,)
+            If Not m_Log.Contains(cmdJson) Then
+                Logger.WriteLine(ex, cmdJson,,,)
+                m_Log.Add(cmdJson)
+            End If
         End Try
 
         'Debug.Print(Logger.MakeDebugString( $"弹幕:{cmd.ToString} {m_Danmu}{Environment.NewLine}"))

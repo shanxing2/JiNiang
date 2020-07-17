@@ -4,6 +4,13 @@ Imports System.Text.RegularExpressions
 Imports ShanXingTech.Text2
 
 Public NotInheritable Class MedalUpgradeHime
+#Region "字段区"
+    Private Shared ReadOnly s_LogDic As List(Of String)
+#End Region
+    Shared Sub New()
+        s_LogDic = New List(Of String)
+    End Sub
+
     ''' <summary>
     ''' 从数据库中获取缓存的勋章信息
     ''' </summary>
@@ -51,7 +58,11 @@ Public NotInheritable Class MedalUpgradeHime
         ' 从网络获取勋章信息
         Dim getRst = Await BilibiliApi.GetMedalInfoAsync(fedInfo.ViewerUid, upUid)
         If Not getRst.Success Then
-            IO2.Writer.WriteText($".\medal_{Now.ToString("yyyyMMdd")}.txt", $"从网络获取勋章信息失败,{NameOf(upUid)}:{upUid} {NameOf(fedInfo.ViewerUid)}:{fedInfo.ViewerUid} {NameOf(fedInfo.ViewerUnick)}:{fedInfo.ViewerUnick}", IO.FileMode.Append, IO2.CodePage.UTF8)
+            Dim content = $"从网络获取勋章信息失败,{NameOf(upUid)}:{upUid} {NameOf(fedInfo.ViewerUid)}:{fedInfo.ViewerUid} {NameOf(fedInfo.ViewerUnick)}:{fedInfo.ViewerUnick}"
+            If Not s_LogDic.Contains(content) Then
+                IO2.Writer.WriteText($".\medal_{Now.ToString("yyyyMMdd")}.txt", content, IO.FileMode.Append, IO2.CodePage.UTF8)
+                s_LogDic.Add(content)
+            End If
             Return (False, Nothing)
         End If
 
@@ -82,10 +93,11 @@ Public NotInheritable Class MedalUpgradeHime
 #If DEBUG Then
 
                 Else
-                    IO2.Writer.WriteText($".\medal_{Now.ToString("yyyyMMdd")}.txt",
-                                         $"已经提示过升级,{NameOf(upUid)}:{upUid} {NameOf(fedInfo.ViewerUid)}:{fedInfo.ViewerUid} {NameOf(fedInfo.ViewerUnick)}:{fedInfo.ViewerUnick} {NameOf(root.data.level)}:{root.data.level}  {NameOf(fedInfo.Count)}:{fedInfo.Count}  {NameOf(fedInfo.Price)}:{fedInfo.Price}",
-                                         IO.FileMode.Append,
-                                         IO2.CodePage.UTF8)
+                    Dim content = $"已经提示过升级,{NameOf(upUid)}:{upUid} {NameOf(fedInfo.ViewerUid)}:{fedInfo.ViewerUid} {NameOf(fedInfo.ViewerUnick)}:{fedInfo.ViewerUnick} {NameOf(root.data.level)}:{root.data.level}  {NameOf(fedInfo.Count)}:{fedInfo.Count}  {NameOf(fedInfo.Price)}:{fedInfo.Price}"
+                    If Not s_LogDic.Contains(content) Then
+                        IO2.Writer.WriteText($".\medal_{Now.ToString("yyyyMMdd")}.txt", content, IO.FileMode.Append, IO2.CodePage.UTF8)
+                        s_LogDic.Add(content)
+                    End If
 #End If
                 End If
 
@@ -117,7 +129,10 @@ Public NotInheritable Class MedalUpgradeHime
         Dim m_Danmu = StringBuilderCache.GetStringAndReleaseBuilder(m_DanmuBuilder)
 
 #If DEBUG Then
-        IO2.Writer.WriteText($".\medal_{Now.ToString("yyyyMMdd")}.txt", m_Danmu, IO.FileMode.Append, IO2.CodePage.UTF8)
+        If Not s_LogDic.Contains(m_Danmu) Then
+            IO2.Writer.WriteText($".\medal_{Now.ToString("yyyyMMdd")}.txt", m_Danmu, IO.FileMode.Append, IO2.CodePage.UTF8)
+            s_LogDic.Add(m_Danmu)
+        End If
 #End If
 
         Return m_Danmu

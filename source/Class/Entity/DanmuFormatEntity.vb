@@ -451,6 +451,18 @@ Public Class DanmuFormatEntity
                 .DefaultStyle = "",
                 .CustomStyle = Nothing,
                 .Memo = Nothing}
+            },
+            {DmCmd.ROOM_BANNER.ToString, New FormatInfo With {
+                .Id = DmCmd.ROOM_BANNER,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.PANEL.ToString, New FormatInfo With {
+                .Id = DmCmd.PANEL,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
             }
         }
 
