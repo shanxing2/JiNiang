@@ -59,7 +59,7 @@ Public Class LightLiver
     '''' <returns></returns>
     'Private Async Function DoPostAsync(ByVal url As String, ByVal postdata As String, ByVal encoding As Text.Encoding, ByVal referer As String) As Task(Of HttpResponse)
     '    m_HttpHeadersParam("Referer") = referer
-    '    Return Await HttpAsync.TryPostAsync(url, m_HttpHeadersParam, postdata, encoding, 3)
+    '    Return Await HttpAsync.Instance.TryPostAsync(url, m_HttpHeadersParam, postdata, encoding, 3)
     'End Function
 
     ''' <summary>

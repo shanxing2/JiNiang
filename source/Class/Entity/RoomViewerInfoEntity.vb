@@ -262,11 +262,89 @@
         Public Property red_notice() As Integer
     End Class
 
+    Public Class Entry_effect
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property id() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property privilege_type() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property priority() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property web_basemap_url() As String
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property web_effective_time() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property web_effect_close() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property web_close_time() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property copy_writing() As String
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property copy_color() As String
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property highlight_color() As String
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property mock_effect() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property business() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property face() As String
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property basemap_url() As String
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property show_avatar() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property effective_time() As Integer
+    End Class
+
+    Public Class Welcome
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property allow_mock() As Integer
+    End Class
+
     Public Class User_reward
         ''' <summary>
-        ''' Entry_effect
+        ''' 
         ''' </summary>
-        Public Property entry_effect() As String
+        Public Property entry_effect() As Entry_effect
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property welcome() As Welcome
     End Class
 
     Public Class Shield_rules
@@ -300,66 +378,67 @@
     End Class
 
     Public Class Data
-        ''' <summary>
-        ''' User_level
-        ''' </summary>
-        Public Property user_level() As User_level
-        ''' <summary>
-        ''' Vip
-        ''' </summary>
-        Public Property vip() As Vip
-        ''' <summary>
-        ''' Title
-        ''' </summary>
-        Public Property title() As Title
+        ' 注释掉的是程序不需要用到的
+        '''' <summary>
+        '''' User_level
+        '''' </summary>
+        'Public Property user_level() As User_level
+        '''' <summary>
+        '''' Vip
+        '''' </summary>
+        'Public Property vip() As Vip
+        '''' <summary>
+        '''' Title
+        '''' </summary>
+        'Public Property title() As Title
         ''' <summary>
         ''' Badge
         ''' </summary>
         Public Property badge() As Badge
-        ''' <summary>
-        ''' Privilege
-        ''' </summary>
-        Public Property privilege() As Privilege
-        ''' <summary>
-        ''' Info
-        ''' </summary>
-        Public Property info() As Info
+        '''' <summary>
+        '''' Privilege
+        '''' </summary>
+        'Public Property privilege() As Privilege
+        '''' <summary>
+        '''' Info
+        '''' </summary>
+        'Public Property info() As Info
         ''' <summary>
         ''' Property
         ''' </summary>
         Public Property [property]() As [Property]
-        ''' <summary>
-        ''' Recharge
-        ''' </summary>
-        Public Property recharge() As Recharge
-        ''' <summary>
-        ''' Relation
-        ''' </summary>
-        Public Property relation() As Relation
-        ''' <summary>
-        ''' Wallet
-        ''' </summary>
-        Public Property wallet() As Wallet
-        ''' <summary>
-        ''' Medal
-        ''' </summary>
-        Public Property medal() As Medal
-        ''' <summary>
-        ''' Extra_config
-        ''' </summary>
-        Public Property extra_config() As Extra_config
-        ''' <summary>
-        ''' Mailbox
-        ''' </summary>
-        Public Property mailbox() As Mailbox
-        ''' <summary>
-        ''' User_reward
-        ''' </summary>
-        Public Property user_reward() As User_reward
-        ''' <summary>
-        ''' Shield_info
-        ''' </summary>
-        Public Property shield_info() As Shield_info
+        '''' <summary>
+        '''' Recharge
+        '''' </summary>
+        'Public Property recharge() As Recharge
+        '''' <summary>
+        '''' Relation
+        '''' </summary>
+        'Public Property relation() As Relation
+        '''' <summary>
+        '''' Wallet
+        '''' </summary>
+        'Public Property wallet() As Wallet
+        '''' <summary>
+        '''' Medal
+        '''' </summary>
+        'Public Property medal() As Medal
+        '''' <summary>
+        '''' Extra_config
+        '''' </summary>
+        'Public Property extra_config() As Extra_config
+        '''' <summary>
+        '''' Mailbox
+        '''' </summary>
+        'Public Property mailbox() As Mailbox
+        '''' <summary>
+        '''' User_reward
+        '''' </summary>
+        'Public Property user_reward() As User_reward
+        '''' <summary>
+        '''' Shield_info
+        '''' </summary>
+        'Public Property shield_info() As Shield_info
     End Class
 
     Public Class Root

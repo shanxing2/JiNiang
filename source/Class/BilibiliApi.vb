@@ -176,7 +176,7 @@ Public NotInheritable Class BilibiliApi
 	''' <returns>Success    POST请求成功与否；Message  请求结果状态码或者请求返回的提示；Result 请求结果</returns>
 	Public Shared Async Function DoApiPostAsync(ByVal url As String, ByVal postData As String, ByVal referer As String) As Task(Of (Success As Boolean, Message As String, Result As String))
 		m_HttpHeadersParam("Referer") = referer
-		Dim postRst = Await HttpAsync.TryPostAsync(url, m_HttpHeadersParam, postData, Encoding.UTF8, 3)
+		Dim postRst = Await HttpAsync.Instance.TryPostAsync(url, m_HttpHeadersParam, postData, Encoding.UTF8, 3)
 		If postRst.StatusCode <> HttpStatusCode.OK Then
 			Return (False, postRst.StatusCode.ToStringOfCulture, String.Empty)
 		End If
@@ -211,7 +211,7 @@ Public NotInheritable Class BilibiliApi
 	''' <returns>Success    POST请求成功与否；Message  请求结果状态码或者请求返回的提示；Result 请求结果</returns>
 	Public Shared Async Function DoPostAsync(ByVal url As String, ByVal postData As String, ByVal referer As String) As Task(Of HttpResponse)
 		m_HttpHeadersParam("Referer") = referer
-		Return Await HttpAsync.TryPostAsync(url, m_HttpHeadersParam, postData, Encoding.UTF8, 3)
+		Return Await HttpAsync.Instance.TryPostAsync(url, m_HttpHeadersParam, postData, Encoding.UTF8, 3)
 	End Function
 
 	''' <summary>
@@ -292,7 +292,7 @@ Public NotInheritable Class BilibiliApi
 	Public Shared Async Function GetRoomReportDanmuReasonAsync() As Task(Of HttpResponse)
 		Dim url = "https://api.live.bilibili.com/room_ex/v1/Danmu/forDanmuReason"
 		m_HttpHeadersParam("Referer") = Referer
-		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+		Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
 	End Function
 
 	''' <summary>
@@ -327,7 +327,7 @@ Public NotInheritable Class BilibiliApi
 	Public Shared Async Function GetRoomAdminByAnchorAsync(Optional ByVal page As Integer = 1) As Task(Of HttpResponse)
 		Dim url = $"https://api.live.bilibili.com/xlive/app-ucenter/v1/roomAdmin/get_by_anchor?page={page.ToStringOfCulture}"
 		m_HttpHeadersParam("Referer") = Referer
-		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+		Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
 	End Function
 
 	''' <summary>
@@ -339,7 +339,7 @@ Public NotInheritable Class BilibiliApi
 	Public Shared Async Function GetRoomAdminByRoomAsync(ByVal roomId As String， Optional ByVal page As Integer = 1, Optional ByVal pageSize As Integer = 10) As Task(Of HttpResponse)
 		Dim url = $"https://api.live.bilibili.com/xlive/web-room/v1/roomAdmin/get_by_room?roomid={roomId}&page_size={pageSize.ToStringOfCulture}&page={page.ToStringOfCulture}"
 		m_HttpHeadersParam("Referer") = Referer
-		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+		Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
 	End Function
 
 	''' <summary>
@@ -350,7 +350,7 @@ Public NotInheritable Class BilibiliApi
 	Public Shared Async Function GetRoomBlockListAsync(ByVal page As Integer) As Task(Of HttpResponse)
 		Dim url = $"https://api.live.bilibili.com/liveact/ajaxGetBlockList?roomid={m_User.ViewRoom.RealId}&page={page.ToStringOfCulture}"
 		m_HttpHeadersParam("Referer") = Referer
-		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+		Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
 	End Function
 
 	''' <summary>
@@ -360,7 +360,7 @@ Public NotInheritable Class BilibiliApi
 	Public Shared Async Function GetRoomShieldListAsync() As Task(Of HttpResponse)
 		Dim url = "https://api.live.bilibili.com/banned_service/v1/shield/get_shield_info"
 		m_HttpHeadersParam("Referer") = Referer
-		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+		Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
 	End Function
 
 	''' <summary>
@@ -483,7 +483,7 @@ Public NotInheritable Class BilibiliApi
 	Public Shared Async Function GetShieldInfoAsync() As Task(Of HttpResponse)
 		Dim url = "https://api.live.bilibili.com/banned_service/v1/shield/get_shield_info"
 		m_HttpHeadersParam("Referer") = "https://live.bilibili.com/" & m_User.ViewRoom.RealId
-		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+		Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
 	End Function
 
 	''' <summary>
@@ -493,7 +493,7 @@ Public NotInheritable Class BilibiliApi
 	Public Shared Async Function GetSilentInfoAsync() As Task(Of HttpResponse)
 		Dim url = "https://api.live.bilibili.com/banned_service/v1/silent/get_room_silent?room_id=" & m_User.ViewRoom.RealId
 		m_HttpHeadersParam("Referer") = "https://live.bilibili.com/" & m_User.ViewRoom.RealId
-		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+		Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
 	End Function
 
 	''' <summary>
@@ -503,7 +503,7 @@ Public NotInheritable Class BilibiliApi
 	Public Shared Async Function GetChoosedAreaAsync() As Task(Of HttpResponse)
         Dim url = "https://api.live.bilibili.com/room/v1/Area/getMyChooseArea?roomid=" & m_User.ViewRoom.RealId
         m_HttpHeadersParam("Referer") = "http://link.bilibili.com/p/center/index"
-        Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+        Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
     End Function
 
     ''' <summary>
@@ -513,7 +513,7 @@ Public NotInheritable Class BilibiliApi
     Public Shared Async Function GetAreaListAsync() As Task(Of HttpResponse)
         Dim url = "https://api.live.bilibili.com/room/v1/Area/getList?show_pinyin=1"
         m_HttpHeadersParam("Referer") = "http://link.bilibili.com/p/center/index"
-        Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+        Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
     End Function
 
     ''' <summary>
@@ -523,7 +523,7 @@ Public NotInheritable Class BilibiliApi
     Public Shared Async Function GetLiveStreamAsync() As Task(Of HttpResponse)
         Dim url = "https://api.live.bilibili.com/live_stream/v1/StreamList/get_stream_by_roomId?room_id=" & m_User.ViewRoom.RealId
         m_HttpHeadersParam("Referer") = Referer
-        Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+        Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
     End Function
 
     ''' <summary>
@@ -563,7 +563,7 @@ Public NotInheritable Class BilibiliApi
     Public Shared Async Function GetDoubleWatchStatusAsync() As Task(Of HttpResponse)
         Dim url = "http://api.live.bilibili.com/i/api/taskInfo"
         m_HttpHeadersParam("Referer") = "http://link.bilibili.com/p/center/index"
-        Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+        Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
     End Function
 
     ''' <summary>
@@ -573,7 +573,7 @@ Public NotInheritable Class BilibiliApi
     Public Shared Async Function SignAsync() As Task(Of HttpResponse)
         Dim url = "https://api.live.bilibili.com/sign/doSign"
         m_HttpHeadersParam("Referer") = "http://link.bilibili.com/p/center/index"
-        Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+        Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
     End Function
 
     ''' <summary>
@@ -583,7 +583,7 @@ Public NotInheritable Class BilibiliApi
     Public Shared Async Function GetSignInfoAsync() As Task(Of HttpResponse)
         Dim url = "https://api.live.bilibili.com/sign/GetSignInfo"
         m_HttpHeadersParam("Referer") = "http://link.bilibili.com/p/center/index"
-        Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+        Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
     End Function
 
 	''' <summary>
@@ -594,7 +594,7 @@ Public NotInheritable Class BilibiliApi
 		Dim url = "https://api.live.bilibili.com/live_user/v1/UserInfo/live_info"
 		m_HttpHeadersParam("Referer") = "http://link.bilibili.com/p/center/index"
 
-		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+		Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
 	End Function
 
 	''' <summary>
@@ -605,7 +605,7 @@ Public NotInheritable Class BilibiliApi
 		Dim url = "https://api.bilibili.com/x/web-interface/nav"
 		m_HttpHeadersParam("Referer") = "https://www.bilibili.com/"
 
-		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """isLogin"":true", 3)
+		Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """isLogin"":true", 3)
 	End Function
 
 	''' <summary>
@@ -621,7 +621,7 @@ Public NotInheritable Class BilibiliApi
         Try
             Dim url = "https://api.live.bilibili.com/room/v1/Room/room_init?id=" & shortRoomId
             m_HttpHeadersParam("Referer") = Referer
-            Dim getRst = Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+            Dim getRst = Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
 
             Dim json = getRst.Message
             funcRst = getRst.Success
@@ -658,7 +658,7 @@ Public NotInheritable Class BilibiliApi
     Public Shared Async Function GetViewRoomInfoAsync(ByVal viewRoomRealId As String) As Task(Of HttpResponse)
         Dim url = "https://api.live.bilibili.com/room/v1/Room/get_info?from=room&room_id=" & viewRoomRealId
         m_HttpHeadersParam("Referer") = "https://live.bilibili.com/" & viewRoomRealId
-        Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+        Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
     End Function
 
     ''' <summary>
@@ -669,7 +669,7 @@ Public NotInheritable Class BilibiliApi
     Public Shared Async Function GetServerConfigAsync(ByVal roomRealId As String) As Task(Of String)
         Dim url = $"https://api.live.bilibili.com/room/v1/Danmu/getConf?room_id={roomRealId}&platform=pc&player=web"
         m_HttpHeadersParam("Referer") = "https://live.bilibili.com/" & roomRealId
-        Dim getRst = Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+        Dim getRst = Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
 
         Return getRst.Message
     End Function
@@ -682,7 +682,7 @@ Public NotInheritable Class BilibiliApi
     Public Shared Async Function GetInfoByUserAsync(ByVal roomRealId As String) As Task(Of String)
         Dim url = "https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByUser?room_id=" & roomRealId
         m_HttpHeadersParam("Referer") = "https://live.bilibili.com/" & roomRealId
-        Dim getRst = Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+        Dim getRst = Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
 
         Return getRst.Message
     End Function
@@ -694,7 +694,7 @@ Public NotInheritable Class BilibiliApi
     Public Shared Async Function GetAnchorInRoomAsync(ByVal roomRealId As String) As Task(Of HttpResponse)
         Dim url = "https://api.live.bilibili.com/live_user/v1/UserInfo/get_anchor_in_room?roomid=" & roomRealId
         m_HttpHeadersParam("Referer") = "https://live.bilibili.com/" & roomRealId
-        Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+        Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
     End Function
 
     ''' <summary>
@@ -705,7 +705,7 @@ Public NotInheritable Class BilibiliApi
     Public Shared Async Function GetAreaRankAsync(ByVal roomRealId As String) As Task(Of HttpResponse)
         Dim url = "https://api.live.bilibili.com/rankdb/v1/Common/roomInfo?ruid=" & roomRealId
         m_HttpHeadersParam("Referer") = "https://live.bilibili.com/" & roomRealId
-        Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+        Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
     End Function
 
     ''' <summary>
@@ -716,7 +716,7 @@ Public NotInheritable Class BilibiliApi
         ' area_id=0 这个参数不知道怎么来的，貌似没有地区id是0的，地区id从1开始
         Dim url = $"https://api.live.bilibili.com/rankdb/v1/Common/masterInfo?ruid={roomUserId}&rank_name=master_realtime_hour&type=areaid_realtime_hour&best_assist_name=best_assist&type_assist=hour_best_assist&area_id=0"
         m_HttpHeadersParam("Referer") = "https://live.bilibili.com/blackboard/room-current-rank.html?anchor_uid=" & roomAreaId
-        Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+        Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
     End Function
 
     ''' <summary>
@@ -730,7 +730,7 @@ Public NotInheritable Class BilibiliApi
     Public Shared Async Function GetFansAsync(ByVal userId As String, ByVal pageNo As Integer, ByVal lastAttentionTime As Integer, Optional ByVal pageSize As Integer = 20) As Task(Of HttpResponse)
         Dim url = $"https://api.bilibili.com/x/relation/followers?pn={pageNo.ToStringOfCulture}&ps={pageSize.ToStringOfCulture}&order=desc&vmid={userId}"
         m_HttpHeadersParam("Referer") = "https://space.bilibili.com/" & userId
-        Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+        Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
     End Function
 
     ''' <summary>
@@ -742,7 +742,7 @@ Public NotInheritable Class BilibiliApi
     Public Shared Async Function SearchUserAsync(ByVal keyword As String, Optional ByVal page As Integer = 1) As Task(Of HttpResponse)
         Dim url = $"https://api.bilibili.com/x/web-interface/search/type?jsonp=jsonp&search_type=bili_user&highlight=1&keyword={keyword}&page={page.ToStringOfCulture}"
         m_HttpHeadersParam("Referer") = "https://search.bilibili.com/upuser"
-        Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+        Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
     End Function
 
 	''' <summary>
@@ -765,7 +765,7 @@ Public NotInheritable Class BilibiliApi
 	''' <returns></returns>
 	Public Shared Async Function GetMedalInfoAsync(ByVal viewerUid As String, ByVal upUid As String) As Task(Of HttpResponse)
 		Dim url = $"https://api.live.bilibili.com/fans_medal/v1/fans_medal/get_fans_medal_info?source=1&uid={viewerUid}&target_id={upUid}"
-		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+		Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
 	End Function
 
 	''' <summary>
@@ -774,7 +774,7 @@ Public NotInheritable Class BilibiliApi
 	''' <returns></returns>
 	Public Shared Async Function GetLoginUrlAsync() As Task(Of HttpResponse)
 		Dim url = "https://passport.bilibili.com/qrcode/getLoginUrl"
-		Return Await HttpAsync.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
+		Return Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)
 	End Function
 
 	''' <summary>

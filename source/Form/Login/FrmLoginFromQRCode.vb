@@ -67,7 +67,7 @@ Public Class FrmLoginFromQRCode
 
     Public ReadOnly Property LoginedCookies As Net.CookieContainer
         Get
-            Return HttpAsync.Cookies
+            Return HttpAsync.Instance.Cookies
         End Get
     End Property
 
@@ -107,11 +107,7 @@ Public Class FrmLoginFromQRCode
         Me.MinimizeBox = False
         Me.TopMost = True
 
-        MeSizeAuto()
-
-        If Not HttpAsync.IsInitialized Then
-            HttpAsync.ReInit(Nothing)
-        End If
+        AutoSizeMe()
     End Sub
 
 #End Region
@@ -373,10 +369,10 @@ GetOauthKeyLoop:
     End Sub
 
     Private Sub m_PictureBox_Resize(sender As Object, e As EventArgs) Handles m_PictureBox.Resize
-        MeSizeAuto()
+        AutoSizeMe()
     End Sub
 
-    Private Sub MeSizeAuto()
+    Private Sub AutoSizeMe()
 #If Not DEBUG Then
         If Not Me.Visible Then Return
         Me.ClientSize = m_PictureBox.Size

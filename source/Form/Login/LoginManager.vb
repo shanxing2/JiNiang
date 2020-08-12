@@ -122,13 +122,13 @@ Public Class LoginManager
                     Dim cookiesKvp = m_User.Cookies.ToKeyValuePairs
                     Dim isLogined = Await EnsureLoginAsync(cookiesKvp)
                     If isLogined Then
-                        HttpAsync.ReInit(m_User.Cookies)
+                        HttpAsync.Instance.ReInit(m_User.Cookies)
                     Else
                         loginRst = Await ShowLoginFormAsync(loginWay)
                     End If
                 End If
             ElseIf LoginResult.NotLogin = loginRst Then
-                HttpAsync.ReInit(m_User.Cookies)
+                HttpAsync.Instance.ReInit(m_User.Cookies)
             End If
         Catch ex As Exception
             loginRst = LoginResult.No
@@ -191,7 +191,7 @@ Public Class LoginManager
         Dim funcRst As Boolean
         Dim haveLoginFlag = (cookiesKvp.IndexOf("DedeUserID=") > -1 AndAlso cookiesKvp.IndexOf("bili_jct=") > -1)
         If haveLoginFlag Then
-            HttpAsync.ReInit(m_User.Cookies)
+            HttpAsync.Instance.ReInit(m_User.Cookies)
 
             Try
                 Dim getRst = Await BilibiliApi.GetCurrentUserNavAsync()
