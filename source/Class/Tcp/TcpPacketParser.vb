@@ -262,7 +262,7 @@ Public NotInheritable Class TcpPacketParser
 
                     Dim sb = StringBuilderCache.Acquire(16)
                     For i = 0 To subBuffer.Length - 1
-                        sb.Append(receiveBytes(i).ToString("x2"))
+                        sb.Append(subBuffer(i).ToString("x2"))
                     Next
                     Dim receiveData = StringBuilderCache.GetStringAndReleaseBuilder(sb)
 

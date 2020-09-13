@@ -69,6 +69,7 @@ Partial Class FrmSelectArea
         '
         'tlpParentAreaContainer
         '
+        Me.tlpParentAreaContainer.BackColor = System.Drawing.SystemColors.Control
         Me.tlpParentAreaContainer.ColumnCount = 1
         Me.tlpParentAreaContainer.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.53623!))
         Me.tlpParentAreaContainer.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.46377!))

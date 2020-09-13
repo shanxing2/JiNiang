@@ -45,8 +45,11 @@ Public Class FrmSelectArea
 
 		Me.SuspendLayout()
 
-		Me.AutoSize = True
 		Me.DoubleBuffered = True
+
+		flpChooseAreaContainer.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+		txtSearchAreaQuickly.Anchor = flpChooseAreaContainer.Anchor
+		tlpParentAreaContainer.Anchor = flpChooseAreaContainer.Anchor
 
 		flpChildAreaContainer.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
 		flpChildAreaContainer.AutoSize = True
@@ -80,6 +83,7 @@ Public Class FrmSelectArea
 		txtSearchAreaQuickly.SetCueBanner("输入拼音首字母或全称，快速搜索")
 
 		Me.PerformLayout()
+		Me.ResumeLayout(True)
 	End Sub
 #End Region
 
@@ -198,14 +202,16 @@ Public Class FrmSelectArea
 		tlpParentAreaContainer.ColumnCount = areaDic.Count
 		AdjustColumnStyle()
 
-		Dim labelWidth = tlpParentAreaContainer.Width \ tlpParentAreaContainer.ColumnCount
-
 		Dim firstLabel As New Label
+
+		TryAdujstFormWidth(areaDic, firstLabel)
+		Dim averageLabelWidth = tlpParentAreaContainer.Width \ tlpParentAreaContainer.ColumnCount
+
 		For Each parentArea In areaDic
 			Dim label = New Label With {
 				.Name = parentArea.Value(0).ParentName,
 				.AutoSize = False,
-				.Width = labelWidth,
+				.Width = averageLabelWidth,
 				.AutoEllipsis = True,
 				.Text = parentArea.Value(0).ParentName,
 				.Dock = DockStyle.Fill,
@@ -255,6 +261,25 @@ Public Class FrmSelectArea
 
 		Return firstLabel
 	End Function
+
+	Private Sub TryAdujstFormWidth(ByVal areaDic As Dictionary(Of Integer, AreaInfo()), ByVal firstLabel As Label)
+		' 如果 均分的宽度小于最宽的父分区名字宽度，则 averageLabelWidth = maxParentAreaWidth，并把窗体拉宽相应的宽度
+		Dim maxParentAreaWidth As Single
+		Using g = firstLabel.CreateGraphics
+			For Each parentArea In areaDic
+				If g.MeasureString(parentArea.Value(0).ParentName, firstLabel.Font).Width > maxParentAreaWidth Then
+					maxParentAreaWidth = g.MeasureString(parentArea.Value(0).ParentName, firstLabel.Font).Width
+				End If
+			Next
+		End Using
+
+		Dim averageLabelWidth = tlpParentAreaContainer.Width \ tlpParentAreaContainer.ColumnCount
+		If averageLabelWidth < maxParentAreaWidth Then
+			Dim deta = maxParentAreaWidth - averageLabelWidth
+
+			tlpParentAreaContainer.Parent.Invoke(Sub() Me.Width += CInt(Math.Ceiling(tlpParentAreaContainer.ColumnCount * deta + tlpParentAreaContainer.ColumnCount * 1 - 1)))
+		End If
+	End Sub
 
 	Private Sub AdjustColumnStyle()
 		Dim columnStylesCount = tlpParentAreaContainer.ColumnStyles.Count
@@ -433,4 +458,5 @@ Public Class FrmSelectArea
     Private Sub txtSearchAreaQuickly_MouseHover(sender As Object, e As EventArgs) Handles txtSearchAreaQuickly.MouseHover
         txtSearchAreaQuickly.ShowTips("输入拼音首字母或全称，快速搜索")
     End Sub
+
 End Class

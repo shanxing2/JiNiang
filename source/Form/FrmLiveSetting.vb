@@ -141,7 +141,7 @@ Public Class FrmLiveSetting
 			Select Case btn.Name
 				Case btnChangeArea.Name
 #Region "更改分区"
-					'frmSelectArea = New FrmSelectArea(m_Liver)
+					'FrmSelectArea = New FrmSelectArea(m_Liver)
 					m_FrmSelectArea = If(m_FrmSelectArea, New FrmSelectArea(m_Liver))
 					m_FrmSelectArea.ShowFollowMousePosition(MouseLeaveAction.Hide, btn.Height, True)
 					Dim selectArea = m_FrmSelectArea.SelectArea

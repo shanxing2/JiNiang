@@ -152,7 +152,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Class\ApplicationEvents.vb" />
     <Compile Include="Class\Common.vb" />
     <Compile Include="Class\DanmuEntry\DanmuEntry.vb" />
@@ -384,6 +383,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
