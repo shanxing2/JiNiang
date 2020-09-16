@@ -72,9 +72,9 @@ Public Class LightLiver
         Dim url = m_RoomApiBaseUrl & apiPath.ToString()
         Dim postData As String
         If kvps.Length = 0 Then
-            postData = $"room_id={Room.RealId}&csrf_token={Token}"
+            postData = $"room_id={Room.RealId}&csrf_token={Token}&csrf={Token}"
         ElseIf kvps.Length = 1 Then
-            postData = $"room_id={Room.RealId}&csrf_token={Token}&{kvps(0).Key.ToLowerInvariant}={kvps(0).Value}"
+            postData = $"room_id={Room.RealId}&csrf_token={Token}&csrf={Token}&{kvps(0).Key.ToLowerInvariant}={kvps(0).Value}"
         Else
             Dim kvpBuilder = StringBuilderCache.Acquire(180)
             For Each kvp In kvps
@@ -82,7 +82,7 @@ Public Class LightLiver
                 kvpBuilder.Append("&").Append(kvp.Key.ToLowerInvariant).Append("=").Append(kvp.Value)
             Next
             Dim tempKVString = StringBuilderCache.GetStringAndReleaseBuilder(kvpBuilder)
-            postData = $"room_id={Room.RealId}&csrf_token={Token}{tempKVString}"
+            postData = $"room_id={Room.RealId}&csrf_token={Token}&csrf={Token}{tempKVString}"
         End If
 
         Return Await BilibiliApi.DoApiPostAsync(url, postData, m_Referer)
