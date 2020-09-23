@@ -115,7 +115,7 @@ Public Class FrmLoginFromBrowser
         Dim appname As String = String.Concat(Process.GetCurrentProcess().ProcessName, ".exe")
         ' 改变程序内部IE浏览器默认的版本号
         ' 注意：如果是淘宝，想要快捷登录（识别已经登录的旺旺），需要设置 项目——属性——编译——目标CPU——勾选首选32位
-        Web1.SetVersionEmulation(BrowserEmulationMode.IE10, appname)
+        Web1.SetVersionEmulation(BrowserEmulationMode.IE11, appname)
 
         ' 删除此链接所属域名的cookie
         NetHelper.DeleteCookiesAboutDomain(m_NavigateUrl)

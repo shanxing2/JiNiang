@@ -266,7 +266,7 @@ Public Class DanmuControl
         ' app.exe and app.vshost.exe
         Dim appname As String = String.Concat(Process.GetCurrentProcess().ProcessName, ".exe")
         ' 改变程序内部IE浏览器默认的版本号
-        webChatHistory.SetVersionEmulation(BrowserEmulationMode.IE10, appname)
+        webChatHistory.SetVersionEmulation(BrowserEmulationMode.IE11, appname)
         'webChatHistory.Navigate("about:blank")
         Dim startPath = Application.StartupPath
         If "\" <> startPath.Substring(startPath.Length - 1) Then

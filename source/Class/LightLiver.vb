@@ -161,24 +161,35 @@ Public Class LightLiver
     Public Async Function GetChoosedAreaAsync() As Task(Of AreaInfo())
         Dim getRst = Await BilibiliApi.GetChoosedAreaAsync
         Dim area As AreaInfo() = {}
-        Dim index As Integer
 
         If getRst.Success Then
             Dim json = getRst.Message
             ' {"code":0,"msg":"success","message":"success","data":[{"id":"27","name":"学习","parent_id":"1","parent_name":"娱乐","act_flag":0},{"id":"86","name":"英雄联盟","parent_id":"2","parent_name":"游戏","act_flag":0},{"id":"161","name":"催眠电台","parent_id":"1","parent_name":"娱乐","act_flag":0}]}
-            Dim pattern = """id"":""(\d+)"",""name"":""(\S*?)"",""parent_id"":""(\d+)"",""parent_name"":""(\S*?)"""
-            Dim matches = Regex.Matches(json, pattern, RegexOptions.IgnoreCase Or RegexOptions.Compiled)
-            For Each match As Match In matches
-                ReDim Preserve area(index)
-                Dim ar As New AreaInfo With {
-                    .Id = match.Groups(1).Value,
-                    .Name = match.Groups(2).Value,
-                    .ParentId = match.Groups(3).Value,
-                    .ParentName = match.Groups(4).Value
-                }
-                area(index) = ar
-                index += 1
-            Next
+            Dim jObj As Object
+            Try
+                jObj = MSJsSerializer.DeserializeObject(json)
+                If jObj Is Nothing Then
+                    Return area
+                End If
+
+                Dim jArr = DirectCast(jObj("data"), Array)
+                If jArr.Length = 0 Then Exit Try
+
+                ReDim Preserve area(jArr.Length - 1)
+                Dim index As Integer
+                For Each a In jArr
+                    Dim ar As New AreaInfo With {
+                        .Id = a("id").ToString,
+                        .Name = a("name").ToString,
+                        .ParentId = a("parent_id").ToString,
+                        .ParentName = a("parent_name").ToString
+                    }
+                    area(index) = ar
+                    index += 1
+                Next
+            Catch ex As Exception
+                Logger.WriteLine(ex, json,,,)
+            End Try
         End If
 
         Return area
