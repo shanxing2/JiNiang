@@ -19,96 +19,100 @@
 		*/-->
 
 <html>
-  <head>
-    <style type="text/css">
-		*{
-			margin:0px;
-			padding:0px;
+<head>
+	<style type="text/css">
+		* {
+			margin: 0px;
+			padding: 0px;
 		}
 
-        html{height:100%;}
+		html {
+			height: 100%;
+		}
 		/* SimSun 宋体英文名 */
-        body{
-			min-height:100%;
-			position:relative;
-			font-family:Arial;SimSun;
-			font-size:16px;	
+		body {
+			min-height: 100%;
+			position: relative;
+			font-family: Arial;
+			SimSun;
+			font-size: 16px;
 		}
-		
-		.pointer{
+
+		.pointer {
 			cursor: pointer;
-		}  
-		.pointer:hover {
-			background-color:pink;
-            color:white;
-		}
-		
-		.user-name{
-			color:#23ade5;
 		}
 
-		.btn-like-span{
-			color:#23ade5;
-			background-color:Transparent; 
-            border-style:none;     //无边框
-            outline:none;		//获得焦点也无边框
-			height:auto; 
-			font-size:16px;	
-			width:auto;
-			height:auto;	
+			.pointer:hover {
+				background-color: pink;
+				color: white;
+			}
+
+		.user-name {
+			color: #23ade5;
 		}
 
-		/* danmu-msg 的 padding-bottom 值要等于或大于 footer-gift-feed-box 的 height 值 
+		.btn-like-span {
+			color: #23ade5;
+			background-color: Transparent;
+			border-style: none;
+			//无边框 outline:none;
+			//获得焦点也无边框 height:auto;
+			font-size: 16px;
+			width: auto;
+			height: auto;
+		}
+
+		/* danmu-msg 的 padding-bottom 值要等于或大于 footer-gift-feed-box 的 height 值
 		不然礼物框会遮挡弹幕 */
-         .danmu-msg-box{
-			padding-bottom:45px;
-			padding-top:6.18px;
-		 }  
-
-		.danmu-msg-box p{
-			/* margin:10px auto; */
-			padding:6.18px;
+		.danmu-msg-box {
+			padding-bottom: 45px;
+			padding-top: 6.18px;
 		}
 
-		.header-sys-msg-box{
-			position:fixed;
-			top:0; 
-			left:0;
-			width:100%;
-			color:White;
-			background-color:HighLight;
+			.danmu-msg-box p {
+				/* margin:10px auto; */
+				padding: 6.18px;
+			}
+
+		.header-sys-msg-box {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			color: White;
+			background-color: HighLight;
 		}
 
-		.header-sys-msg-box span{
-			/* margin:10px auto; */
-			padding:6.18px;
+			.header-sys-msg-box span {
+				/* margin:10px auto; */
+				padding: 6.18px;
+			}
+
+		.danmu-msg-clear {
+			position: fixed;
+			bottom: 0;
+			right: 0;
 		}
 
-		.danmu-msg-clear{
-			position:fixed;
-			bottom:0; 
-			right:0;		
+		.danmu-window-adjust {
+			position: fixed;
+			bottom: 0;
+			right: 10px;
 		}
 
-		.danmu-window-adjust{
-			position:fixed;
-			bottom:0; 
-			right:10;		
-		}
-
-		.footer-right-btn-group{
-			position:fixed;
-			bottom:0; 
-			right:0;
-			width:88px;
-			height:20px;
-			background-color:pink;
+		.footer-right-btn-group {
+			position: fixed;
+			bottom: 0;
+			right: 0;
+			width: 88px;
+			height: 20px;
+			background-color: pink;
 		}
 
 		/*
-        .footer-gift-feed-box{
+		.footer-gift-feed-box{
 			position:fixed;
-			bottom:0; 
+			bottom:0;
 			left:0;
 			width:100%;
 			height:auto;
@@ -120,8 +124,14 @@
 			padding:6.18px;
 		}
 		 */
-    </style>
-  </head>
+	</style>
+
+	<script  type="text/javascript">
+		function GetSelectedContext() {
+			return window.getSelection ? window.getSelection().toString() : document.selection.createRange().text;
+		}
+	</script>
+</head>
   
   <body>
 	<DIV class="chat-history-panel">

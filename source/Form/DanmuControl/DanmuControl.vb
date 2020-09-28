@@ -603,15 +603,13 @@ Public Class DanmuControl
         End If
     End Sub
 
-
     Private Sub tsmitCopyInBrowser_Click(sender As Object, e As EventArgs) Handles tsmitCopyInBrowser.Click
         CopySelectedContextInBrowser()
     End Sub
 
     Private Function GetSelectedContextInBrowser() As String
-        Dim document = DirectCast(webChatHistory.Document.DomDocument, mshtml.IHTMLDocument2)
-        Dim htmlElememt = DirectCast(document.selection.createRange(), mshtml.IHTMLTxtRange)
-        Return htmlElememt.text
+        Dim rst = webChatHistory.RunJs("GetSelectedContext")
+        Return rst?.ToString
     End Function
 
     Private Sub CopySelectedContextInBrowser()
