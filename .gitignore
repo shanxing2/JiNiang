@@ -341,7 +341,6 @@ healthchecksdb
 
 # 忽略不需要的文件
 需求相关/
-c
 /source/res/hot.png
 /source/res/illustration.png
 /source/res/search_128px.ico
@@ -355,5 +354,3 @@ c
 /source/res/小电视动图.gif
 /source/res/弹幕发送处理流程.txt
 /source/res/蓝 小电视.png
-/source/.gitattributes
-/source/.gitignore
