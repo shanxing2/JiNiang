@@ -106,7 +106,7 @@ Public Class LightLiver
             Await TryStoreCurrentTitleAsync(Room.RealId, Room.Title)
             Return (True, changeRst.Message, changeRst.Result)
         Else
-            Return (False, "失败," & changeRst.Message, "")
+            Return (False, changeRst.Message, "")
         End If
     End Function
 

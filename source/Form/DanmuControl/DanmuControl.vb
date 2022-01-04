@@ -608,7 +608,7 @@ Public Class DanmuControl
     End Sub
 
     Private Function GetSelectedContextInBrowser() As String
-        Dim rst = webChatHistory.RunJs("GetSelectedContext")
+        Dim rst = webChatHistory.Document.RunJavaScript("GetSelectedContext")
         Return rst?.ToString
     End Function
 

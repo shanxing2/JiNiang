@@ -118,7 +118,7 @@ Public Class FrmLoginFromBrowser
         Web1.SetVersionEmulation(BrowserEmulationMode.IE11, appname)
 
         ' 删除此链接所属域名的cookie
-        NetHelper.DeleteCookiesAboutDomain(m_NavigateUrl)
+        NetHelper.DeleteCookiesByCookieFile(m_NavigateUrl)
 
         ' 获取程序内部使用的IE内核浏览器版本
         'url = "http://ie.icoa.cn/"

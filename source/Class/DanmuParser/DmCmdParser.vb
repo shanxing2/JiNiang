@@ -60,6 +60,11 @@ Public Class DmCmdParser
     ''' </summary>
     Public Event MedalUpgradeChecking As EventHandler(Of FedEventArgs)
     ''' <summary>
+    ''' 领取勋章时发生
+    ''' </summary>
+    Public Event MedalGained As EventHandler(Of FedEventArgs)
+
+    ''' <summary>
     ''' 老爷(年费/月费)进入直播间时触发
     ''' </summary>
     Public Event VipEntered As EventHandler(Of VipEnteredEventArgs)
@@ -93,12 +98,13 @@ Public Class DmCmdParser
     ''' 直播间标题/分区改变时触发
     ''' </summary>
     Public Shared Event RoomChanged As EventHandler(Of RoomChangedEventArgs)
+
 #End Region
 
 #Region "字段区"
     Private ReadOnly m_DanmuBuilder As StringBuilder
     Private m_Danmu As String
-    Private ReadOnly m_Log As List(Of String)
+    Private ReadOnly m_LogDic As Dictionary(Of String, String)
 #End Region
 #Region "属性区"
     Public Property DanmuFormatDic As Dictionary(Of String, DanmuFormatEntity.FormatInfo)
@@ -115,7 +121,7 @@ Public Class DmCmdParser
     Sub New(ByVal danmuFormatDic As Dictionary(Of String, DanmuFormatEntity.FormatInfo))
         Me.DanmuFormatDic = danmuFormatDic
         m_DanmuBuilder = StringBuilderCache.Acquire(108)
-        m_Log = New List(Of String)
+        m_LogDic = New Dictionary(Of String, String)
         'm_TcpPacketReceivedBC = New Concurrent.BlockingCollection(Of DanmuReceivedEventArgs)
         'Task.Run(AddressOf TryPushReceivedLoop)
     End Sub
@@ -208,6 +214,8 @@ Public Class DmCmdParser
     ''' <param name="userId">当前登录用户Id</param>
     ''' <param name="upId">Up Id</param>
     Public Sub ParseCmd(ByRef cmdJson As String, ByVal userId As String, ByVal upId As String)
+        Dim cmd As DmCmd
+
         Try
             ' 因为接收到的信息复杂多变，没有固定的格式，所以就不用实体类来反序列化了 20180812
             Dim jDic = TryCast(MSJsSerializer.DeserializeObject(cmdJson), Dictionary(Of String, Object))
@@ -215,7 +223,6 @@ Public Class DmCmdParser
                 Return
             End If
 
-            Dim cmd As DmCmd
             Dim cmdValue As Object
 #Disable Warning BC42030 ' 在为变量赋值之前，变量已被引用传递
             If jDic.TryGetValue("cmd", cmdValue) Then
@@ -223,10 +230,8 @@ Public Class DmCmdParser
                 ' DANMU_MSG:4:0:2:2:2:0  20200604 B站调整
                 If Not System.Enum.TryParse(cmdValue.ToString, True, cmd) AndAlso
                     "DANMU_MSG:4:0:2:2:2:0" <> cmdValue.ToString Then
-                    If Not m_Log.Contains(cmdValue.ToString) Then
-                        Logger.WriteLine($"后台无此CMD类型，暂时无法解析:{Environment.NewLine}{cmdJson}")
-                        m_Log.Add(cmdValue.ToString)
-                    End If
+                    TryAddUnKnownDmCmd(cmdValue.ToString, cmdJson)
+
                     Return
                 End If
             Else
@@ -337,23 +342,34 @@ Public Class DmCmdParser
                 Case DmCmd.SUPER_CHAT_MESSAGE
                 Case DmCmd.SUPER_CHAT_MESSAGE_JPN
                 Case DmCmd.WEEK_STAR_CLOCK
+                Case DmCmd.STOP_LIVE_ROOM_LIST
+                Case DmCmd.ONLINE_RANK_COUNT
+                Case DmCmd.ONLINE_RANK_V2
+                Case DmCmd.MESSAGEBOX_USER_GAIN_MEDAL
+                    MESSAGEBOX_USER_GAIN_MEDAL(jDic)
 
                 Case Else
-                    If Not m_Log.Contains(cmdJson) Then
-                        Logger.WriteLine(cmdJson)
-                        m_Log.Add(cmdJson)
-                    End If
+                    TryAddUnKnownDmCmd(cmd, cmdJson)
                     Return
             End Select
         Catch ex As Exception
-            If Not m_Log.Contains(cmdJson) Then
-                Logger.WriteLine(ex, cmdJson,,,)
-                m_Log.Add(cmdJson)
-            End If
+            TryAddUnKnownDmCmd(cmd, cmdJson)
         End Try
 
         'Debug.Print(Logger.MakeDebugString( $"弹幕:{cmd.ToString} {m_Danmu}{Environment.NewLine}"))
     End Sub
+
+    Private Sub TryAddUnKnownDmCmd(ByVal dmCmd As DmCmd, ByVal cmdJson As String)
+        TryAddUnKnownDmCmd(dmCmd.ToStringOfCulture, cmdJson)
+    End Sub
+
+    Private Sub TryAddUnKnownDmCmd(ByVal dmCmd As String, ByVal cmdJson As String)
+        If m_LogDic.ContainsKey(dmCmd) Then Return
+
+        Logger.WriteLine($"后台无此CMD类型，暂时无法解析:{Environment.NewLine}{cmdJson}")
+        m_LogDic.Add(dmCmd, cmdJson)
+    End Sub
+
 
 #Region "具体CMD命令解析区"
     Private Sub DANMU_MSG(ByVal userId As String, ByVal upId As String, ByRef jDic As Dictionary(Of String, Object))
@@ -656,16 +672,26 @@ Public Class DmCmdParser
 		RaiseEvent AttentionCountChanged(Nothing, New AttentionCountChangedEventArgs(CInt(jDic("data")("fans"))))
 	End Sub
 
-	Private Sub ROOM_CHANGE(ByRef jDic As Dictionary(Of String, Object))
-		Dim events = New RoomChangedEventArgs With {
-			.Title = jDic("data")("title").ToString,
-			.AreaId = CInt(jDic("data")("area_id")),
-			.ParentAreaId = CInt(jDic("data")("parent_area_id")),
-			.AreaName = jDic("data")("area_name").ToString,
-		.ParentAreaName = jDic("data")("parent_area_name").ToString
-		}
-		RaiseEvent RoomChanged(Nothing, events)
-	End Sub
+    Private Sub ROOM_CHANGE(ByRef jDic As Dictionary(Of String, Object))
+        Dim events = New RoomChangedEventArgs With {
+            .Title = jDic("data")("title").ToString,
+            .AreaId = CInt(jDic("data")("area_id")),
+            .ParentAreaId = CInt(jDic("data")("parent_area_id")),
+            .AreaName = jDic("data")("area_name").ToString,
+        .ParentAreaName = jDic("data")("parent_area_name").ToString
+        }
+        RaiseEvent RoomChanged(Nothing, events)
+    End Sub
+
+    Private Sub MESSAGEBOX_USER_GAIN_MEDAL(ByRef jDic As Dictionary(Of String, Object))
+        m_Danmu = $"恭喜靓仔 {jDic("fan_name")} 获得 ❀{jDic("medal_name")}❀ 勋章"
+        Dim uname = CStr(jDic("data")("uname"))
+        Dim fedEventArgs = New FedEventArgs(m_Danmu, CStr(jDic("data")("uid")), CStr(jDic("data")("fan_name"))， -1, -1, GiftUnit.None)
+
+        RaiseEvent GoldFed(Nothing, fedEventArgs)
+        RaiseEvent MedalGained(Nothing, fedEventArgs)
+    End Sub
+
 #End Region
 
 #End Region

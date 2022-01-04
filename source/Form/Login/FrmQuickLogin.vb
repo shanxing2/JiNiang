@@ -132,6 +132,8 @@ Public Class FrmQuickLogin
 			cmbUsersNick.Enabled = False
 			cmbViewedRooms.Enabled = False
 			Await Task.WhenAll(GetLoginedUserInfoAsync, GetViewedRoomInfoAsync)
+
+			TrySelectDefaultUser()
 		Catch ex As Exception
 			Logger.WriteLine(ex)
 		Finally
@@ -140,9 +142,10 @@ Public Class FrmQuickLogin
 		End Try
 	End Function
 
+
 	Private Async Function GetLoginedUserInfoAsync() As Task
 		' 获取用户信息
-		Using reader = Await IO2.Database.SQLiteHelper.GetDataReaderAsync("SELECT Id, Nick, StoreCookies, LastViewedRoomRealId, RoomShortId, RoomRealId FROM UserInfo WHERE LENGTH(UserInfo.Nick) > 0")
+		Using reader = Await IO2.Database.SQLiteHelper.GetDataReaderAsync("SELECT Id, Nick, StoreCookies, LastViewedRoomRealId, RoomShortId, RoomRealId, SignDate FROM UserInfo WHERE LENGTH(UserInfo.Nick) > 0")
 			While Await reader.ReadAsync
 				Dim user As New UserInfo With {
 					.Id = CStr(reader(0)),
@@ -150,7 +153,8 @@ Public Class FrmQuickLogin
 					.StoreCookies = CBool(reader(2)),
 					.ViewedRoomId = CInt(reader(3)),
 					.RoomShortId = CInt(reader(4)),
-					.RoomRealId = CInt(reader(5))
+					.RoomRealId = CInt(reader(5)),
+					.SignDate = CDate(reader(6))
 				}
 				m_UserDic.Add(user.Nick, user)
 			End While
@@ -166,12 +170,7 @@ Public Class FrmQuickLogin
 				cmbUsersNick.Items.Add(user.Key)
 			Next
 		End If
-
 		cmbUsersNick.Items.Add(m_LoginNewAccount)
-
-		' 默认选中 m_NotLogin
-		cmbUsersNick.SelectedIndex = 0
-		m_User.Id = NotLoginUserId
 	End Function
 
 	Private Async Function GetViewedRoomInfoAsync() As Task
@@ -187,6 +186,26 @@ Public Class FrmQuickLogin
 		End If
 		cmbViewedRooms.Items.Add(m_SeeBefore)
 	End Function
+
+	Private Sub TrySelectDefaultUser()
+		' 默认选中最后一次登录的，如果从未登录过，那就选第一个
+		If cmbUsersNick.Items.Count = 2 Then
+			cmbUsersNick.SelectedIndex = 0
+			m_User.Id = NotLoginUserId
+			Return
+		End If
+
+		Dim newestLoginUser = m_UserDic.Values.OrderByDescending(Function(u) u.SignDate).FirstOrDefault
+		If newestLoginUser Is Nothing Then Return
+
+		For i = 0 To cmbUsersNick.Items.Count - 1
+			If cmbUsersNick.Items(i) = newestLoginUser.Nick Then
+				cmbUsersNick.SelectedIndex = i
+				cmbUsersNick_Leave(cmbUsersNick, New EventArgs)
+				Exit For
+			End If
+		Next
+	End Sub
 
 	Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
 		m_LoginResult = LoginResult.Cancel
@@ -248,25 +267,6 @@ Public Class FrmQuickLogin
 		m_User.StoreCookies = chkStoreCookies.Checked
 	End Sub
 
-	Private Sub GetSelectUserInfo()
-		m_User.Nick = cmbUsersNick.Text.Trim
-
-		If cmbUsersNick.SelectedIndex = -1 AndAlso
-			m_User.Nick.Length > 0 Then
-			m_User.Id = m_User.Nick
-			Return
-		End If
-
-		Dim selectAccount = CStr(cmbUsersNick.Items(cmbUsersNick.SelectedIndex))
-		If m_NotLogin = selectAccount Then
-			m_User.Id = NotLoginUserId
-		ElseIf m_LoginNewAccount = selectAccount Then
-			m_User.Id = String.Empty
-		Else
-			m_User.Id = m_UserDic(selectAccount).Id
-		End If
-	End Sub
-
 	Private Function GetCurrentRoomId() As Integer
 		Dim roomId As Integer
 
@@ -321,6 +321,10 @@ Public Class FrmQuickLogin
 
 	Private Sub cmbUsersNick_Leave(sender As Object, e As EventArgs) Handles cmbUsersNick.Leave
 		GetSelectUserInfo()
+	End Sub
+
+	Private Sub GetSelectUserInfo()
+		InternalGetSelectUserInfo()
 		pnlLoginOptions.Enabled = (m_User.Nick <> m_NotLogin)
 
 		If m_User.Id.IsNullOrEmpty Then Return
@@ -335,6 +339,25 @@ Public Class FrmQuickLogin
 			Dim lastViewedRoomIdAndUpName As String = Nothing
 			m_RoomIdAndUpNameDic.TryGetValue(m_User.ViewedRoomId.ToStringOfCulture, lastViewedRoomIdAndUpName)
 			cmbViewedRooms.Text = If(lastViewedRoomIdAndUpName, m_User.ViewedRoomId.ToStringOfCulture)
+		End If
+	End Sub
+
+	Private Sub InternalGetSelectUserInfo()
+		m_User.Nick = cmbUsersNick.Text.Trim
+
+		If cmbUsersNick.SelectedIndex = -1 AndAlso
+			m_User.Nick.Length > 0 Then
+			m_User.Id = m_User.Nick
+			Return
+		End If
+
+		Dim selectAccount = CStr(cmbUsersNick.Items(cmbUsersNick.SelectedIndex))
+		If m_NotLogin = selectAccount Then
+			m_User.Id = NotLoginUserId
+		ElseIf m_LoginNewAccount = selectAccount Then
+			m_User.Id = String.Empty
+		Else
+			m_User.Id = m_UserDic(selectAccount).Id
 		End If
 	End Sub
 
@@ -363,8 +386,4 @@ Public Class FrmQuickLogin
 			TryLogin()
 		End If
 	End Sub
-
-#Region "内部类"
-
-#End Region
 End Class

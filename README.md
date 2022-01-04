@@ -13,6 +13,7 @@
 2.Install-Package Microsoft.AspNet.WebApi.Client -Version 5.2.7  
 
 注：此Package依赖于Newtonsoft.Json，但是我们这个项目用不到，所以不需要也可以，可以在NuGet管理器中勾选 ‘强制卸载，即使有依赖项’，然后强制卸载依赖包Newtonsoft.Json。  
+
 ### 第三方库 
 *  1.[shanxinglib.dll](https://github.com/shanxing2/shanxinglib) 
 *  2.[ShanXingTech.IO2.Database](https://github.com/shanxing2/ShanXingTech.IO2.Database) 
@@ -48,7 +49,7 @@
 *  礼物榜单/统计;
 * 注：插件系统做好之后，界面会大改！
 
-## BUG反馈、建议、编程交流群
+## BUG反馈、建议、编程交流群、女装裙797522112←◡←
 Q群：[797522112](https://jq.qq.com/?_wv=1027&k=5MuFkkR) 胖头鱼煲汤好好次
 
 ## 小破站直播间

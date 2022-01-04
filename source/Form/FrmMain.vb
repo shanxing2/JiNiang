@@ -162,9 +162,8 @@ Public Class FrmMain
         ' # 20180806
         ' ###################### 注意 ######################
         If m_LoginResult = LoginResult.Yes Then
-            ' 没使用过开播设置窗体，说明不是用的这个进程开播，或者是非此直播间的Up
-            ' 以上两种情况都不需要此进程处理关播
-            Dim isLiving = m_StartLiveSettingForm IsNot Nothing
+            ' 但凡是此直播间的Up，遇到直播中，每次都提示是否关播
+            Dim isLiving = (DanmuEntry.User.Id = DanmuEntry.User.ViewRoom.UserId)
             Dim stopLive As Boolean
             ' 使用过开播设置窗体并且是处于直播状态，说明一定是此直播间的Up，需要提示是否关播
             If isLiving AndAlso DanmuEntry.User.ViewRoom.Status = LiveStatus.Live Then

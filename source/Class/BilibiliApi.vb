@@ -674,12 +674,12 @@ Public NotInheritable Class BilibiliApi
         Return getRst.Message
     End Function
 
-    ''' <summary>
-    ''' 获取当前用户相对于直播间<paramref name="roomRealId"/>的配置信息
-    ''' </summary>
-    ''' <param name="roomRealId"></param>
-    ''' <returns></returns>
-    Public Shared Async Function GetInfoByUserAsync(ByVal roomRealId As String) As Task(Of String)
+	''' <summary>
+	''' 获取当前用户相对于直播间<paramref name="roomRealId"/>的配置信息，会触发进入直播间提示
+	''' </summary>
+	''' <param name="roomRealId"></param>
+	''' <returns></returns>
+	Public Shared Async Function GetInfoByUserAsync(ByVal roomRealId As String) As Task(Of String)
         Dim url = "https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByUser?room_id=" & roomRealId
         m_HttpHeadersParam("Referer") = "https://live.bilibili.com/" & roomRealId
         Dim getRst = Await HttpAsync.Instance.TryGetAsync(url, m_HttpHeadersParam, """code"":0", 3)

@@ -929,9 +929,11 @@ Public NotInheritable Class DanmuEntry
 
         Try
             Debug.Print(Logger.MakeDebugString("配置 DanmuEntry 开始"))
+
+            ' 若选择的是身份登录则使用游客配置
             If LoginManager.NotLoginUserId = User.Id Then
                 ConfigureHimesByVisitorAsync()
-            ElseIf User.RoomShortId <= 0 AndAlso User.RoomRealId <= 0 Then
+            Else
                 Dim rst = Await ConfigureHimesByUserAsync()
                 If Not rst Then Exit Try
             End If
@@ -970,7 +972,7 @@ Public NotInheritable Class DanmuEntry
     End Function
 
     ''' <summary>
-    ''' 通过用户（已登录）
+    ''' 通过用户（已登录）配置himes
     ''' </summary>
     Private Shared Async Function ConfigureHimesByUserAsync() As Task(Of Boolean)
         ' 获取当前登录用户信息
@@ -1022,7 +1024,7 @@ Public NotInheritable Class DanmuEntry
         Dim getRst = Await GetSignInfoAsync()
         If getRst.Status = 1 Then
             ' 已经签到那就记住签到信息
-            User.SignDate = Date.Now.Date
+            User.SignDate = Date.Now
             User.SignRewards = getRst.SignRewards
             Return
         End If
@@ -1030,7 +1032,7 @@ Public NotInheritable Class DanmuEntry
         getRst = Await SignInternalAsync()
         If getRst.Status = 1 Then
             ' 已经签到那就记住签到信息
-            User.SignDate = Date.Now.Date
+            User.SignDate = Date.Now
             User.SignRewards = getRst.SignRewards
         End If
     End Function

@@ -463,6 +463,30 @@ Public Class DanmuFormatEntity
                 .DefaultStyle = "",
                 .CustomStyle = Nothing,
                 .Memo = Nothing}
+            },
+            {DmCmd.STOP_LIVE_ROOM_LIST.ToString, New FormatInfo With {
+                .Id = DmCmd.STOP_LIVE_ROOM_LIST,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.INTERACT_WORD.ToString, New FormatInfo With {
+                .Id = DmCmd.INTERACT_WORD,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.ONLINE_RANK_COUNT.ToString, New FormatInfo With {
+                .Id = DmCmd.ONLINE_RANK_COUNT,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
+            },
+            {DmCmd.ONLINE_RANK_V2.ToString, New FormatInfo With {
+                .Id = DmCmd.ONLINE_RANK_V2,
+                .DefaultStyle = "",
+                .CustomStyle = Nothing,
+                .Memo = Nothing}
             }
         }
 

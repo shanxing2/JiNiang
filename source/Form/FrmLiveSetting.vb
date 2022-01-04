@@ -188,10 +188,10 @@ Public Class FrmLiveSetting
 						Exit Select
 					End If
 					Dim changeRst = Await m_Liver.UpdateTitleAsync(title)
-					m_Liver.Room.Title = title
 					Windows2.DrawTipsTask(btn.Parent, If(changeRst.Success, "成功", "失败," & changeRst.Message), 1000, changeRst.Success)
 
 					If changeRst.Success Then
+						m_Liver.Room.Title = title
 						Await GetUsedTitleAsync()
 					End If
 #End Region
