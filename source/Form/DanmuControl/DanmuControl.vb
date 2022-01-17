@@ -622,7 +622,7 @@ Public Class DanmuControl
     Private Sub cmsBrowserRightButtonClick_Opening(sender As Object, e As CancelEventArgs) Handles cmsBrowserRightButtonClick.Opening
         ' 未选中不显示复制按钮
         Dim selecteedContext = GetSelectedContextInBrowser()
-        e.Cancel = (selecteedContext Is Nothing)
+        e.Cancel = selecteedContext.IsNullOrEmpty
         tsmitCopyInBrowser.Visible = Not e.Cancel
     End Sub
 

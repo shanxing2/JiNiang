@@ -297,6 +297,10 @@ Public Class FrmMain
             LiveRoomControl.tlpLiveRoomInfoRow2.ColumnCount -= 2
             LiveRoomControl.tlpLiveRoomInfoRow2.ColumnStyles(LiveRoomControl.tlpLiveRoomInfoRow2.ColumnCount - 1).SizeType = SizeType.Absolute
             LiveRoomControl.tlpLiveRoomInfoRow2.ColumnStyles(LiveRoomControl.tlpLiveRoomInfoRow2.ColumnCount - 1).Width = 1.0F
+
+            If m_StartLiveSettingForm Is Nothing Then
+                m_StartLiveSettingForm = New FrmLiveSetting(DanmuEntry.User.ViewRoom, DanmuEntry.User.Token)
+            End If
         Else
             LiveRoomControl.lblUserNick.Text = DanmuEntry.User.Nick()
             LiveRoomControl.lblRoomOwnerNick.Text = DanmuEntry.User.ViewRoom.UserNick()
