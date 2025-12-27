@@ -94,6 +94,8 @@ Namespace DanmuEntity.HttpDanmu
         ''' </summary>
         ''' <returns></returns>
         Public Property check_info As Check_info
+        Public Property voice_dm_info As Voice_dm_info
+        Public Property emoticon As Emoticon
 
         ''' <summary>
         ''' 
@@ -127,6 +129,72 @@ Namespace DanmuEntity.HttpDanmu
         ''' <returns></returns>
         Public Property ct As String
 
+    End Class
+
+    Public Class Voice_dm_info
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property voice_url() As String
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property file_format() As String
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property text() As String
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property file_duration() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property file_id() As String
+    End Class
+
+    Public Class Emoticon
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property id() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property emoticon_unique() As String
+        ''' <summary>
+        ''' 虎虎生威
+        ''' </summary>
+        Public Property text() As String
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property perm() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property url() As String
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property in_player_area() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property bulge_display() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property is_dynamic() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property height() As Integer
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        Public Property width() As Integer
     End Class
 
     Public Class Root

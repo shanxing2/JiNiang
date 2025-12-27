@@ -47,7 +47,7 @@ Partial Class FrmQuickLogin
         Me.btnCancel.Location = New System.Drawing.Point(64, 208)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(133, 23)
-        Me.btnCancel.TabIndex = 0
+        Me.btnCancel.TabIndex = 1
         Me.btnCancel.Text = "居然要登录(ΩДΩ)~"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
@@ -56,7 +56,7 @@ Partial Class FrmQuickLogin
         Me.btnOK.Location = New System.Drawing.Point(203, 208)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(131, 23)
-        Me.btnOK.TabIndex = 1
+        Me.btnOK.TabIndex = 0
         Me.btnOK.Text = "好哒(๑‾ ꇴ ‾๑)~"
         Me.btnOK.UseVisualStyleBackColor = True
         '

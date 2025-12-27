@@ -1,10 +1,13 @@
 ﻿Imports System.ComponentModel
-Imports System.Runtime.CompilerServices
+
 Imports ShanXingTech
 Imports ShanXingTech.Win32API
-Imports 姬娘
+
 Imports 姬娘插件.Events
 
+' 为了使网页能够与winform交互 将com的可访问性设置为真
+<Security.Permissions.PermissionSet(Security.Permissions.SecurityAction.Demand, Name:="FullTrust")>
+<Runtime.InteropServices.ComVisible(True)>
 Public Class DanmuControl
 
 #Region "字段区"
@@ -25,6 +28,8 @@ Public Class DanmuControl
     Private m_RoomViewerManageForm As FrmRoomViewerManage
     Private m_RegistHotkeySucceed As Boolean
     Private m_HotKeyId As Integer
+    Private m_ViewerEnterSpanHideTime As Date
+    Private m_IsViewerEnterSpanDisplay As Boolean
 #End Region
 
 #Region "常量区"
@@ -32,11 +37,13 @@ Public Class DanmuControl
     Private Const DanmuClearButtonId = "danmu-msg-clear"
     Private Const DanmuWindowAdjustButtonId = "danmu-window-adjust"
     Private Const SystemMsgSpanId = "sys-msg"
+    Private Const FixedTimePopMessageSpanId = "fixed-time-pop-msg"
     Private Const DanmuDivId = "danmu-msg-box"
 #End Region
 
 #Region "属性区"
     Public Property SystemMessageSpan As HtmlElement
+    Public Property ViewerEnterMessageSpan As HtmlElement
     Public Property DanmuDiv As HtmlElement
     ''' <summary>
     ''' 是否可发送弹幕（已登录）
@@ -267,6 +274,8 @@ Public Class DanmuControl
         Dim appname As String = String.Concat(Process.GetCurrentProcess().ProcessName, ".exe")
         ' 改变程序内部IE浏览器默认的版本号
         webChatHistory.SetVersionEmulation(BrowserEmulationMode.IE11, appname)
+        webChatHistory.ObjectForScripting = Me
+
         'webChatHistory.Navigate("about:blank")
         Dim startPath = Application.StartupPath
         If "\" <> startPath.Substring(startPath.Length - 1) Then
@@ -278,8 +287,8 @@ Public Class DanmuControl
         Dim newThread As New Threading.Thread(
             Sub()
                 Try
-                    webChatHistory.Navigate("about:blank")
-                    webChatHistory.Navigate(startPath & "res\DanmuDisplayTemplete.html")
+                    'webChatHistory.Navigate("about:blank")
+                    webChatHistory.Url = New Uri(startPath & "res\DanmuDisplayTemplete.html", UriKind.Absolute)
                 Catch ex As Exception
                     MessageBox.Show("加载登录页失败，请关闭网页后重新打开再试" & RandomEmoji.Sad, "温馨提示", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
@@ -479,19 +488,19 @@ Public Class DanmuControl
         End If
 
         ' 用户发送弹幕时才需要更改UI
-        If e.Danmu.Source = DanmuSource.Input Then
-            If e.Success Then
-                lblSendDanmuStatus.ForeColor = If(e.IsRepeat, Color.Gold, Color.LimeGreen)
-            Else
-                ' 回填发送失败的弹幕（不保证每次都回填成功，因为发送失败的弹幕可能已经被新弹幕覆盖了）
-                cmbDanmuInput.Text = m_InputDanmu
-                lblSendDanmuStatus.ForeColor = Color.OrangeRed
+        If e.Danmu.Source <> DanmuSource.Input Then Return
 
-                Windows2.DrawTipsTask(If(Me.Parent, Me), e.Message, 1000, False, False)
-            End If
+        If e.Success Then
+            lblSendDanmuStatus.ForeColor = If(e.IsRepeat, Color.Gold, Color.LimeGreen)
+        Else
+            ' 回填发送失败的弹幕（不保证每次都回填成功，因为发送失败的弹幕可能已经被新弹幕覆盖了）
+            cmbDanmuInput.Text = m_InputDanmu
+            lblSendDanmuStatus.ForeColor = Color.OrangeRed
 
-            cmbDanmuInput.Focus()
+            Windows2.DrawTipsTask(If(Me.Parent, Me), e.Message, 1000, False, False)
         End If
+
+        cmbDanmuInput.Focus()
     End Sub
 
     Private Sub m_DanmuSender_SendCompleted(sender As Object, e As DanmuSendCompletedEventArgs) Handles m_DanmuSender.SendCompleted
@@ -593,6 +602,10 @@ Public Class DanmuControl
         If SystemMessageSpan IsNot Nothing Then
             SystemMessageSpan.Style = "display:" & If(DanmuEntry.Configment.EnabledSystemMessageHime, "inline", "None")
         End If
+        ViewerEnterMessageSpan = m_WebDoc.GetElementById(FixedTimePopMessageSpanId)
+        If ViewerEnterMessageSpan IsNot Nothing Then
+            ViewerEnterMessageSpan.Style = "display:" & If(DanmuEntry.Configment.EnabledSystemMessageHime, "inline", "none")
+        End If
         DanmuDiv = m_WebDoc.GetElementById(DanmuDivId)
         m_WebScroll = m_WebDoc.GetElementsByTagName("html")(0)
     End Sub
@@ -614,7 +627,7 @@ Public Class DanmuControl
 
     Private Sub CopySelectedContextInBrowser()
         Dim selecteedContext = GetSelectedContextInBrowser()
-        If selecteedContext Is Nothing Then Return
+        If selecteedContext.IsNullOrEmpty Then Return
 
         Common.CopyToClipboard(selecteedContext, If(Me.Parent, Me))
     End Sub
@@ -658,14 +671,6 @@ Public Class DanmuControl
         DanmuDiv.InnerHtml = String.Empty
     End Sub
 
-    'Private Sub m_WebDoc_MouseDown(sender As Object, e As HtmlElementEventArgs) Handles m_WebDoc.MouseDown
-
-    'End Sub
-
-    'Private Sub m_WebDoc_MouseUp(sender As Object, e As HtmlElementEventArgs) Handles m_WebDoc.MouseUp
-
-    'End Sub
-
     Private Sub m_WebDoc_Click(sender As Object, e As HtmlElementEventArgs) Handles m_WebDoc.Click
         Select Case m_WebDoc.ActiveElement.Id
             Case DanmuClearButtonId
@@ -698,6 +703,28 @@ Public Class DanmuControl
         m_SelectViewerCt = m_WebDoc.ActiveElement.GetAttribute("data-ct")
 
         cmsUserNickClick.Show(MousePosition)
+    End Sub
+
+    Public Sub ShowViewerInfo(ByVal wiewerId As String, ByVal wiewerNick As String)
+        Debug.Print(Logger.MakeDebugString(wiewerId & wiewerNick))
+    End Sub
+
+    Public Async Sub OnViewerEntered(sender As Object, e As ViewerEnteredEventArgs)
+        ViewerEnterMessageSpan.InnerHtml = e.Danmu
+        If ViewerEnterMessageSpan.Style.StartsWith("display: none") Then
+            ViewerEnterMessageSpan.Style = "display: inline-block"
+        End If
+        m_ViewerEnterSpanHideTime = Now.AddSeconds(5)
+        If m_IsViewerEnterSpanDisplay Then Return
+
+        m_IsViewerEnterSpanDisplay = True
+        Await Task.Run(Sub()
+                           While Now < m_ViewerEnterSpanHideTime
+                               Windows2.Delay(1)
+                           End While
+                           ViewerEnterMessageSpan.Style = "display: none"
+                           m_IsViewerEnterSpanDisplay = False
+                       End Sub)
     End Sub
 
     ''' <summary>
@@ -916,7 +943,7 @@ Public Class DanmuControl
 
     Private Sub ShowRoomViewerManager(ByVal selectedViewerId As String, ByVal selectedViewerIdOrViewerName As String, ByVal manageMode As FrmRoomViewerManage.ManageMode)
         If m_RoomViewerManageForm Is Nothing Then
-            m_RoomViewerManageForm = New FrmRoomViewerManage(If(m_User.Role = UserRole.Uper, True, False), m_User.ViewRoom.IsAdmin, m_User.ViewRoom.RealId, selectedViewerId, selectedViewerIdOrViewerName, manageMode)
+            m_RoomViewerManageForm = New FrmRoomViewerManage(m_User.Role = UserRole.Uper, m_User.ViewRoom.IsAdmin, m_User.ViewRoom.RealId, selectedViewerId, selectedViewerIdOrViewerName, manageMode)
         Else
             m_RoomViewerManageForm.ViewerId = selectedViewerId
             m_RoomViewerManageForm.ViewerIdOrViewerName = selectedViewerIdOrViewerName
@@ -929,4 +956,5 @@ Public Class DanmuControl
     Private Sub lblDanmuLength_MouseHover(sender As Object, e As EventArgs) Handles lblDanmuLength.MouseHover
         lblDanmuLength.ShowTips("领取成就奖励之后才可以发20以上长度弹幕")
     End Sub
+
 End Class

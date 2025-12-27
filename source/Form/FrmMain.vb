@@ -7,7 +7,9 @@ Imports 姬娘插件
 Imports 姬娘插件.Events
 
 
-
+' 为了使网页能够与winform交互 将com的可访问性设置为真
+<Security.Permissions.PermissionSet(Security.Permissions.SecurityAction.Demand, Name:="FullTrust")>
+<Runtime.InteropServices.ComVisible(True)>
 Public Class FrmMain
 #Region "条件编译常量"
     '  ##############################
@@ -25,7 +27,6 @@ Public Class FrmMain
     Private m_StartLiveSettingForm As FrmLiveSetting
     Private m_SettingControl As SettingControl
     Private tpStartLiveSetting As TabPage
-    Private temptask As Task
 #End Region
 
 #Region "常量区"
@@ -400,6 +401,7 @@ Public Class FrmMain
                 If DanmuEntry.Configment.EnabledWelcomeHime Then
                     AddHandler DanmuParser.VipEntered, AddressOf DanmuParser_VipEntered
                     AddHandler DanmuParser.GuardEntered, AddressOf DanmuParser_GuardEntered
+                    AddHandler DanmuParser.ViewerEntered, AddressOf DanmuParser_ViewerEntered
                 End If
                 If DanmuEntry.Configment.EnabledSystemMessageHime Then
                     AddHandler DanmuParser.SystemMessageChanged, AddressOf DanmuParser_SystemMessageChanged
@@ -430,6 +432,7 @@ Public Class FrmMain
             If DanmuEntry.Configment.EnabledWelcomeHime Then
                 RemoveHandler DanmuParser.VipEntered, AddressOf DanmuParser_VipEntered
                 RemoveHandler DanmuParser.GuardEntered, AddressOf DanmuParser_GuardEntered
+                RemoveHandler DanmuParser.ViewerEntered, AddressOf DanmuParser_ViewerEntered
             End If
             If DanmuEntry.Configment.EnabledSystemMessageHime Then
                 RemoveHandler DanmuParser.SystemMessageChanged, AddressOf DanmuParser_SystemMessageChanged
@@ -741,6 +744,9 @@ Public Class FrmMain
         m_StartLiveSettingForm?.OnRoomChanged(e)
     End Sub
 
+    Public Sub DanmuParser_ViewerEntered(sender As Object, e As ViewerEnteredEventArgs)
+        DanmuControl.OnViewerEntered(sender, e)
+    End Sub
 #End Region
 #End Region
 

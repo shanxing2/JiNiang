@@ -690,12 +690,19 @@ Public NotInheritable Class DanmuEntry
                     sb.Append(If(dm.svip = 1, "[年]", If(dm.vip = 1, "[月]", "")))
                     sb.Append(If(dm.medal.Count = 0, "", "[" & dm.medal(1) & " " & dm.medal(0) & "]"))
                     sb.Append("[UL ").Append(dm.user_level(0)).Append("] ")
-                    If User.Nick = dm.nickname Then
-                        sb.AppendFormat(Common.UpOrOwnDanmuTemplete, "[自己]", dm.timeline, dm.text)
-                    ElseIf User.ViewRoom.UserNick = dm.nickname Then
-                        sb.AppendFormat(Common.UpOrOwnDanmuTemplete, "[播主]", dm.timeline, dm.text)
+                    Dim dmText As Object
+                    If dm.emoticon.url.IsNullOrEmpty Then
+                        dmText = dm.text
                     Else
-                        sb.AppendFormat(Common.ViewerDanmuTemplete, dm.uid, dm.check_info.ts, dm.check_info.ct, dm.nickname, dm.timeline, dm.text)
+                        Dim showWidth = (dm.emoticon.width * 30) / dm.emoticon.height
+                        dmText = $"<img src=""{dm.emoticon.url}""  height=""30"" width=""{showWidth}""/>"
+                    End If
+                    If User.Nick = dm.nickname Then
+                        sb.AppendFormat(Common.UpOrOwnDanmuTemplete, "[自己]", dm.timeline, dmText)
+                    ElseIf User.ViewRoom.UserNick = dm.nickname Then
+                        sb.AppendFormat(Common.UpOrOwnDanmuTemplete, "[播主]", dm.timeline, dmText)
+                    Else
+                        sb.AppendFormat(Common.ViewerNickDanmuTemplete, dm.uid, dm.check_info.ts, dm.check_info.ct, dm.nickname, dm.timeline, dmText)
                     End If
                     sb.Append("<br/><br/>")
                 Next

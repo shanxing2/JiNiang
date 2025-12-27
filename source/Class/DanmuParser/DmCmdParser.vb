@@ -73,6 +73,10 @@ Public Class DmCmdParser
     ''' </summary>
     Public Event GuardEntered As EventHandler(Of GuardEnteredEventArgs)
     ''' <summary>
+    ''' 观众进入直播间时触发
+    ''' </summary>
+    Public Event ViewerEntered As EventHandler(Of ViewerEnteredEventArgs)
+    ''' <summary>
     ''' 接收系统消息事件
     ''' </summary>
     Public Event SystemMessageChanged As EventHandler(Of SystemMessageChangedEventArgs)
@@ -129,12 +133,12 @@ Public Class DmCmdParser
 
 #Region "IDisposable Support"
     ' 要检测冗余调用
-    Private disposedValue As Boolean = False
+    Private disposed As Boolean = False
 
     ' IDisposable
     Protected Overridable Sub Dispose(disposing As Boolean)
         ' 窗体内的控件调用Close或者Dispose方法时，isDisposed2的值为True
-        If disposedValue Then Return
+        If disposed Then Return
 
         ' TODO: 释放托管资源(托管对象)。
         If disposing Then
@@ -144,22 +148,22 @@ Public Class DmCmdParser
         ' TODO: 释放未托管资源(未托管对象)并在以下内容中替代 Finalize()。
         ' TODO: 将大型字段设置为 null。
 
-        disposedValue = True
+        disposed = True
     End Sub
 
-    '' TODO: 仅当以上 Dispose(disposing As Boolean)拥有用于释放未托管资源的代码时才替代 Finalize()。
-    'Protected Overrides Sub Finalize()
-    '    ' 请勿更改此代码。将清理代码放入以上 Dispose(disposing As Boolean)中。
-    '    Dispose(False)
-    '    MyBase.Finalize()
-    'End Sub
+    ' TODO: 仅当以上 Dispose(disposing As Boolean)拥有用于释放未托管资源的代码时才替代 Finalize()。
+    Protected Overrides Sub Finalize()
+        ' 请勿更改此代码。将清理代码放入以上 Dispose(disposing As Boolean)中。
+        Dispose(False)
+        MyBase.Finalize()
+    End Sub
 
     ' Visual Basic 添加此代码以正确实现可释放模式。
     Public Sub Dispose() Implements IDisposable.Dispose
         ' 请勿更改此代码。将清理代码放入以上 Dispose(disposing As Boolean)中。
         Dispose(True)
         ' TODO: 如果在以上内容中替代了 Finalize()，则取消注释以下行。
-        'GC.SuppressFinalize(Me)
+        GC.SuppressFinalize(Me)
     End Sub
 #End Region
 
@@ -170,7 +174,7 @@ Public Class DmCmdParser
     ''' <param name="eventName"></param>
     ''' <param name="EventArgs"></param>
     Public Shared Sub TransferDanmuEvent(Of T)(ByVal eventName As String, ByVal EventArgs As T)
-        ' 
+
         DanmuEventTransfer.Raise(eventName, EventArgs)
         'RaiseEvent RoomViewerUnBlocked(Nothing, EventArgs)
     End Sub
@@ -347,7 +351,10 @@ Public Class DmCmdParser
                 Case DmCmd.ONLINE_RANK_V2
                 Case DmCmd.MESSAGEBOX_USER_GAIN_MEDAL
                     MESSAGEBOX_USER_GAIN_MEDAL(jDic)
-
+                Case DmCmd.INTERACT_WORD
+                    INTERACT_WORD(jDic)
+                Case DmCmd.POPULARITY_RED_POCKET_START
+                    POPULARITY_RED_POCKET_START(jDic)
                 Case Else
                     TryAddUnKnownDmCmd(cmd, cmdJson)
                     Return
@@ -387,21 +394,32 @@ Public Class DmCmdParser
         m_DanmuBuilder.Append(If(1 = CInt(ar2(2)) AndAlso upId <> CStr(ar2(0)), "[房管] ", ""))
         m_DanmuBuilder.Append(If(ar3.Length = 0, "", "[" & ar3(1) & " " & ar3(0) & "] "))
         m_DanmuBuilder.Append("[UL ").Append(ar4(0)).Append("] ")
-        ' 因为做span元素响应click时间有点麻烦，咱也也不搞前端的，所以先用button代替吧（默认span元素不响应click事件）
+        ' 因为做span元素响应click时间有点麻烦，咱也不是搞前端的，所以先用button代替吧（默认span元素不响应click事件）
         Dim timeStamp = ar1(4).ToString
         Dim precision = TimePrecision.Second
         If timeStamp.Length = 13 Then
             precision = TimePrecision.Millisecond
         End If
         Dim dateTime = CLng(timeStamp).ToTimeStampString(precision, "yyyy-MM-dd HH:mm:ss")
-        Dim danmu = jDic("info")(1)
+        Dim danmu As Object
+        Dim imgDanmu = ar1(13)
+        If TypeOf imgDanmu Is String Then
+            danmu = jDic("info")(1)
+        Else
+            Dim originalHeight = CInt(imgDanmu("height"))
+            Dim originalWidth = CInt(imgDanmu("width"))
+            Dim showWidth = (originalWidth * 30) / originalHeight
+            danmu = $"<img src=""{imgDanmu("url")}""  height=""30"" width=""{showWidth}""/>"
+        End If
+
         Dim checkInfo = DirectCast(jDic("info")(9), Dictionary(Of String, Object))
+        ' 根据角色配置用户昵称显示样式
         If userId = CStr(ar2(0)) Then
             m_DanmuBuilder.AppendFormat(Common.UpOrOwnDanmuTemplete, "[自己]", dateTime, danmu)
         ElseIf userId = CStr(ar2(0)) Then
             m_DanmuBuilder.AppendFormat(Common.UpOrOwnDanmuTemplete, "[播主]", dateTime, danmu)
         Else
-            m_DanmuBuilder.AppendFormat(Common.ViewerDanmuTemplete, ar2(0), checkInfo("ts"), checkInfo("ct"), ar2(1), dateTime, danmu)
+            m_DanmuBuilder.AppendFormat(Common.ViewerNickDanmuTemplete, ar2(0), checkInfo("ts"), checkInfo("ct"), ar2(1), dateTime, danmu)
         End If
         m_Danmu = StringBuilderCache.GetStringAndReleaseBuilder(m_DanmuBuilder)
         m_Danmu = m_Danmu.HtmlDecode
@@ -684,14 +702,26 @@ Public Class DmCmdParser
     End Sub
 
     Private Sub MESSAGEBOX_USER_GAIN_MEDAL(ByRef jDic As Dictionary(Of String, Object))
-        m_Danmu = $"恭喜靓仔 {jDic("fan_name")} 获得 ❀{jDic("medal_name")}❀ 勋章"
-        Dim uname = CStr(jDic("data")("uname"))
+        m_Danmu = $"靓仔 {jDic("data")("fan_name")} 获得❀{jDic("data")("medal_name")}❀勋章"
         Dim fedEventArgs = New FedEventArgs(m_Danmu, CStr(jDic("data")("uid")), CStr(jDic("data")("fan_name"))， -1, -1, GiftUnit.None)
 
         RaiseEvent GoldFed(Nothing, fedEventArgs)
         RaiseEvent MedalGained(Nothing, fedEventArgs)
     End Sub
 
+    Private Sub INTERACT_WORD(ByRef jDic As Dictionary(Of String, Object))
+        m_Danmu = $"{jDic("data")("uname")} ＿|￣|瞄"
+
+        RaiseEvent ViewerEntered(Nothing, New ViewerEnteredEventArgs(m_Danmu))
+    End Sub
+
+    Private Sub POPULARITY_RED_POCKET_START(ByRef jDic As Dictionary(Of String, Object))
+        m_Danmu = $"靓仔 {jDic("data")("sender_name")} 发的红包开枪啦~ 结束时间：{CLng(jDic("data")("end_time")).ToTimeStampString(TimePrecision.Second, "HH:mm:ss")}"
+
+        Dim fedEventArgs = New FedEventArgs(m_Danmu, CStr(jDic("data")("sender_uid")), CStr(jDic("data")("sender_name"))， -1, CInt(jDic("data")("total_price")), GiftUnit.None)
+
+        RaiseEvent GoldFed(Nothing, fedEventArgs)
+    End Sub
 #End Region
 
 #End Region

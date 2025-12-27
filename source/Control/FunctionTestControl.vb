@@ -332,7 +332,7 @@ Public Class FunctionTestControl
     End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
+        m_MainForm.DanmuParser_ViewerEntered(sender, New ViewerEnteredEventArgs("淞s0ng 偷偷喵你一下"))
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click

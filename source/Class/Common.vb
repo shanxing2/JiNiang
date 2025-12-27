@@ -5,7 +5,7 @@ Public NotInheritable Class Common
     ''' <summary>
     ''' 观众弹幕模板(uid-ts-ct-nickname-timestamp-danmu)
     ''' </summary>
-    Public Const ViewerDanmuTemplete As String = "<div style=""display:inline""><input type=""button"" class=""btn-like-span pointer open-menu"" data-uid=""{0}"" data-ts=""{1}"" data-ct=""{2}"" value=""{3}""/><span> {4}</span><br/><span>{5}</span></div>"
+    Public Const ViewerNickDanmuTemplete As String = "<div style=""display:inline""><input type=""button"" class=""btn-like-span pointer open-menu"" data-uid=""{0}"" data-ts=""{1}"" data-ct=""{2}"" value=""{3}"" onmouseover=""ViewerNick_OnmouseHover(this)"" onmouseleave=""ViewerNick_OnmouseLeave(this)""/><span> {4}</span><br/><span>{5}</span></div>"
     ''' <summary>
     ''' 播主、自己（进自己直播间就是自己啦）弹幕模板
     ''' </summary>
@@ -16,7 +16,9 @@ Public NotInheritable Class Common
 
     Public Shared Sub CopyToClipboard(ByVal data As String, ByRef tipsDisplayControl As Control)
         Try
-            Clipboard.SetDataObject(data, False, 3, 100)
+            If String.IsNullOrEmpty(data) Then Return
+
+            Clipboard.SetText(data, TextDataFormat.UnicodeText)
             Windows2.DrawTipsTask(tipsDisplayControl, "复制成功" & RandomEmoji.Happy, 1000, True)
         Catch ex As Exception
             Windows2.DrawTipsTask(tipsDisplayControl, "复制失败，请重新复制" & RandomEmoji.Helpless, 1000, False)
@@ -51,5 +53,6 @@ Public NotInheritable Class Common
     Public Shared Sub ShowOperateResultTask(ByVal ownerControl As Control, ByVal success As Boolean, ByVal tips As String, Optional ByVal timeout As Integer = 1000)
         Windows2.DrawTipsTask(ownerControl, tips, timeout, success, False)
     End Sub
+
 #End Region
 End Class
